@@ -21,7 +21,15 @@ class MemoryMemberRepositoryTest {
 
     @Test
     void save() {
-        Member member = new Member();
+        Member member = Member.builder()
+                .name("1")
+                .nickName("11")
+                .email(".")
+                .phoneNumber("111")
+                .passWord("ghj")
+                .point(0L)
+                .region("12")
+                .build();
         Long id = memberRepository.save(member);
         Member findMember = memberRepository.findMemberById(id);
         Assertions.assertThat(findMember).isSameAs(member);
@@ -31,7 +39,15 @@ class MemoryMemberRepositoryTest {
     void findMemberById() {
         Map<Long, Member> memberMap = new HashMap<>();
         for(int i=0;i<10;i++) {
-            Member member = new Member();
+            Member member = Member.builder()
+                    .name("1")
+                    .nickName("11")
+                    .email(".")
+                    .phoneNumber("111")
+                    .passWord("ghj")
+                    .point(0L)
+                    .region("12")
+                    .build();
             Long id = memberRepository.save(member);
             memberMap.put(id, member);
         }
