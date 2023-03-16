@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: ENC(UQiyAW0JKAyMpuiT4RoaG4xAYizU5jmibiJD1mb1miOCGX2ShNqjI8c/Tt69mJW1yWLZjipiMCk=)
+    username: ENC(7qbEhJfFgMcUuiO3MNMCoQ==)
+    password: ENC(1TChrQkLZs0gG2aZ+4y39qpeEc7z/+SP)
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        #        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+#    org.hibernate.type: trace
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    property:
+      prefix: ENC(
+      suffix: )

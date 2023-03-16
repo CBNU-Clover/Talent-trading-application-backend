@@ -1,11 +1,11 @@
 package com.backend.backend.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.util.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * builder로 제작해서 사용
@@ -15,15 +15,27 @@ import org.springframework.util.Assert;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
+
+    @Column(name = "member_name")
     private String name;
+
+    @Column(unique = true)
     private String nickName;
+
+    @Column(unique = true)
     private String email;
+
     private String phoneNumber;
+
     private String passWord;
     private String region;
     private Long point;
+
+    @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
+    private List<Post> posts=new ArrayList<>();
 
     @Builder
     public Member(String name, String nickName, String email, String phoneNumber, String passWord, String region, Long point) {
