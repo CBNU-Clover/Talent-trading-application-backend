@@ -1,5 +1,6 @@
 package com.backend.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.util.Assert;
@@ -19,10 +20,10 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    @Column(name = "member_name")
+    @Column(name = "member_name", nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String nickName;
 
     @Column(unique = true)
@@ -30,12 +31,17 @@ public class Member {
 
     private String phoneNumber;
 
+    @Column(nullable = false)
     private String passWord;
     private String region;
     private Long point;
 
     @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
     private List<Post> posts=new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 
     @Builder
     public Member(String name, String nickName, String email, String phoneNumber, String passWord, String region, Long point) {
