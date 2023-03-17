@@ -27,13 +27,11 @@ public class Post {
     @Nonnull
     private String postName;
     private String content;
-    private String tag;
 
     @Builder
-    public Post(Member writer, String postName, String content, String tag) {
+    public Post(Member writer, String postName, String content) {
         this.writer = writer;
         this.postName = postName;
         this.content = content;
-        this.tag = tag;
     }
 }
