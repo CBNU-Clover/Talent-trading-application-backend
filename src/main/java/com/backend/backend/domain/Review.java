@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,4 +27,11 @@ public class Review {
     @JoinColumn(name = "member_id",nullable = false)
     private Member writer;
     private String content;
+
+    @Builder
+    public Review(Post post, Member writer, String content) {
+        this.post = post;
+        this.writer = writer;
+        this.content = content;
+    }
 }
