@@ -1,19 +1,20 @@
 package com.backend.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.annotation.Nonnull;
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "review_id")
     private Long id;
 

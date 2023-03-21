@@ -5,15 +5,16 @@ spring:
     password: ENC(1TChrQkLZs0gG2aZ+4y39qpeEc7z/+SP)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         #        show_sql: true
         format_sql: true
         default_batch_fetch_size: 100
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
 logging:
   level:
