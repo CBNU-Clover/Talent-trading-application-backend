@@ -18,4 +18,9 @@ public interface PostRepository {
      */
     Post findPostById(Long id);
 
+    /**
+     * id를 이용해서 Post 객체 삭제
+     * @param id
+     */
+    void deletePostById(Long id);
 }
