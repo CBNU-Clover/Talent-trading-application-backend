@@ -32,8 +32,6 @@ class MysqlMemberRepositoryTest {
         Member member = Member.builder()
                 .name("1")
                 .nickName("11")
-                .email(".")
-                .phoneNumber("111")
                 .passWord("ghj")
                 .build();
         Long memberId = memberRepository.save(member);
@@ -44,10 +42,25 @@ class MysqlMemberRepositoryTest {
 
     @Test
     void findMemberById() {
+        Member member1 = Member.builder()
+                .name("1")
+                .nickName("11")
+                .passWord("ghj")
+                .build();
+        Long memberId1 = memberRepository.save(member1);
+        Member member2 = Member.builder()
+                .name("11")
+                .nickName("111")
+                .passWord("ghj")
+                .build();
+        Long memberId2 = memberRepository.save(member2);
 
+        assertThat(memberRepository.findMemberById(memberId2)).isSameAs(member2);
+        assertThat(memberRepository.findMemberById(memberId1)).isSameAs(member1);
     }
 
     @Test
     void deleteMemberById() {
+
     }
 }

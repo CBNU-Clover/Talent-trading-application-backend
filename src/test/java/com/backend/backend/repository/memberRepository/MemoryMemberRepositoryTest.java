@@ -42,11 +42,7 @@ class MemoryMemberRepositoryTest {
             Member member = Member.builder()
                     .name("1")
                     .nickName("11")
-                    .email(".")
-                    .phoneNumber("111")
                     .passWord("ghj")
-                    .point(0L)
-                    .region("12")
                     .build();
             Long id = memberRepository.save(member);
             memberMap.put(id, member);
