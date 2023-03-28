@@ -1,6 +1,5 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.config.JasyptConfig;
 import com.backend.backend.domain.Member;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Import(JasyptConfig.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional

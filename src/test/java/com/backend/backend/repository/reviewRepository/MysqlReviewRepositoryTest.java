@@ -1,6 +1,5 @@
 package com.backend.backend.repository.reviewRepository;
 
-import com.backend.backend.config.JasyptConfig;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
 import com.backend.backend.domain.Review;
@@ -21,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Import(JasyptConfig.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
