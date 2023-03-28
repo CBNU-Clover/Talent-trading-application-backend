@@ -14,7 +14,9 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
@@ -104,5 +106,34 @@ class MysqlPostRepositoryTest {
         org.junit.jupiter.api.Assertions.assertThrows(InvalidDataAccessApiUsageException.class, ()->{
             postRepository.deletePostById(postId1);
         });
+    }
+
+    @Test
+    void findAll(){
+        Member member = Member.builder()
+                .name("1")
+                .nickName("11")
+                .passWord("ghj")
+                .build();
+        Long memberId = memberRepository.save(member);
+
+        Post post1 = Post.builder()
+                .writer(memberRepository.findMemberById(memberId))
+                .postName(".")
+                .content(",")
+                .build();
+        Long postId1 = postRepository.save(post1);
+        Post post2 = Post.builder()
+                .writer(memberRepository.findMemberById(memberId))
+                .postName(".")
+                .content(",")
+                .build();
+        Long postId2 = postRepository.save(post2);
+
+        PostSearch postSearch = PostSearch.builder()
+                .postName(".")
+                .build();
+        List<Post> posts = postRepository.findAll(postSearch);
+        Assertions.assertThat(posts).contains(post1, post2);
     }
 }
