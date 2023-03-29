@@ -4,6 +4,7 @@ import com.backend.backend.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -26,5 +27,10 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public void deleteMemberById(Long id) {
 
+    }
+
+    @Override
+    public List<Member> findAll(MemberSearch memberSearch) {
+        return null;
     }
 }
