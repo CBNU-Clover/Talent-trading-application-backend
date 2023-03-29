@@ -27,6 +27,7 @@ public interface MemberRepository {
 
     /**
      * MemberSearch의 조건에 맞는 Member 반환
+     * member 검색시에 사용
      * @param memberSearch
      * @return
      */
