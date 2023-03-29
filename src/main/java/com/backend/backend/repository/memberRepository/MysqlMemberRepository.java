@@ -14,7 +14,6 @@ import java.util.List;
 import static com.backend.backend.domain.QPost.post;
 
 @Repository
-@RequiredArgsConstructor
 public class MysqlMemberRepository implements MemberRepository{
     
     private final EntityManager em;
