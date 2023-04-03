@@ -1,10 +1,12 @@
 package com.backend.backend.repository.memberRepository;
 
 import com.backend.backend.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface MemberRepository {
+public interface MemberRepository{
     /**
      * Member객체 전달시 레파지토리에 저장됨
      * @param member
