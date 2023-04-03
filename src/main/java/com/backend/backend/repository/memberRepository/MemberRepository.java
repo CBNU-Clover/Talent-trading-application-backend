@@ -33,4 +33,10 @@ public interface MemberRepository {
      */
     List<Member> findAll(MemberSearch memberSearch);
 
+    /**
+     * 닉네임 중복확인
+     * @param nickName
+     * @return
+     */
+    Boolean nicknameDuplicateCheck(String nickName);
 }

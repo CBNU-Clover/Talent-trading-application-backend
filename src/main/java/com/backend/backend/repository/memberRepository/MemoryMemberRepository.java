@@ -33,4 +33,9 @@ public class MemoryMemberRepository implements MemberRepository{
     public List<Member> findAll(MemberSearch memberSearch) {
         return null;
     }
+
+    @Override
+    public Boolean nicknameDuplicateCheck(String nickName) {
+        return null;
+    }
 }

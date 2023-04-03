@@ -6,11 +6,13 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.backend.backend.domain.QMember.member;
 import static com.backend.backend.domain.QPost.post;
 
 @Repository
@@ -43,13 +45,22 @@ public class MysqlMemberRepository implements MemberRepository{
 
     @Override
     public List<Member> findAll(MemberSearch memberSearch) {
-        QMember member=QMember.member;
         return query
                 .select(member)
                 .from(member)
                 .where(nickNameLike(memberSearch.getNickName()))
                 .limit(100)
                 .fetch();
+    }
+
+    @Override
+    public Boolean nicknameDuplicateCheck(String nickName) {
+        Integer fetchOne = query
+                .selectOne()
+                .from(member)
+                .where(member.nickName.eq(nickName))
+                .fetchFirst();
+        return fetchOne!=null;
     }
 
     private BooleanExpression nickNameLike(String name){
