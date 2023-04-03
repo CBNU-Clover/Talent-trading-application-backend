@@ -63,6 +63,17 @@ public class MysqlMemberRepository implements MemberRepository{
         return fetchOne!=null;
     }
 
+    @Override
+    public Boolean emailDuplicateCheck(String email) {
+        Integer fetchOne = query
+                .selectOne()
+                .from(member)
+                .where(member.email.eq(email))
+                .fetchFirst();
+        return fetchOne!=null;
+    }
+
+
     private BooleanExpression nickNameLike(String name){
         if(!StringUtils.hasText(name)){
             return null;

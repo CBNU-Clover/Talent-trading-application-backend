@@ -39,4 +39,11 @@ public interface MemberRepository {
      * @return
      */
     Boolean nicknameDuplicateCheck(String nickName);
+
+    /**
+     * 이메일 중복확인
+     * @param email
+     * @return
+     */
+    Boolean emailDuplicateCheck(String email);
 }

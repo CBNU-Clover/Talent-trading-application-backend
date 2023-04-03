@@ -38,4 +38,9 @@ public class MemoryMemberRepository implements MemberRepository{
     public Boolean nicknameDuplicateCheck(String nickName) {
         return null;
     }
+
+    @Override
+    public Boolean emailDuplicateCheck(String email) {
+        return null;
+    }
 }
