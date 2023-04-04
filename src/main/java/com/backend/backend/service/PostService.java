@@ -4,10 +4,12 @@ import com.backend.backend.domain.Post;
 import com.backend.backend.repository.postRepository.PostRepository;
 import com.backend.backend.repository.postRepository.PostSearch;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PostService {
     private final PostRepository postRepository;
 
@@ -16,6 +18,8 @@ public class PostService {
      * @param post
      * @return
      */
+
+    @Transactional
     public Long writePost(Post post){
         return postRepository.save(post);
     }
@@ -42,6 +46,7 @@ public class PostService {
      * post를 식별가능한 방법이 id 뿐이기에 id로 삭제
      * @param id
      */
+    @Transactional
     public void deletePost(Long id){
         postRepository.deletePostById(id);
     }
