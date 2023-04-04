@@ -21,7 +21,7 @@ public class PostService {
     }
 
     /**
-     * post를 식별 가능한 방법이 id 뿐이기에 id로 확인
+     * post를 식별 가능한 방법이 id 뿐이기에 id로 검색하여 Post반환
      * @param id
      * @return
      */
