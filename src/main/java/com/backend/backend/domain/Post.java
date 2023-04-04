@@ -39,6 +39,7 @@ public class Post {
     private LocalDateTime date;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OrderBy("date desc")
     private List<Review> reviews = new ArrayList<>();
 
     @Builder
