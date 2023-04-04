@@ -1,15 +1,20 @@
 package com.backend.backend.service;
 
+import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
+import com.backend.backend.exception.NotExistException;
+import com.backend.backend.exception.PermissionDeniedException;
 import com.backend.backend.repository.postRepository.PostRepository;
 import com.backend.backend.repository.postRepository.PostSearch;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Service
 public class PostService {
     private final PostRepository postRepository;
 
@@ -47,8 +52,17 @@ public class PostService {
      * @param id
      */
     @Transactional
-    public void deletePost(Long id){
-        postRepository.deletePostById(id);
+    public void deletePost(Long id, Member member){
+        Post post = postRepository.findPostById(id);
+        if(post==null){
+            throw new NotExistException("존재하지 않는 게시글 입니다");
+        }
+        if(post.getWriter().getId()== member.getId()) {
+            postRepository.deletePostById(id);
+        }
+        else {
+            throw new PermissionDeniedException("해당 멤버에게 이 글을 삭제 권한이 없습니다");
+        }
     }
 
 

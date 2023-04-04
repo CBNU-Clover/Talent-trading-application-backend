@@ -5,12 +5,14 @@ import com.backend.backend.domain.Review;
 import com.backend.backend.repository.postRepository.PostRepository;
 import com.backend.backend.repository.reviewRepository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Service
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
