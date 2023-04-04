@@ -37,10 +37,12 @@ public class Member {
     private Long point;
 
     @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
+    @OrderBy("date desc")
     private List<Post> posts=new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
+    @OrderBy("date desc")
     private List<Review> reviews = new ArrayList<>();
 
     @Builder
