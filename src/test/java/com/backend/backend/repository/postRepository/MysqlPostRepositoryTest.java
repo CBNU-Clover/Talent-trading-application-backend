@@ -135,4 +135,34 @@ class MysqlPostRepositoryTest {
         List<Post> posts = postRepository.findAll(postSearch);
         Assertions.assertThat(posts).contains(post1, post2);
     }
+
+    @Test
+    void findAllOrder(){
+        Member member = Member.builder()
+                .name("1")
+                .nickName("11")
+                .passWord("ghj")
+                .build();
+        Long memberId = memberRepository.save(member);
+
+        Post post1 = Post.builder()
+                .writer(memberRepository.findMemberById(memberId))
+                .postName(".")
+                .content(",")
+                .build();
+        Long postId1 = postRepository.save(post1);
+        Post post2 = Post.builder()
+                .writer(memberRepository.findMemberById(memberId))
+                .postName(".")
+                .content(",")
+                .build();
+        Long postId2 = postRepository.save(post2);
+
+        PostSearch postSearch = PostSearch.builder()
+                .postName(".")
+                .build();
+        List<Post> posts = postRepository.findAll(postSearch);
+        Assertions.assertThat(posts.get(0)).isSameAs(post1);
+        Assertions.assertThat(posts.get(1)).isSameAs(post2);
+    }
 }

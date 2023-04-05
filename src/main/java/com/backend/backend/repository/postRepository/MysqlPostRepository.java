@@ -1,15 +1,15 @@
 package com.backend.backend.repository.postRepository;
 
 import com.backend.backend.domain.Post;
-import com.backend.backend.domain.QPost;
+import com.backend.backend.repository.OrderBy;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.backend.backend.domain.QPost.post;
@@ -48,10 +48,21 @@ public class MysqlPostRepository implements PostRepository{
                 .select(post)
                 .from(post)
                 .where(postNameLike(postSearch.getPostName()))
+                .orderBy(
+                        orderByPostDate(postSearch.getOrderBy())
+                )
                 .limit(100)
                 .fetch();
     }
 
+    private OrderSpecifier<LocalDateTime> orderByPostDate(OrderBy orderBy){
+        if(orderBy==null||orderBy==OrderBy.DESC){
+            return post.date.desc();
+        }
+        else {
+            return post.date.asc();
+        }
+    }
     private BooleanExpression postNameLike(String name){
         if(!StringUtils.hasText(name)){
             return null;
