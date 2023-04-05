@@ -44,6 +44,7 @@ public class ReviewService {
      * review를 구분 가능한 방법이 id뿐이기에 id로 검색하여 종료
      * 해당 Member의 리뷰가 아닐 경우 삭제 불가능
      * @param id
+     * @param member
      */
     @Transactional
     public void deleteReview(Long id, Member member){

@@ -50,6 +50,7 @@ public class PostService {
     /**
      * post를 식별가능한 방법이 id 뿐이기에 id로 삭제
      * @param id
+     * @param member
      */
     @Transactional
     public void deletePost(Long id, Member member){
