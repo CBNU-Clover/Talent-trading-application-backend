@@ -1,9 +1,12 @@
 package com.backend.backend.controller.post;
 
+import com.backend.backend.controller.post.Dto.PostModifyRequest;
+import com.backend.backend.controller.post.Dto.PostReadResponse;
 import com.backend.backend.controller.post.Dto.PostWriteRequest;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
+import com.backend.backend.repository.postRepository.PostRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,11 +39,16 @@ class PostControllerTest {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private PostRepository postRepository;
+
+    private String writerNickname="74981519";
+
     @BeforeEach
     void setup(){
         memberRepository.save(Member.builder()
                 .name("415646556456")
-                .nickName("74981519")
+                .nickName(writerNickname)
                 .passWord("5456")
                 .email("566511561sd1")
                 .build()
@@ -54,7 +62,7 @@ class PostControllerTest {
 
     @Test
     void writePost() throws Exception {
-        PostWriteRequest postWriteRequest = new PostWriteRequest("74981519","456","45616");
+        PostWriteRequest postWriteRequest = new PostWriteRequest(writerNickname,"456","45616");
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders
                 .post("/post/write")
                 .content(objectMapper.writeValueAsString(postWriteRequest))
@@ -64,10 +72,29 @@ class PostControllerTest {
     }
 
     @Test
-    void readPost() {
+    void readPost() throws Exception {
+        String postName="123";
+        String postContent="123";
+        Post post = Post.builder()
+                .writer(memberRepository.findMemberByNickname(writerNickname))
+                .postName(postName)
+                .content(postContent)
+                .build();
+        Long postId = postRepository.save(post);
+
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
+                .get("/post/read/"+postId.toString())
+                .contentType(MediaType.APPLICATION_JSON)
+        );
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("writerNickname",writerNickname).exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("postName",postName).exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("content",postContent).exists());
+
     }
 
     @Test
     void modifyPost() {
+
     }
 }
