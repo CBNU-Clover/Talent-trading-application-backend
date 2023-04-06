@@ -39,7 +39,7 @@ public class PostService {
     }
 
     private Member getMember(PostWriteRequest postWriteRequest) {
-        Member member = memberRepository.findMemberByNickname(postWriteRequest.getNickname());
+        Member member = memberRepository.findMemberByNickname(postWriteRequest.getWriterNickname());
         if(member==null){
             throw new NotExistException("존재하지 않는 회원 입니다");
         }

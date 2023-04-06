@@ -7,13 +7,13 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 public class PostReadResponse {
-    private String  nickname;
+    private String  WriterNickname;
     private String postName;
 
     private String content;
 
     public PostReadResponse(Post post) {
-        this.nickname = post.getWriter().getNickName();
+        this.WriterNickname = post.getWriter().getNickName();
         this.postName = post.getPostName();
         this.content = post.getContent();
     }
