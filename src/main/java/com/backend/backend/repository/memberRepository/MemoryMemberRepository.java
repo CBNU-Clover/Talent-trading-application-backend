@@ -25,6 +25,11 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
     @Override
+    public Member findMemberByNickname(String nickname) {
+        return null;
+    }
+
+    @Override
     public void deleteMemberById(Long id) {
 
     }

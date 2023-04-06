@@ -22,6 +22,13 @@ public interface MemberRepository{
     Member findMemberById(Long id);
 
     /**
+     * 닉네임으로 검색
+     * @param nickname
+     * @return
+     */
+    Member findMemberByNickname(String nickname);
+
+    /**
      * id를 이용해서 Member 객체 삭제
      * @param id
      */

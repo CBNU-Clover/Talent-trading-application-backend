@@ -36,6 +36,15 @@ public class MysqlMemberRepository implements MemberRepository{
     }
 
     @Override
+    public Member findMemberByNickname(String nickname) {
+        return query
+                .select(member)
+                .from(member)
+                .where(member.nickName.eq(nickname))
+                .fetchOne();
+    }
+
+    @Override
     public void deleteMemberById(Long id) {
         Member member = findMemberById(id);
         em.remove(member);
