@@ -7,7 +7,6 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@Builder
 public class PostReadResponse {
     private String  WriterNickname;
     private String postName;
