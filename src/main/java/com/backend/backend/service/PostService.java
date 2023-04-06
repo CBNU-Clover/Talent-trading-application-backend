@@ -1,6 +1,6 @@
 package com.backend.backend.service;
 
-import com.backend.backend.controller.post.PostWriteRequest;
+import com.backend.backend.controller.post.Dto.PostWriteRequest;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
 import com.backend.backend.exception.NotExistException;

@@ -1,4 +1,4 @@
-package com.backend.backend.controller.post;
+package com.backend.backend.controller.post.Dto;
 
 import lombok.Data;
 
