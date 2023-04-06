@@ -19,7 +19,7 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/write")
-    public ResponseEntity<Long> postWrite(@RequestBody @Valid PostWriteRequest postWriteRequest){
+    public ResponseEntity<Long> writePost(@RequestBody @Valid PostWriteRequest postWriteRequest){
 
         Long postId = postService.writePost(postWriteRequest);
 
