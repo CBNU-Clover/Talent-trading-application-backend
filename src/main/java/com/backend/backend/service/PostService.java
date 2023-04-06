@@ -1,9 +1,11 @@
 package com.backend.backend.service;
 
+import com.backend.backend.controller.post.PostWriteRequest;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
 import com.backend.backend.exception.NotExistException;
 import com.backend.backend.exception.PermissionDeniedException;
+import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
 import com.backend.backend.repository.postRepository.PostSearch;
 import lombok.RequiredArgsConstructor;
@@ -17,16 +19,31 @@ import java.util.List;
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * post객체 전달시 저장
-     * @param post
+     * @param postWriteRequest
      * @return
      */
 
     @Transactional
-    public Long writePost(Post post){
+    public Long writePost(PostWriteRequest postWriteRequest){
+        Post post = Post.builder()
+                .writer(getMember(postWriteRequest))
+                .postName(postWriteRequest.getPostName())
+                .content(postWriteRequest.getContent())
+                .build();
+
         return postRepository.save(post);
+    }
+
+    private Member getMember(PostWriteRequest postWriteRequest) {
+        Member member = memberRepository.findMemberByNickname(postWriteRequest.getNickname());
+        if(member==null){
+            throw new NotExistException("존재하지 않는 회원 입니다");
+        }
+        return member;
     }
 
     /**
