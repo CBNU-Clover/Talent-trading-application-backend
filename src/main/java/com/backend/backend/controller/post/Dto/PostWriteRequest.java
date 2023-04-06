@@ -17,4 +17,12 @@ public class PostWriteRequest {
 
     private String content;
 
+    public PostWriteRequest(String writerNickname, String postName, String content) {
+        this.writerNickname = writerNickname;
+        this.postName = postName;
+        this.content = content;
+    }
+
+    public PostWriteRequest() {
+    }
 }
