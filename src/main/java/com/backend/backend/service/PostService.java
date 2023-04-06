@@ -1,5 +1,6 @@
 package com.backend.backend.service;
 
+import com.backend.backend.controller.post.Dto.PostModifyRequest;
 import com.backend.backend.controller.post.Dto.PostWriteRequest;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
@@ -62,6 +63,29 @@ public class PostService {
      */
     public List<Post> searchPost(PostSearch postSearch){
         return postRepository.findAll(postSearch);
+    }
+
+    /**
+     * post를 업데이트
+     * @param postModifyRequest
+     * @return
+     */
+    @Transactional
+    public Long modifyPost(PostModifyRequest postModifyRequest){
+        Post post = postRepository.findPostById(postModifyRequest.getPostId());
+        Member modifier = memberRepository.findMemberByNickname(postModifyRequest.getModifierNickname());
+
+        if(!(post.getWriter().getId().equals(modifier.getId()))){
+            throw new PermissionDeniedException("해당 회원은 이 글을 수정할 권한이 없습니다");
+        }
+
+        if(postModifyRequest.getPostName()!=null){
+            post.setPostName(postModifyRequest.getPostName());
+        }
+        if(postModifyRequest.getContent()!=null) {
+            post.setContent(postModifyRequest.getContent());
+        }
+        return post.getId();
     }
 
     /**

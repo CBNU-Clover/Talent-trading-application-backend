@@ -1,10 +1,7 @@
 package com.backend.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,7 +28,9 @@ public class Post {
     Member writer;
 
     @Column(nullable = false)
+    @Setter
     private String postName;
+    @Setter
     private String content;
 
     @CreatedDate
