@@ -17,4 +17,14 @@ public class PostModifyRequest {
     private String  modifierNickname;
     private String postName;
     private String content;
+
+    public PostModifyRequest() {
+    }
+
+    public PostModifyRequest(Long postId, String modifierNickname, String postName, String content) {
+        this.postId = postId;
+        this.modifierNickname = modifierNickname;
+        this.postName = postName;
+        this.content = content;
+    }
 }

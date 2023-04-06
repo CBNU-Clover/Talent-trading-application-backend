@@ -82,7 +82,7 @@ class MysqlPostRepositoryTest {
     void deletePostById() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickName("115465165")
                 .passWord("ghj")
                 .build();
         Long memberId = memberRepository.save(member);
@@ -111,7 +111,7 @@ class MysqlPostRepositoryTest {
     void findAll(){
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickName("54654949898198")
                 .passWord("ghj")
                 .build();
         Long memberId = memberRepository.save(member);
@@ -140,7 +140,7 @@ class MysqlPostRepositoryTest {
     void findAllOrder(){
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickName("419651965819198")
                 .passWord("ghj")
                 .build();
         Long memberId = memberRepository.save(member);

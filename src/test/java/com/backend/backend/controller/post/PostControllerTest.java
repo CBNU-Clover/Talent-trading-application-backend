@@ -94,7 +94,24 @@ class PostControllerTest {
     }
 
     @Test
-    void modifyPost() {
+    void modifyPost() throws Exception {
+        String postName="123";
+        String postContent="123";
+        Post post = Post.builder()
+                .writer(memberRepository.findMemberByNickname(writerNickname))
+                .postName(postName)
+                .content(postContent)
+                .build();
+        Long postId = postRepository.save(post);
 
+        PostModifyRequest postModifyRequest = new PostModifyRequest(postId, writerNickname, "789", "81815");
+
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
+                .patch("/post/modify")
+                .content(objectMapper.writeValueAsString(postModifyRequest))
+                .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        response.andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
