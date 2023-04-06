@@ -37,7 +37,9 @@ public class JwtTokenProvider {
                 .collect(Collectors.joining(","));
 
         String accessToken= Jwts.builder() // access Token 생성
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*60*36)) // 만료시간 30분으로 설정
+                .setSubject(authentication.getName())
+                .claim("auth",authorities)
+                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30)) // 만료시간 30분으로 설정
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 

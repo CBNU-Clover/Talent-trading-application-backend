@@ -15,7 +15,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     private  final JwtTokenProvider jwtTokenProvider;
+
     public SecurityConfig(JwtTokenProvider jwtTokenProvider)
     {
         this.jwtTokenProvider=jwtTokenProvider;
@@ -28,10 +30,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+
         http
                 .csrf().disable()
                 //crsf(cross site request forgery):사이트간 위조 요청 , 인증된 사용자의 토큰을 탈취해 위조된 요청을 보냈을 경우 파악해 방지하는 것
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+              .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 //JWT를 사용하기 때문에 세션도 사용하지 않는다.
                 .and()
                 .formLogin().disable()

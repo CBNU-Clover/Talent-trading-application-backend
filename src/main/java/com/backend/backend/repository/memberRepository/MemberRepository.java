@@ -20,7 +20,6 @@ public interface MemberRepository{
      * @return
      */
     Member findMemberById(Long id);
-
     /**
      * 닉네임으로 검색
      * @param nickname
