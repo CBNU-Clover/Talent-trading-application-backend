@@ -1,13 +1,11 @@
 package com.backend.backend.controller.post;
 
+import com.backend.backend.domain.Post;
 import com.backend.backend.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,5 +22,14 @@ public class PostController {
         Long postId = postService.writePost(postWriteRequest);
 
         return new ResponseEntity<>(postId,HttpStatus.CREATED);
+    }
+
+    @GetMapping("/read/{postId}")
+    public ResponseEntity<PostReadResponse> readPost(@PathVariable("postId") Long postId){
+
+        Post post = postService.readPost(postId);
+        PostReadResponse postReadResponse = new PostReadResponse(post);
+
+        return new ResponseEntity<>(postReadResponse,HttpStatus.OK);
     }
 }
