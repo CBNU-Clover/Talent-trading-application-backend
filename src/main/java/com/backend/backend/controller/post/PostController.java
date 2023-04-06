@@ -19,12 +19,10 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/write")
-    public ResponseEntity<Void> postWrite(@RequestBody @Valid PostWriteRequest postWriteRequest){
+    public ResponseEntity<Long> postWrite(@RequestBody @Valid PostWriteRequest postWriteRequest){
 
-        postService.writePost(postWriteRequest);
+        Long postId = postService.writePost(postWriteRequest);
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .build();
+        return new ResponseEntity<>(postId,HttpStatus.CREATED);
     }
 }
