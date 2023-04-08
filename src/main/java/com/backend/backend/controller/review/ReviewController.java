@@ -1,14 +1,14 @@
 package com.backend.backend.controller.review;
 
+import com.backend.backend.controller.post.Dto.PostReadResponse;
 import com.backend.backend.controller.post.Dto.PostWriteRequest;
+import com.backend.backend.domain.Post;
+import com.backend.backend.domain.Review;
 import com.backend.backend.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,6 +29,15 @@ public class ReviewController {
     public ResponseEntity<Long> writeReview(@RequestBody @Valid ReviewWriteRequest reviewWriteRequest){
         Long reviewId = reviewService.writeReview(reviewWriteRequest);
         return new ResponseEntity<>(reviewId, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/read/{reviewId}")
+    public ResponseEntity<ReviewReadResponse> readPost(@PathVariable("reviewId") Long reviewId){
+
+        Review review = reviewService.readReview(reviewId);
+        ReviewReadResponse reviewReadResponse = new ReviewReadResponse(review);
+
+        return new ResponseEntity<>(reviewReadResponse,HttpStatus.OK);
     }
 
 

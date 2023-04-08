@@ -2,8 +2,10 @@ package com.backend.backend.controller.review;
 
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
+import com.backend.backend.domain.Review;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
+import com.backend.backend.repository.reviewRepository.ReviewRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.criterion.NotNullExpression;
 import org.junit.jupiter.api.Assertions;
@@ -39,7 +41,7 @@ class ReviewControllerTest {
     private PostRepository postRepository;
 
     @Autowired
-    private ReviewController reviewController;
+    private ReviewRepository reviewRepository;
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -87,5 +89,25 @@ class ReviewControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
         );
         response.andExpect(MockMvcResultMatchers.status().is4xxClientError());
+    }
+
+    @Test
+    void readReview() throws Exception {
+        String content="4546545";
+        Review review = Review.builder()
+                .post(postRepository.findPostById(postId))
+                .writer(memberRepository.findMemberByNickname(writerNickname))
+                .content(content)
+                .build();
+        Long reviewId = reviewRepository.save(review);
+
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
+                .get("/review/read/"+reviewId.toString())
+                .contentType(MediaType.APPLICATION_JSON)
+        );
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("writerNickname",writerNickname).exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("postId",postId).exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("content",content).exists());
     }
 }

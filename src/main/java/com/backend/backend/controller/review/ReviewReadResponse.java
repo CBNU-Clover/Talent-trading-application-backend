@@ -1,5 +1,6 @@
 package com.backend.backend.controller.review;
 
+import com.backend.backend.domain.Review;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,9 +12,9 @@ public class ReviewReadResponse {
     private String writerNickname;
     private String content;
 
-    public ReviewReadResponse(Long postId, String writerNickname, String content) {
-        this.postId = postId;
-        this.writerNickname = writerNickname;
-        this.content = content;
+    public ReviewReadResponse(Review review) {
+        this.postId = review.getId();
+        this.writerNickname = review.getWriter().getNickName();
+        this.content = review.getContent();
     }
 }
