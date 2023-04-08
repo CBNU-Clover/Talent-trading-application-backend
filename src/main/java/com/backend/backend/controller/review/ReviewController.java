@@ -19,10 +19,17 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
+
+    /**
+     * 리뷰 작성 api
+     * @param reviewWriteRequest
+     * @return
+     */
     @PostMapping("/write")
     public ResponseEntity<Long> writeReview(@RequestBody @Valid ReviewWriteRequest reviewWriteRequest){
         Long reviewId = reviewService.writeReview(reviewWriteRequest);
         return new ResponseEntity<>(reviewId, HttpStatus.CREATED);
     }
+
 
 }
