@@ -1,10 +1,12 @@
 package com.backend.backend.service;
 
 
+import com.backend.backend.controller.review.ReviewWriteRequest;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Review;
 import com.backend.backend.exception.NotExistException;
 import com.backend.backend.exception.PermissionDeniedException;
+import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
 import com.backend.backend.repository.reviewRepository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +21,24 @@ import java.util.List;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final PostRepository postRepository;
+    private final MemberRepository memberRepository;
 
 
     /**
-     * review객체 전달시 저장
-     * @param review
+     * ReviewWriteRequest객체 전달시 review 저장
+     * @param reviewWriteRequest
      * @return
      */
     @Transactional
-    public Long writeReview(Review review){
+    public Long writeReview(ReviewWriteRequest reviewWriteRequest){
+        Review review = Review.builder()
+                .post(postRepository.findPostById(reviewWriteRequest.getPostId()))
+                .writer(memberRepository
+                        .findMemberByNickname(reviewWriteRequest.getWriterNickname()))
+                .content(reviewWriteRequest.getContent())
+                .build();
+
         return reviewRepository.save(review);
     }
 

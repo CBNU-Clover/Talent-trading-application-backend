@@ -35,13 +35,12 @@ public class SecurityConfig {
                 .csrf().disable()
                 //crsf(cross site request forgery):사이트간 위조 요청 , 인증된 사용자의 토큰을 탈취해 위조된 요청을 보냈을 경우 파악해 방지하는 것
               .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                //JWT를 사용하기 때문에 세션도 사용하지 않는다.
+                //JWT를 사용하기 때문에 세션도 사용하지 않는다.z
                 .and()
                 .formLogin().disable()
-                .httpBasic().disable()
                 //HTTP Basic Authentication과 Form Based Authentication을 사용 x
                 .authorizeRequests()
-                .antMatchers("/api/user").permitAll()
+                .antMatchers("/api/user","api/user/login").permitAll()
                 // 해당 요청에 관해 모두 접근 가능하게 한다.
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
