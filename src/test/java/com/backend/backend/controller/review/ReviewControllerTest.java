@@ -1,5 +1,6 @@
 package com.backend.backend.controller.review;
 
+import com.backend.backend.controller.review.dto.ReviewWriteRequest;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
 import com.backend.backend.domain.Review;
@@ -7,8 +8,6 @@ import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
 import com.backend.backend.repository.reviewRepository.ReviewRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hibernate.criterion.NotNullExpression;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,8 +21,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(SpringExtension.class)

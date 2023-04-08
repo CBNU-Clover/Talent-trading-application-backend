@@ -1,8 +1,7 @@
 package com.backend.backend.controller.review;
 
-import com.backend.backend.controller.post.Dto.PostReadResponse;
-import com.backend.backend.controller.post.Dto.PostWriteRequest;
-import com.backend.backend.domain.Post;
+import com.backend.backend.controller.review.dto.ReviewReadResponse;
+import com.backend.backend.controller.review.dto.ReviewWriteRequest;
 import com.backend.backend.domain.Review;
 import com.backend.backend.service.ReviewService;
 import lombok.RequiredArgsConstructor;

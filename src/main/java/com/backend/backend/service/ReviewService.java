@@ -1,7 +1,7 @@
 package com.backend.backend.service;
 
 
-import com.backend.backend.controller.review.ReviewWriteRequest;
+import com.backend.backend.controller.review.dto.ReviewWriteRequest;
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Review;
 import com.backend.backend.exception.NotExistException;
@@ -12,8 +12,6 @@ import com.backend.backend.repository.reviewRepository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

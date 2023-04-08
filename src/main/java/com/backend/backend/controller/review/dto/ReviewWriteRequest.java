@@ -1,4 +1,4 @@
-package com.backend.backend.controller.review;
+package com.backend.backend.controller.review.dto;
 
 import com.backend.backend.domain.Member;
 import com.backend.backend.domain.Post;
