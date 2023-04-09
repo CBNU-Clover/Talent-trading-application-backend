@@ -2,8 +2,6 @@ package com.backend.backend.service;
 
 import com.backend.backend.domain.Member;
 import com.backend.backend.dto.memberdto.MemberJoinRequest;
-import com.backend.backend.exception.AppException;
-import com.backend.backend.exception.ErrorCode;
 import com.backend.backend.repository.memberRepository.MysqlMemberRepository;
 import com.backend.backend.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,14 +21,12 @@ public class MemberService {
     private final MysqlMemberRepository mysqlMemberRepository;
     private final BCryptPasswordEncoder encoder;
 
-    @Value("${jwt.token.secret}") // 인식 못함..
+    @Value("${jwt.token.secret}")
     private String key;
     private Long expireTimeMs=1000*60*60l; // 한시간
     public String join(MemberJoinRequest memberJoinRequest)
     {
 
-        // nickName 중복체크
-        //email 중복체크
         Member member=Member.builder()
                         .nickName(memberJoinRequest.getNickName())
                         .name(memberJoinRequest.getName())
@@ -43,6 +38,7 @@ public class MemberService {
         
         return "Success";
     }
+
     public String login(String nickName,String passWord)
     {
         //membernickName없음
@@ -58,5 +54,34 @@ public class MemberService {
         String token= JwtTokenUtil.createToken(selectedmember.getNickName(),key,expireTimeMs);
 
         return token;
+    }
+
+    public int check_Nickname(String nickName)
+    {
+        Boolean check;
+        check=mysqlMemberRepository.nicknameDuplicateCheck(nickName);
+        if(check)
+        {
+
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    public int check_Email(String email)
+    {
+        Boolean check;
+        check=mysqlMemberRepository.emailDuplicateCheck(email);
+        if(check)
+        {
+
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

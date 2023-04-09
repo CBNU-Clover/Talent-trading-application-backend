@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeRequests()
                 .antMatchers("/api/**").permitAll()
-                .antMatchers("/api/v1/members/join","/api/v1/members/login").permitAll()
+                .antMatchers("/api/v1/members/join","/api/v1/members/login","/api/vi/members/check_nickName").permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
