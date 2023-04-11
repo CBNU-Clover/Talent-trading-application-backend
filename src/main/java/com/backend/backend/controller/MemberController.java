@@ -1,12 +1,10 @@
 package com.backend.backend.controller;
 
 import com.backend.backend.domain.Member;
-import com.backend.backend.dto.memberdto.Check_Email;
-import com.backend.backend.dto.memberdto.Check_nickName;
-import com.backend.backend.dto.memberdto.MemberJoinRequest;
-import com.backend.backend.dto.memberdto.MemberLoginRequest;
+import com.backend.backend.dto.memberdto.*;
 import com.backend.backend.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +17,7 @@ public class MemberController {
     @Autowired
     private final MemberService memberService;
 
-    @GetMapping("/check_nickName")
+    @PostMapping("/check_nickName")
     public ResponseEntity<String>check_nickName(@RequestBody Check_nickName check_nickName)
     {
         int check_flag;
@@ -35,17 +33,20 @@ public class MemberController {
         // 닉네임 똑같은거 있는지 검사
 
     }
-    @GetMapping("/check_email")
+    @PostMapping("/check_email")
     public ResponseEntity<String>check_email(@RequestBody Check_Email check_email)
     {
+
         int check_flag;
         check_flag=memberService.check_Email(check_email.getEmail());
-        if(check_flag==1)
+        if(check_flag==1) // 중복되는 닉네임이 있다면
         {
+
             return ResponseEntity.ok().body("중복되는 이메일이 있습니다!!");
         }
         else
         {
+
             return ResponseEntity.ok().body("중복되는 이메일이 없습니다!!");
         }
     }
