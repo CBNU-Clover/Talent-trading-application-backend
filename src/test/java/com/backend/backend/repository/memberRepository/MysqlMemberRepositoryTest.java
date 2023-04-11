@@ -40,6 +40,35 @@ class MysqlMemberRepositoryTest {
     }
 
     @Test
+    void emailDuplicateCheck() {
+        Member member = Member.builder()
+                .name("1")
+                .nickName("11")
+                .passWord("ghj")
+                .email("819819519519")
+                .build();
+        Long memberId = memberRepository.save(member);
+
+        assertThat(memberRepository.emailDuplicateCheck("819819519519")).isTrue();
+
+    }
+
+    @Test
+    void nicknameDuplicateCheck() {
+        Member member = Member.builder()
+                .name("1")
+                .nickName("516516516516")
+                .passWord("ghj")
+                .email("456")
+                .build();
+        Long memberId = memberRepository.save(member);
+
+        assertThat(memberRepository.nicknameDuplicateCheck("516516516516")).isTrue();
+
+    }
+
+
+    @Test
     void findMemberById() {
         Member member1 = Member.builder()
                 .name("1")
