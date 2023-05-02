@@ -33,7 +33,6 @@ public class Member {
 
     @Column(nullable = false)
     private String passWord;
-    private String region;
     private Long point;
 
     @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
@@ -46,18 +45,12 @@ public class Member {
     private List<Review> reviews = new ArrayList<>();
 
     @Builder
-    public Member(String name, String nickName, String email, String phoneNumber, String passWord, String region, Long point) {
-        Assert.hasText(name, "name must not be empty");
-        Assert.hasText(nickName, "nickName must not be empty");
-        //Assert.hasText(email, "email must not be empty");
-        //Assert.hasText(phoneNumber, "phoneNumber must not be empty");
-        Assert.hasText(passWord, "passWord must not be empty");
+    public Member(String name, String nickName, String email, String phoneNumber, String passWord, Long point) {
         this.name = name;
         this.nickName = nickName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.passWord = passWord;
-        this.region = region;
         this.point = point;
     }
 }
