@@ -1,10 +1,8 @@
 package com.backend.backend.controller;
 
-import com.backend.backend.domain.Member;
 import com.backend.backend.dto.memberdto.*;
 import com.backend.backend.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

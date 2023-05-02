@@ -2,8 +2,8 @@ package com.backend.backend.service;
 
 import com.backend.backend.controller.post.Dto.PostModifyRequest;
 import com.backend.backend.controller.post.Dto.PostWriteRequest;
-import com.backend.backend.domain.Member;
-import com.backend.backend.domain.Post;
+import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.post.Post;
 import com.backend.backend.exception.NotExistException;
 import com.backend.backend.exception.PermissionDeniedException;
 import com.backend.backend.repository.memberRepository.MemberRepository;

@@ -1,18 +1,14 @@
 package com.backend.backend.service;
 
-import com.backend.backend.domain.Member;
-import com.backend.backend.domain.Post;
+import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.post.Post;
 import com.backend.backend.exception.PermissionDeniedException;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +16,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 
 @ExtendWith(SpringExtension.class)
