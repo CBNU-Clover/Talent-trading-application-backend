@@ -44,6 +44,16 @@ public class Member {
     @OrderBy("date desc")
     private List<Review> reviews = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    @OrderBy("startDate desc")
+    private List<TransactionDetail> sales = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
+    @OrderBy("startDate desc")
+    private List<TransactionDetail> purchases = new ArrayList<>();
+
     @Builder
     public Member(String name, String nickName, String email, String phoneNumber, String passWord, Long point) {
         this.name = name;
