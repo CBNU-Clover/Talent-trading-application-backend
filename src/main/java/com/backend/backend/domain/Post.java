@@ -31,6 +31,7 @@ public class Post {
     @Setter
     private String postName;
     @Setter
+    @Lob
     private String content;
 
     @CreatedDate
