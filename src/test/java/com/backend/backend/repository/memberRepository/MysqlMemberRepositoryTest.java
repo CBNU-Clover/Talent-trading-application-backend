@@ -1,22 +1,16 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.domain.Member;
-import org.junit.jupiter.api.Assertions;
+import com.backend.backend.domain.member.Member;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -30,7 +24,7 @@ class MysqlMemberRepositoryTest {
     void save() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         Long memberId = memberRepository.save(member);
@@ -43,7 +37,7 @@ class MysqlMemberRepositoryTest {
     void emailDuplicateCheck() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .email("819819519519")
                 .build();
@@ -57,7 +51,7 @@ class MysqlMemberRepositoryTest {
     void nicknameDuplicateCheck() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("516516516516")
+                .nickname("516516516516")
                 .passWord("ghj")
                 .email("456")
                 .build();
@@ -72,13 +66,13 @@ class MysqlMemberRepositoryTest {
     void findMemberById() {
         Member member1 = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         Long memberId1 = memberRepository.save(member1);
         Member member2 = Member.builder()
                 .name("11")
-                .nickName("111")
+                .nickname("111")
                 .passWord("ghj")
                 .build();
         Long memberId2 = memberRepository.save(member2);
@@ -91,13 +85,13 @@ class MysqlMemberRepositoryTest {
     void deleteMemberById() {
         Member member1 = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         Long memberId1 = memberRepository.save(member1);
         Member member2 = Member.builder()
                 .name("11")
-                .nickName("111")
+                .nickname("111")
                 .passWord("ghj")
                 .build();
         Long memberId2 = memberRepository.save(member2);

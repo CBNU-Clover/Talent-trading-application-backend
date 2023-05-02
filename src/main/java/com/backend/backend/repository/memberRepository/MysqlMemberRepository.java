@@ -1,17 +1,16 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.domain.Member;
+import com.backend.backend.domain.member.Member;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.List;
 
-import static com.backend.backend.domain.QMember.member;
-import static com.backend.backend.domain.QPost.post;
+import static com.backend.backend.domain.member.QMember.member;
+import static com.backend.backend.domain.post.QPost.post;
 
 @Repository
 public class MysqlMemberRepository implements MemberRepository{
@@ -40,7 +39,7 @@ public class MysqlMemberRepository implements MemberRepository{
         return query
                 .select(member)
                 .from(member)
-                .where(member.nickName.eq(nickname))
+                .where(member.nickname.eq(nickname))
                 .fetchOne();
     }
 
@@ -55,17 +54,17 @@ public class MysqlMemberRepository implements MemberRepository{
         return query
                 .select(member)
                 .from(member)
-                .where(nickNameLike(memberSearch.getNickName()))
+                .where(nicknameLike(memberSearch.getNickname()))
                 .limit(100)
                 .fetch();
     }
 
     @Override
-    public Boolean nicknameDuplicateCheck(String nickName) {
+    public Boolean nicknameDuplicateCheck(String nickname) {
         Integer fetchOne = query
                 .selectOne()
                 .from(member)
-                .where(member.nickName.eq(nickName))
+                .where(member.nickname.eq(nickname))
                 .fetchFirst();
         return fetchOne!=null;
     }
@@ -81,7 +80,7 @@ public class MysqlMemberRepository implements MemberRepository{
     }
 
 
-    private BooleanExpression nickNameLike(String name){
+    private BooleanExpression nicknameLike(String name){
         if(!StringUtils.hasText(name)){
             return null;
         }

@@ -1,8 +1,10 @@
-package com.backend.backend.domain;
+package com.backend.backend.domain.member;
 
+import com.backend.backend.domain.post.Post;
+import com.backend.backend.domain.review.Review;
+import com.backend.backend.domain.transactionDetail.TransactionDetail;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class Member {
     private String name;
 
     @Column(unique = true, nullable = false)
-    private String nickName;
+    private String nickname;
 
     @Column(unique = true)
     private String email;
@@ -33,8 +35,11 @@ public class Member {
 
     @Column(nullable = false)
     private String passWord;
-    private String region;
     private Long point;
+
+    @Embedded
+    @Column(nullable = false)
+    private Rating rating=new Rating();
 
     @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
     @OrderBy("date desc")
@@ -45,19 +50,23 @@ public class Member {
     @OrderBy("date desc")
     private List<Review> reviews = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    @OrderBy("startDate desc")
+    private List<TransactionDetail> sales = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
+    @OrderBy("startDate desc")
+    private List<TransactionDetail> purchases = new ArrayList<>();
+
     @Builder
-    public Member(String name, String nickName, String email, String phoneNumber, String passWord, String region, Long point) {
-        Assert.hasText(name, "name must not be empty");
-        Assert.hasText(nickName, "nickName must not be empty");
-        //Assert.hasText(email, "email must not be empty");
-        //Assert.hasText(phoneNumber, "phoneNumber must not be empty");
-        Assert.hasText(passWord, "passWord must not be empty");
+    public Member(String name, String nickname, String email, String phoneNumber, String passWord, Long point) {
         this.name = name;
-        this.nickName = nickName;
+        this.nickname = nickname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.passWord = passWord;
-        this.region = region;
         this.point = point;
     }
 }

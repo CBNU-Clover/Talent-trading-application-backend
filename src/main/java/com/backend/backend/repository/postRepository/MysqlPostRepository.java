@@ -1,6 +1,6 @@
 package com.backend.backend.repository.postRepository;
 
-import com.backend.backend.domain.Post;
+import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.OrderBy;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.backend.backend.domain.QPost.post;
+import static com.backend.backend.domain.post.QPost.post;
 
 @Repository
 public class MysqlPostRepository implements PostRepository{

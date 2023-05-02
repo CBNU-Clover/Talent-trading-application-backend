@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class MemberLoginRequest {
-    private String nickName;
+    private String nickname;
     private String passWord;
 }

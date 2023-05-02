@@ -1,10 +1,8 @@
 package com.backend.backend.controller;
 
-import com.backend.backend.domain.Member;
 import com.backend.backend.dto.memberdto.*;
 import com.backend.backend.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +15,11 @@ public class MemberController {
     @Autowired
     private final MemberService memberService;
 
-    @PostMapping("/check_nickName")
-    public ResponseEntity<String>check_nickName(@RequestBody Check_nickName check_nickName)
+    @PostMapping("/check_nickname")
+    public ResponseEntity<String>check_nickname(@RequestBody Check_nickname check_nickname)
     {
         int check_flag;
-        check_flag=memberService.check_Nickname(check_nickName.getNickName());
+        check_flag=memberService.check_Nickname(check_nickname.getNickname());
         if(check_flag==1)
         {
             return ResponseEntity.ok().body("중복되는 닉네임이 있습니다!!");
@@ -61,7 +59,7 @@ public class MemberController {
     @PostMapping("/login")
     public ResponseEntity<String>login(@RequestBody MemberLoginRequest memberLoginRequest)
     {
-        String token=memberService.login(memberLoginRequest.getNickName(),memberLoginRequest.getPassWord());
+        String token=memberService.login(memberLoginRequest.getNickname(),memberLoginRequest.getPassWord());
         return ResponseEntity.ok().body(token);
     }
 

@@ -1,7 +1,6 @@
 package com.backend.backend.repository.reviewRepository;
 
-import com.backend.backend.domain.Post;
-import com.backend.backend.domain.Review;
+import com.backend.backend.domain.review.Review;
 
 public interface ReviewRepository {
     /**

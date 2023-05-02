@@ -11,10 +11,10 @@ import java.util.Date;
 public class JwtTokenUtil {
 
 
-    public static String createToken(String nickName,String key , long expireTimeMs)
+    public static String createToken(String nickname,String key , long expireTimeMs)
     {
         Claims claims= Jwts.claims(); // 일종의 Map
-        claims.put("nickName",nickName);
+        claims.put("nickname",nickname);
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))

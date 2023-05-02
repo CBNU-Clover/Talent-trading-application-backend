@@ -1,14 +1,12 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.domain.Member;
+import com.backend.backend.domain.member.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemoryMemberRepositoryTest {
 
@@ -23,12 +21,11 @@ class MemoryMemberRepositoryTest {
     void save() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .email(".")
                 .phoneNumber("111")
                 .passWord("ghj")
                 .point(0L)
-                .region("12")
                 .build();
         Long id = memberRepository.save(member);
         Member findMember = memberRepository.findMemberById(id);
@@ -41,7 +38,7 @@ class MemoryMemberRepositoryTest {
         for(int i=0;i<10;i++) {
             Member member = Member.builder()
                     .name("1")
-                    .nickName("11")
+                    .nickname("11")
                     .passWord("ghj")
                     .build();
             Long id = memberRepository.save(member);

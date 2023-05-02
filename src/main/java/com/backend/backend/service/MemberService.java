@@ -1,6 +1,6 @@
 package com.backend.backend.service;
 
-import com.backend.backend.domain.Member;
+import com.backend.backend.domain.member.Member;
 import com.backend.backend.dto.memberdto.MemberJoinRequest;
 import com.backend.backend.repository.memberRepository.MysqlMemberRepository;
 import com.backend.backend.utils.JwtTokenUtil;
@@ -28,7 +28,7 @@ public class MemberService {
     {
 
         Member member=Member.builder()
-                        .nickName(memberJoinRequest.getNickName())
+                        .nickname(memberJoinRequest.getNickname())
                         .name(memberJoinRequest.getName())
                         .email(memberJoinRequest.getEmail())
                         .phoneNumber(memberJoinRequest.getPhoneNumber())
@@ -39,10 +39,10 @@ public class MemberService {
         return "Success";
     }
 
-    public String login(String nickName,String passWord)
+    public String login(String nickname,String passWord)
     {
-        //membernickName없음
-        Member selectedmember=mysqlMemberRepository.findMemberByNickname(nickName);
+        //membernickname없음
+        Member selectedmember=mysqlMemberRepository.findMemberByNickname(nickname);
         // exception 필요
 
         //memberpassWord틀림
@@ -51,15 +51,15 @@ public class MemberService {
 
         }
         //앞에서 Exception 안났으면 토큰 발행
-        String token= JwtTokenUtil.createToken(selectedmember.getNickName(),key,expireTimeMs);
+        String token= JwtTokenUtil.createToken(selectedmember.getNickname(),key,expireTimeMs);
 
         return token;
     }
 
-    public int check_Nickname(String nickName)
+    public int check_Nickname(String nickname)
     {
         Boolean check;
-        check=mysqlMemberRepository.nicknameDuplicateCheck(nickName);
+        check=mysqlMemberRepository.nicknameDuplicateCheck(nickname);
         if(check)
         {
 

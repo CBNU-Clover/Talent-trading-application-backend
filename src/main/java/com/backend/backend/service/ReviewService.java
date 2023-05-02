@@ -2,8 +2,8 @@ package com.backend.backend.service;
 
 
 import com.backend.backend.controller.review.dto.ReviewWriteRequest;
-import com.backend.backend.domain.Member;
-import com.backend.backend.domain.Review;
+import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.review.Review;
 import com.backend.backend.exception.NotExistException;
 import com.backend.backend.exception.PermissionDeniedException;
 import com.backend.backend.repository.memberRepository.MemberRepository;

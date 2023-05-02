@@ -1,10 +1,8 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.domain.Member;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.backend.backend.domain.member.Member;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MemberRepository{
     /**
@@ -43,10 +41,10 @@ public interface MemberRepository{
 
     /**
      * 닉네임 중복확인
-     * @param nickName
+     * @param nickname
      * @return
      */
-    Boolean nicknameDuplicateCheck(String nickName);
+    Boolean nicknameDuplicateCheck(String nickname);
 
     /**
      * 이메일 중복확인
