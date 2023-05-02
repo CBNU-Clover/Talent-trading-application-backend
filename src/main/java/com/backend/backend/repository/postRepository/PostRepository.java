@@ -1,7 +1,6 @@
 package com.backend.backend.repository.postRepository;
 
-import com.backend.backend.domain.Member;
-import com.backend.backend.domain.Post;
+import com.backend.backend.domain.post.Post;
 
 import java.util.List;
 

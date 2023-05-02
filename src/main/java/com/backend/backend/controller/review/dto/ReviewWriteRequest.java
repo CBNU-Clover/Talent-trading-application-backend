@@ -1,13 +1,7 @@
 package com.backend.backend.controller.review.dto;
 
-import com.backend.backend.domain.Member;
-import com.backend.backend.domain.Post;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 

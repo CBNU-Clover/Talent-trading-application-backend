@@ -1,7 +1,6 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.domain.Member;
-import org.springframework.stereotype.Repository;
+import com.backend.backend.domain.member.Member;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.backend.backend.repository.postRepository;
 
-import com.backend.backend.domain.Member;
-import com.backend.backend.domain.Post;
+import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,10 @@
-package com.backend.backend.domain;
+package com.backend.backend.domain.member;
 
+import com.backend.backend.domain.post.Post;
+import com.backend.backend.domain.review.Review;
+import com.backend.backend.domain.transactionDetail.TransactionDetail;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;

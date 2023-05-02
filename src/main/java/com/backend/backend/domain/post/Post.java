@@ -1,46 +1,53 @@
-package com.backend.backend.domain;
+package com.backend.backend.domain.post;
 
+import com.backend.backend.domain.review.Review;
+import com.backend.backend.domain.member.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Review {
+public class Post {
 
     @Id
+    @Column(name = "post_id")
     @GeneratedValue
-    @Column(name = "review_id")
     private Long id;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id",nullable = false)
-    private Member writer;
+    Member writer;
+
+    @Column(nullable = false)
+    @Setter
+    private String postName;
+    @Setter
+    @Lob
     private String content;
 
     @CreatedDate
     @LastModifiedDate
     private LocalDateTime date;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OrderBy("date desc")
+    private List<Review> reviews = new ArrayList<>();
+
     @Builder
-    public Review(Post post, Member writer, String content) {
-        this.post = post;
+    public Post(Member writer, String postName, String content) {
         this.writer = writer;
+        this.postName = postName;
         this.content = content;
     }
 }

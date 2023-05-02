@@ -1,10 +1,7 @@
 package com.backend.backend.controller.post.Dto;
 
-import com.backend.backend.domain.Post;
-import lombok.Builder;
+import com.backend.backend.domain.post.Post;
 import lombok.Data;
-
-import javax.validation.constraints.NotEmpty;
 
 @Data
 public class PostReadResponse {

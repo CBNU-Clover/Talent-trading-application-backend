@@ -1,6 +1,6 @@
 package com.backend.backend.service;
 
-import com.backend.backend.domain.Member;
+import com.backend.backend.domain.member.Member;
 import com.backend.backend.dto.memberdto.MemberJoinRequest;
 import com.backend.backend.repository.memberRepository.MysqlMemberRepository;
 import com.backend.backend.utils.JwtTokenUtil;

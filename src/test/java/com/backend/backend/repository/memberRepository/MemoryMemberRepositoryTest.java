@@ -1,14 +1,12 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.domain.Member;
+import com.backend.backend.domain.member.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemoryMemberRepositoryTest {
 

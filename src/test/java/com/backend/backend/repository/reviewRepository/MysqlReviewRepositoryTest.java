@@ -1,8 +1,8 @@
 package com.backend.backend.repository.reviewRepository;
 
-import com.backend.backend.domain.Member;
-import com.backend.backend.domain.Post;
-import com.backend.backend.domain.Review;
+import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.post.Post;
+import com.backend.backend.domain.review.Review;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
 import org.assertj.core.api.Assertions;

@@ -1,13 +1,12 @@
 package com.backend.backend.repository.memberRepository;
 
-import com.backend.backend.domain.Member;
+import com.backend.backend.domain.member.Member;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static com.backend.backend.domain.QMember.member;

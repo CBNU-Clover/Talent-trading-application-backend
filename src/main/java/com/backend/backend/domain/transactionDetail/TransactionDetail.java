@@ -1,6 +1,6 @@
-package com.backend.backend.domain;
+package com.backend.backend.domain.transactionDetail;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.backend.backend.domain.member.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

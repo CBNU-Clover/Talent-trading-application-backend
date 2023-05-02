@@ -1,10 +1,7 @@
 package com.backend.backend.controller.review.dto;
 
-import com.backend.backend.domain.Review;
+import com.backend.backend.domain.review.Review;
 import lombok.Data;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class ReviewReadResponse {
