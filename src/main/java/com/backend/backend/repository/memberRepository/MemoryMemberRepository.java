@@ -39,7 +39,7 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Boolean nicknameDuplicateCheck(String nickName) {
+    public Boolean nicknameDuplicateCheck(String nickname) {
         return null;
     }
 

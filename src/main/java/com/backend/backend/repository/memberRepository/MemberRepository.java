@@ -41,10 +41,10 @@ public interface MemberRepository{
 
     /**
      * 닉네임 중복확인
-     * @param nickName
+     * @param nickname
      * @return
      */
-    Boolean nicknameDuplicateCheck(String nickName);
+    Boolean nicknameDuplicateCheck(String nickname);
 
     /**
      * 이메일 중복확인

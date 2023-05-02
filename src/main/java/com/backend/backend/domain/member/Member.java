@@ -26,7 +26,7 @@ public class Member {
     private String name;
 
     @Column(unique = true, nullable = false)
-    private String nickName;
+    private String nickname;
 
     @Column(unique = true)
     private String email;
@@ -61,9 +61,9 @@ public class Member {
     private List<TransactionDetail> purchases = new ArrayList<>();
 
     @Builder
-    public Member(String name, String nickName, String email, String phoneNumber, String passWord, Long point) {
+    public Member(String name, String nickname, String email, String phoneNumber, String passWord, Long point) {
         this.name = name;
-        this.nickName = nickName;
+        this.nickname = nickname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.passWord = passWord;

@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Check_nickName {
-    private String nickName;
+public class Check_nickname {
+    private String nickname;
 
 
 }

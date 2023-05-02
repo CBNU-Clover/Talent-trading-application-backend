@@ -49,7 +49,7 @@ class ReviewControllerTest {
     void setup(){
         memberRepository.save(Member.builder()
                 .name("415646556456")
-                .nickName(writerNickname)
+                .nickname(writerNickname)
                 .passWord("5456")
                 .email("566511561sd1")
                 .build()

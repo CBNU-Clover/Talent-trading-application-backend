@@ -39,7 +39,7 @@ class MysqlReviewRepositoryTest {
     void init(){
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         memberId = memberRepository.save(member);

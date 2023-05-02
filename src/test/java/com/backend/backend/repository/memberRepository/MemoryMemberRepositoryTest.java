@@ -21,7 +21,7 @@ class MemoryMemberRepositoryTest {
     void save() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .email(".")
                 .phoneNumber("111")
                 .passWord("ghj")
@@ -38,7 +38,7 @@ class MemoryMemberRepositoryTest {
         for(int i=0;i<10;i++) {
             Member member = Member.builder()
                     .name("1")
-                    .nickName("11")
+                    .nickname("11")
                     .passWord("ghj")
                     .build();
             Long id = memberRepository.save(member);

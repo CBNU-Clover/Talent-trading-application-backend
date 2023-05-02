@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class MemberJoinRequest {
 
-    private String nickName;
+    private String nickname;
     private String email;
     private String name;
     private String passWord;

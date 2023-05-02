@@ -11,7 +11,7 @@ public class PostReadResponse {
     private String content;
 
     public PostReadResponse(Post post) {
-        this.WriterNickname = post.getWriter().getNickName();
+        this.WriterNickname = post.getWriter().getNickname();
         this.postName = post.getPostName();
         this.content = post.getContent();
     }

@@ -9,5 +9,5 @@ import lombok.Getter;
 @Getter
 @Builder
 public class MemberSearch {
-    private String nickName;
+    private String nickname;
 }

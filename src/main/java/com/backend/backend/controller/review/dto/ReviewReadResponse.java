@@ -11,7 +11,7 @@ public class ReviewReadResponse {
 
     public ReviewReadResponse(Review review) {
         this.postId = review.getId();
-        this.writerNickname = review.getWriter().getNickName();
+        this.writerNickname = review.getWriter().getNickname();
         this.content = review.getContent();
     }
 }
