@@ -24,7 +24,7 @@ class MysqlMemberRepositoryTest {
     void save() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         Long memberId = memberRepository.save(member);
@@ -37,7 +37,7 @@ class MysqlMemberRepositoryTest {
     void emailDuplicateCheck() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .email("819819519519")
                 .build();
@@ -51,7 +51,7 @@ class MysqlMemberRepositoryTest {
     void nicknameDuplicateCheck() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("516516516516")
+                .nickname("516516516516")
                 .passWord("ghj")
                 .email("456")
                 .build();
@@ -66,13 +66,13 @@ class MysqlMemberRepositoryTest {
     void findMemberById() {
         Member member1 = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         Long memberId1 = memberRepository.save(member1);
         Member member2 = Member.builder()
                 .name("11")
-                .nickName("111")
+                .nickname("111")
                 .passWord("ghj")
                 .build();
         Long memberId2 = memberRepository.save(member2);
@@ -85,13 +85,13 @@ class MysqlMemberRepositoryTest {
     void deleteMemberById() {
         Member member1 = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         Long memberId1 = memberRepository.save(member1);
         Member member2 = Member.builder()
                 .name("11")
-                .nickName("111")
+                .nickname("111")
                 .passWord("ghj")
                 .build();
         Long memberId2 = memberRepository.save(member2);

@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.backend.backend.domain.QPost.post;
+import static com.backend.backend.domain.post.QPost.post;
 
 @Repository
 public class MysqlPostRepository implements PostRepository{

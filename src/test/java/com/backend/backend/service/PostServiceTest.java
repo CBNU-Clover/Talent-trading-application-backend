@@ -43,7 +43,7 @@ class PostServiceTest {
         MockitoAnnotations.initMocks(this);
         Member member = Member.builder()
                 .name("1")
-                .nickName("11")
+                .nickname("11")
                 .passWord("ghj")
                 .build();
         initMemberId = memberRepository.save(member);
@@ -69,7 +69,7 @@ class PostServiceTest {
     void deletePost() {
         Member member = Member.builder()
                 .name("1")
-                .nickName("111")
+                .nickname("111")
                 .passWord("ghj")
                 .build();
         memberRepository.save(member);
