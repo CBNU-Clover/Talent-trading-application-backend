@@ -35,6 +35,10 @@ public class Member {
     private String passWord;
     private Long point;
 
+    @Embedded
+    @Column(nullable = false)
+    private Rating rating=new Rating();
+
     @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
     @OrderBy("date desc")
     private List<Post> posts=new ArrayList<>();
