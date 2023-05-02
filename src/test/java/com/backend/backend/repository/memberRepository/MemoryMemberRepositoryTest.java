@@ -28,7 +28,6 @@ class MemoryMemberRepositoryTest {
                 .phoneNumber("111")
                 .passWord("ghj")
                 .point(0L)
-                .region("12")
                 .build();
         Long id = memberRepository.save(member);
         Member findMember = memberRepository.findMemberById(id);
