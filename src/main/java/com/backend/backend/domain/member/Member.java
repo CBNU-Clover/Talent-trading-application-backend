@@ -72,8 +72,8 @@ public class Member {
     }
 
     /**
-     * 포인트를 더해주고 해당 기록을 저장하는 메소드
-     * @param amount 추가할 포인트양
+     * 포인트를 증가시키고 해당 기록을 저장하는 메소드
+     * @param amount 증가할 포인트양
      */
     public void addPoint(Long amount){
         point+=amount;
