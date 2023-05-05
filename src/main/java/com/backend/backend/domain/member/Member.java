@@ -91,6 +91,9 @@ public class Member {
      * @param amount 감소시킬 포인트양
      */
     public void subPoint(Long amount){
+        if(amount==null){
+            amount=0L;
+        }
         if(amount<=0){
             throw new PointAmountError("0이하의 값은 감소시킬 수 없습니다");
         }
