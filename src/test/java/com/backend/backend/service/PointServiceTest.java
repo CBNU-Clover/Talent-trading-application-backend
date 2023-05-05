@@ -54,5 +54,19 @@ class PointServiceTest {
         Assertions.assertThat(member.getPoint()).isEqualTo(amount);
     }
 
+    @Test
+    void withdrawPoint() {
+        Long initAmount = 86L;
+        Member member = memberRepository.findMemberByNickname(memberNickname1);
+        pointService.chargePoint(member.getNickname(),initAmount);
 
+        Long withdrawAmount=48L;
+        pointService.withdrawPoint(member.getNickname(),48L);
+
+        Assertions.assertThat(member.getPoint()).isEqualTo(initAmount-withdrawAmount);
+    }
+
+    @Test
+    void remittancePoint() {
+    }
 }
