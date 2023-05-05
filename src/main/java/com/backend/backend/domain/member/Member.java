@@ -61,12 +61,12 @@ public class Member {
     private List<TransactionDetail> purchases = new ArrayList<>();
 
     @Builder
-    public Member(String name, String nickname, String email, String phoneNumber, String passWord, Long point) {
+    public Member(String name, String nickname, String email, String phoneNumber, String passWord) {
         this.name = name;
         this.nickname = nickname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.passWord = passWord;
-        this.point = point;
+        this.point = 0L;
     }
 }
