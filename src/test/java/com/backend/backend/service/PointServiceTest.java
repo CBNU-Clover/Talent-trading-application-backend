@@ -108,4 +108,23 @@ class PointServiceTest {
         Assertions.assertThat(sender.getPoint()).isEqualTo(initAmount-remittanceAmount);
         Assertions.assertThat(receiver.getPoint()).isEqualTo(remittanceAmount);
     }
+
+    @Test
+    void remittancePointError() {
+        Long initAmount = 86L;
+        Member sender = memberRepository.findMemberByNickname(memberNickname1);
+        Member receiver = memberRepository.findMemberByNickname(memberNickname2);
+        pointService.chargePoint(sender.getNickname(),initAmount);
+
+
+        org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
+            Long remittanceAmount=-48L;
+            pointService.remittancePoint(sender.getNickname(),receiver.getNickname(),remittanceAmount);
+        });
+
+        org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
+            Long remittanceAmount=initAmount+20L;
+            pointService.remittancePoint(sender.getNickname(),receiver.getNickname(),remittanceAmount);
+        });
+    }
 }
