@@ -1,6 +1,7 @@
 package com.backend.backend.service;
 
 import com.backend.backend.domain.member.Member;
+import com.backend.backend.exception.pointException.PointAmountError;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,6 +53,16 @@ class PointServiceTest {
         pointService.chargePoint(member.getNickname(),amount);
 
         Assertions.assertThat(member.getPoint()).isEqualTo(amount);
+    }
+
+    @Test
+    void chargePointError() {
+        Member member = memberRepository.findMemberByNickname(memberNickname1);
+        Long amount=-50L;
+
+        org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
+            pointService.chargePoint(member.getNickname(),amount);
+        });
     }
 
     @Test
