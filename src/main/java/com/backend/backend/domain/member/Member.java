@@ -82,7 +82,7 @@ public class Member {
 
     /**
      * 포인트를 감소시키고 해당 기록을 저장하는 메소드
-     * @param amount 빼줄 포인트양
+     * @param amount 감소시킬 포인트양
      */
     public void subPoint(Long amount){
         if(amount<=0){
