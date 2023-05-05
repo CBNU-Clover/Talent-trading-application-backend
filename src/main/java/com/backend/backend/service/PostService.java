@@ -62,7 +62,7 @@ public class PostService {
      * @return
      */
     public List<Post> searchPost(PostSearch postSearch){
-        return postRepository.findAll(postSearch);
+        return postRepository.searchPost(postSearch);
     }
 
     /**

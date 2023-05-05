@@ -43,7 +43,7 @@ public class MysqlPostRepository implements PostRepository{
     }
 
     @Override
-    public List<Post> findAll(PostSearch postSearch) {
+    public List<Post> searchPost(PostSearch postSearch) {
         return query
                 .select(post)
                 .from(post)

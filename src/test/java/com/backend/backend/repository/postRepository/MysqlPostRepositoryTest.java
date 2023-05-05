@@ -132,7 +132,7 @@ class MysqlPostRepositoryTest {
         PostSearch postSearch = PostSearch.builder()
                 .postName(".")
                 .build();
-        List<Post> posts = postRepository.findAll(postSearch);
+        List<Post> posts = postRepository.searchPost(postSearch);
         Assertions.assertThat(posts).contains(post1, post2);
     }
 
@@ -161,7 +161,7 @@ class MysqlPostRepositoryTest {
         PostSearch postSearch = PostSearch.builder()
                 .postName(".")
                 .build();
-        List<Post> posts = postRepository.findAll(postSearch);
+        List<Post> posts = postRepository.searchPost(postSearch);
         Assertions.assertThat(posts.get(0)).isSameAs(post1);
         Assertions.assertThat(posts.get(1)).isSameAs(post2);
     }

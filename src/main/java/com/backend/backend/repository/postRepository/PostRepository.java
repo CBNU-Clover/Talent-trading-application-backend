@@ -30,5 +30,5 @@ public interface PostRepository {
      * @param postSearch
      * @return
      */
-    List<Post> findAll(PostSearch postSearch);
+    List<Post> searchPost(PostSearch postSearch);
 }
