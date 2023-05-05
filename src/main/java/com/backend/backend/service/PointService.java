@@ -34,7 +34,11 @@ public class PointService {
      */
     @Transactional
     public void withdrawPoint(String nickname, Long amount){
-
+        Member member = memberRepository.findMemberByNickname(nickname);
+        if(member==null){
+            throw new NotExistException("해당 회원이 존재하지 않습니다");
+        }
+        member.subPoint(amount);
     }
 
     /**
