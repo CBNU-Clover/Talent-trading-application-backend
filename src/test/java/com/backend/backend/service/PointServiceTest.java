@@ -78,6 +78,24 @@ class PointServiceTest {
     }
 
     @Test
+    void withdrawPointError() {
+        Long initAmount = 86L;
+        Member member = memberRepository.findMemberByNickname(memberNickname1);
+        pointService.chargePoint(member.getNickname(),initAmount);
+
+
+        org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
+            Long withdrawAmount=-48L;
+            pointService.withdrawPoint(member.getNickname(),withdrawAmount);
+        });
+
+        org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
+            Long withdrawAmount=90L;
+            pointService.withdrawPoint(member.getNickname(),withdrawAmount);
+        });
+    }
+
+    @Test
     void remittancePoint() {
         Long initAmount = 86L;
         Member sender = memberRepository.findMemberByNickname(memberNickname1);
