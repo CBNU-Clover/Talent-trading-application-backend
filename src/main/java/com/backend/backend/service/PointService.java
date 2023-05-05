@@ -43,13 +43,19 @@ public class PointService {
 
     /**
      * sender가 receiver에게 포인트를 송금
-     * @param sender 포인트를 보내는 사람
-     * @param receiver 포인트를 받는 사람
+     * @param senderNickname 포인트를 보내는 사람
+     * @param receiverNickname 포인트를 받는 사람
      * @param amount 포인트 양
      */
     @Transactional
-    public void remittancePoint(String sender,String receiver, Long amount){
-
+    public void remittancePoint(String senderNickname,String receiverNickname, Long amount){
+        Member sender = memberRepository.findMemberByNickname(senderNickname);
+        Member receiver = memberRepository.findMemberByNickname(receiverNickname);
+        if(sender==null||receiver==null){
+            throw new NotExistException("해당 회원이 존재하지 않습니다");
+        }
+        sender.subPoint(amount);
+        receiver.addPoint(amount);
     }
 
 }
