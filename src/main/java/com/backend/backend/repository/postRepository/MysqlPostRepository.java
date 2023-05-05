@@ -51,8 +51,17 @@ public class MysqlPostRepository implements PostRepository{
                 .orderBy(
                         orderByPostDate(postSearch.getOrderBy())
                 )
-                .limit(100)
+                .limit(getPostLimit(postSearch.getLimit()))
                 .fetch();
+    }
+
+    private Long getPostLimit(Long limit){
+        if(limit==null){
+            return 100L;
+        }
+        else{
+            return limit;
+        }
     }
 
     private OrderSpecifier<LocalDateTime> orderByPostDate(OrderBy orderBy){

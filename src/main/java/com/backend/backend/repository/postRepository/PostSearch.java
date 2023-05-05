@@ -9,5 +9,6 @@ import lombok.Setter;
 public class PostSearch {
     private String postName;
     private OrderBy orderBy;
+    private Long limit;
 
 }
