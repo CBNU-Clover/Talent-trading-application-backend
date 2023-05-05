@@ -61,12 +61,10 @@ class PointServiceTest {
         pointService.chargePoint(member.getNickname(),initAmount);
 
         Long withdrawAmount=48L;
-        pointService.withdrawPoint(member.getNickname(),48L);
+        pointService.withdrawPoint(member.getNickname(),withdrawAmount);
 
         Assertions.assertThat(member.getPoint()).isEqualTo(initAmount-withdrawAmount);
     }
 
-    @Test
-    void remittancePoint() {
-    }
+
 }
