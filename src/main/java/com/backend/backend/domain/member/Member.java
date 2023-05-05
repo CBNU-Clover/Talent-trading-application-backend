@@ -69,4 +69,13 @@ public class Member {
         this.passWord = passWord;
         this.point = 0L;
     }
+
+    /**
+     * 포인트를 더해주고 해당 기록을 저장하는 메소드
+     * @param amount 추가할 포인트양
+     */
+    public void addPoint(Long amount){
+        point+=amount;
+        //TODO:더했다는 기록 추가
+    }
 }
