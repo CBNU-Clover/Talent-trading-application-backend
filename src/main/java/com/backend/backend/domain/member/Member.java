@@ -76,8 +76,14 @@ public class Member {
      * @param amount 증가할 포인트양
      */
     public void addPoint(Long amount){
+        if(amount==null){
+            amount=0L;
+        }
+        if(amount<=0){
+            throw new PointAmountError("0이하의 값은 증가시킬 수 없습니다");
+        }
         point+=amount;
-        //TODO:더했다는 기록 추가
+        //TODO:증가시켰다는 기록 추가
     }
 
     /**
