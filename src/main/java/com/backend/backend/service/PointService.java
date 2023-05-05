@@ -1,6 +1,7 @@
 package com.backend.backend.service;
 
 import com.backend.backend.domain.member.Member;
+import com.backend.backend.exception.NotExistException;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,11 @@ public class PointService {
      */
     @Transactional
     public void chargePoint(String nickname, Long amount){
-
+        Member member = memberRepository.findMemberByNickname(nickname);
+        if(member==null){
+            throw new NotExistException("해당 회원이 존재하지 않습니다");
+        }
+        member.addPoint(amount);
     }
 
     /**
