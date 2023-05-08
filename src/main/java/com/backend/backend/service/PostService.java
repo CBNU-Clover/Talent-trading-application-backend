@@ -62,7 +62,7 @@ public class PostService {
      * @return
      */
     public List<Post> searchPost(PostSearch postSearch){
-        return postRepository.findAll(postSearch);
+        return postRepository.searchPost(postSearch);
     }
 
     /**
@@ -99,7 +99,7 @@ public class PostService {
         if(post==null){
             throw new NotExistException("존재하지 않는 게시글 입니다");
         }
-        if(post.getWriter().getId()== member.getId()) {
+        if(post.getWriter().getId().equals(member.getId())) {
             postRepository.deletePostById(id);
         }
         else {
