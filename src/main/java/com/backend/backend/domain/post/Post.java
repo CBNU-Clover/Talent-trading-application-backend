@@ -40,9 +40,6 @@ public class Post {
     @LastModifiedDate
     private LocalDateTime date;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    @OrderBy("date desc")
-    private List<Review> reviews = new ArrayList<>();
 
     @Builder
     public Post(Member writer, String postName, String content) {
