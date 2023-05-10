@@ -1,9 +1,7 @@
 package com.backend.backend.domain.transactionDetail;
 
 import com.backend.backend.domain.member.Member;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -32,6 +30,8 @@ public class TransactionDetail {
 
     @CreatedDate
     private LocalDateTime startDate;
+
+    @Setter
     private LocalDateTime endDate;
 
     @Enumerated(EnumType.STRING)
@@ -40,4 +40,11 @@ public class TransactionDetail {
     @Lob
     private String detail;
 
+    @Builder
+    public TransactionDetail(Member seller, Member buyer,String detail) {
+        this.seller = seller;
+        this.buyer = buyer;
+        this.status = TransactionStatus.TRADING;
+        this.detail = detail;
+    }
 }
