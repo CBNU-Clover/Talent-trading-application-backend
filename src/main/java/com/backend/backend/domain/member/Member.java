@@ -42,24 +42,7 @@ public class Member {
     @Column(nullable = false)
     private Rating rating=new Rating();
 
-    @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
-    @OrderBy("date desc")
-    private List<Post> posts=new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
-    @OrderBy("date desc")
-    private List<Review> reviews = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
-    @OrderBy("startDate desc")
-    private List<TransactionDetail> sales = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
-    @OrderBy("startDate desc")
-    private List<TransactionDetail> purchases = new ArrayList<>();
 
     @Builder
     public Member(String name, String nickname, String email, String phoneNumber, String passWord) {
