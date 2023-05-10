@@ -1,6 +1,7 @@
 package com.backend.backend.repository.memberRepository;
 
 import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.member.Rating;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
@@ -26,6 +27,8 @@ public class MysqlMemberRepository implements MemberRepository{
     @Override
     public Long save(Member member) {
         em.persist(member);
+        Rating rating = new Rating(member);
+        em.persist(rating);
         return member.getId();
     }
 

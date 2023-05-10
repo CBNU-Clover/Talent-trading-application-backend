@@ -38,9 +38,8 @@ public class Member {
     private String passWord;
     private Long point;
 
-    @Embedded
-    @Column(nullable = false)
-    private Rating rating=new Rating();
+    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
+    private Rating rating;
 
 
 
