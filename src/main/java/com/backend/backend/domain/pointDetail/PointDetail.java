@@ -2,10 +2,7 @@ package com.backend.backend.domain.pointDetail;
 
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.transactionDetail.TransactionStatus;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -43,6 +40,7 @@ public class PointDetail {
 
     private String detail;
 
+    @Builder
     public PointDetail(Member owner, String recipient, String sender,
                        PointStatus status, String detail) {
         this.owner = owner;
