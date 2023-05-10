@@ -18,7 +18,7 @@ public class Rating {
 
     @JsonIgnore
     @MapsId
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rating")
     private Member member;
     private Long category1=0L;
