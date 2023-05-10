@@ -4,6 +4,7 @@ import com.backend.backend.domain.member.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -29,7 +30,7 @@ public class TransactionDetail {
     private Member buyer;
 
 
-    @Column(nullable = false)
+    @CreatedDate
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
