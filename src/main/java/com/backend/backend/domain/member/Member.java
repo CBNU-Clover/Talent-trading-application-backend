@@ -6,6 +6,7 @@ import com.backend.backend.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.exception.pointException.PointAmountError;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ public class Member {
 
     @Builder
     public Member(String name, String nickname, String email, String phoneNumber, String passWord) {
+        Assert.hasText(name, "회원 이름이 없습니다");
+        Assert.hasText(nickname, "회원 닉네임이 없습니다");
         this.name = name;
         this.nickname = nickname;
         this.email = email;
