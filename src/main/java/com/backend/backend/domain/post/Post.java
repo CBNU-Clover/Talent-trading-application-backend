@@ -24,7 +24,6 @@ public class Post {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id",nullable = false)
     Member writer;
@@ -40,9 +39,6 @@ public class Post {
     @LastModifiedDate
     private LocalDateTime date;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    @OrderBy("date desc")
-    private List<Review> reviews = new ArrayList<>();
 
     @Builder
     public Post(Member writer, String postName, String content) {

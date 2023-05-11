@@ -1,6 +1,7 @@
 package com.backend.backend.service;
 
 import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.member.Point;
 import com.backend.backend.exception.NotExistException;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +21,11 @@ public class PointService {
      */
     @Transactional
     public void chargePoint(String nickname, Long amount){
-        Member member = memberRepository.findMemberByNickname(nickname);
-        if(member==null){
+        Point memberPoint = memberRepository.findMemberByNickname(nickname).getPoint();
+        if(memberPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
-        member.addPoint(amount);
+        memberPoint.addPoint(amount);
     }
 
     /**
@@ -34,11 +35,11 @@ public class PointService {
      */
     @Transactional
     public void withdrawPoint(String nickname, Long amount){
-        Member member = memberRepository.findMemberByNickname(nickname);
-        if(member==null){
+        Point memberPoint = memberRepository.findMemberByNickname(nickname).getPoint();
+        if(memberPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
-        member.subPoint(amount);
+        memberPoint.subPoint(amount);
     }
 
     /**
@@ -49,13 +50,13 @@ public class PointService {
      */
     @Transactional
     public void remittancePoint(String senderNickname,String receiverNickname, Long amount){
-        Member sender = memberRepository.findMemberByNickname(senderNickname);
-        Member receiver = memberRepository.findMemberByNickname(receiverNickname);
-        if(sender==null||receiver==null){
+        Point senderPoint = memberRepository.findMemberByNickname(senderNickname).getPoint();
+        Point receiverPoint = memberRepository.findMemberByNickname(receiverNickname).getPoint();
+        if(senderPoint==null||receiverPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
-        sender.subPoint(amount);
-        receiver.addPoint(amount);
+        senderPoint.subPoint(amount);
+        receiverPoint.addPoint(amount);
     }
 
 }

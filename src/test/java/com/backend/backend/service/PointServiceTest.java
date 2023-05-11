@@ -52,7 +52,7 @@ class PointServiceTest {
         Long amount=50L;
         pointService.chargePoint(member.getNickname(),amount);
 
-        Assertions.assertThat(member.getPoint()).isEqualTo(amount);
+        Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(amount);
     }
 
     @Test
@@ -74,7 +74,7 @@ class PointServiceTest {
         Long withdrawAmount=48L;
         pointService.withdrawPoint(member.getNickname(),withdrawAmount);
 
-        Assertions.assertThat(member.getPoint()).isEqualTo(initAmount-withdrawAmount);
+        Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(initAmount-withdrawAmount);
     }
 
     @Test
@@ -105,8 +105,8 @@ class PointServiceTest {
         Long remittanceAmount=48L;
         pointService.remittancePoint(sender.getNickname(),receiver.getNickname(),remittanceAmount);
 
-        Assertions.assertThat(sender.getPoint()).isEqualTo(initAmount-remittanceAmount);
-        Assertions.assertThat(receiver.getPoint()).isEqualTo(remittanceAmount);
+        Assertions.assertThat(sender.getPoint().getAmount()).isEqualTo(initAmount-remittanceAmount);
+        Assertions.assertThat(receiver.getPoint().getAmount()).isEqualTo(remittanceAmount);
     }
 
     @Test
