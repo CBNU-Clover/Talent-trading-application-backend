@@ -1,6 +1,7 @@
 package com.backend.backend.repository.reviewRepository;
 
 import com.backend.backend.domain.member.Member;
+import com.backend.backend.domain.post.Post;
 import com.backend.backend.domain.review.Review;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +46,17 @@ public class MysqlReviewRepository implements ReviewRepository{
                 .select(review)
                 .from(review)
                 .where(review.writer.id.eq(member.getId()))
+                .orderBy(review.date.desc())
+                .limit(100)
+                .fetch();
+    }
+
+    @Override
+    public List<Review> findReviewsByPost(Post post) {
+        return query
+                .select(review)
+                .from(review)
+                .where(review.post.id.eq(post.getId()))
                 .orderBy(review.date.desc())
                 .limit(100)
                 .fetch();
