@@ -50,6 +50,9 @@ public class PointDetail {
         if(owner==null){
             throw new NotExistException("기록 소유자가 없습니다");
         }
+        if(status==null){
+            throw new NotExistException("포인트거래가 입력인지 출력인지 알수 없습니다");
+        }
 
         this.owner = owner;
         this.recipient = recipient;
