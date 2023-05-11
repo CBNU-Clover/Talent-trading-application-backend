@@ -1,6 +1,9 @@
 package com.backend.backend.repository.reviewRepository;
 
+import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.review.Review;
+
+import java.util.List;
 
 public interface ReviewRepository {
     /**
@@ -22,5 +25,12 @@ public interface ReviewRepository {
      * @param id
      */
     void deleteReviewById(Long id);
+
+    /**
+     * 해당 member가 작성한 리뷰 반환
+     * @param member 작성자
+     * @return
+     */
+    List<Review> findReviewsByMember(Member member);
 
 }
