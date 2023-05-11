@@ -2,9 +2,11 @@ package com.backend.backend.domain.pointDetail;
 
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.transactionDetail.TransactionStatus;
+import com.backend.backend.exception.NotExistException;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -43,6 +45,12 @@ public class PointDetail {
     @Builder
     public PointDetail(Member owner, String recipient, String sender,
                        PointStatus status, String detail) {
+        Assert.hasText(recipient, "수신처가 없습니다");
+        Assert.hasText(sender, "발신처가 없습니다");
+        if(owner==null){
+            throw new NotExistException("기록 소유자가 없습니다");
+        }
+
         this.owner = owner;
         this.recipient = recipient;
         this.sender = sender;
