@@ -1,5 +1,6 @@
 package com.backend.backend.repository.postRepository;
 
+import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.OrderBy;
 import com.querydsl.core.types.OrderSpecifier;
@@ -52,6 +53,17 @@ public class MysqlPostRepository implements PostRepository{
                         orderByPostDate(postSearch.getOrderBy())
                 )
                 .limit(getPostLimit(postSearch.getLimit()))
+                .fetch();
+    }
+
+    @Override
+    public List<Post> findPostsByMember(Member member) {
+        return query
+                .select(post)
+                .from(post)
+                .where(post.writer.id.eq(member.getId()))
+                .orderBy(post.date.desc())
+                .limit(100)
                 .fetch();
     }
 

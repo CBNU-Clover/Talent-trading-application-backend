@@ -1,5 +1,6 @@
 package com.backend.backend.repository.postRepository;
 
+import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 
 import java.util.List;
@@ -31,4 +32,11 @@ public interface PostRepository {
      * @return
      */
     List<Post> searchPost(PostSearch postSearch);
+
+    /**
+     * 해당 member가 작성한 Post를 전부 반환
+     * @param member 작성자
+     * @return
+     */
+    List<Post> findPostsByMember(Member member);
 }
