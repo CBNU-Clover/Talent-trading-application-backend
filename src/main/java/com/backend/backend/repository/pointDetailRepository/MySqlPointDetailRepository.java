@@ -27,6 +27,11 @@ public class MySqlPointDetailRepository implements PointDetailRepository{
     }
 
     @Override
+    public PointDetail findDetailById(Long id) {
+        return em.find(PointDetail.class,id);
+    }
+
+    @Override
     public List<PointDetail> findDetailsByMember(Member member) {
         return query
                 .select(pointDetail)

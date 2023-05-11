@@ -17,6 +17,13 @@ public interface PointDetailRepository {
     Long save(PointDetail pointDetail);
 
     /**
+     * id로 포인트 거래기록을 찾음
+     * @param id 포인트 거래 기록 아이디
+     * @return
+     */
+    PointDetail findDetailById(Long id);
+
+    /**
      * 해당 회원의 포인트 거래 기록 반환
      * @param member 회원 객체
      * @return
