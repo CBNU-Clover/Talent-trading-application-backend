@@ -21,7 +21,7 @@ public interface PointDetailRepository {
      * @param member 회원 객체
      * @return
      */
-    List<PointDetail> findPointDetailsByMember(Member member);
+    List<PointDetail> findDetailsByMember(Member member);
 
 
 }
