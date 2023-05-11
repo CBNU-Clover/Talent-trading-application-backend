@@ -36,30 +36,15 @@ public class Member {
 
     @Column(nullable = false)
     private String passWord;
-    private Long point;
 
     @Embedded
     @Column(nullable = false)
-    private Rating rating=new Rating();
+    private Point point;
 
-    @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
-    @OrderBy("date desc")
-    private List<Post> posts=new ArrayList<>();
+    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
+    private Rating rating;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
-    @OrderBy("date desc")
-    private List<Review> reviews = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
-    @OrderBy("startDate desc")
-    private List<TransactionDetail> sales = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
-    @OrderBy("startDate desc")
-    private List<TransactionDetail> purchases = new ArrayList<>();
 
     @Builder
     public Member(String name, String nickname, String email, String phoneNumber, String passWord) {
@@ -68,39 +53,6 @@ public class Member {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.passWord = passWord;
-        this.point = 0L;
-    }
-
-    /**
-     * 포인트를 증가시키고 해당 기록을 저장하는 메소드
-     * @param amount 증가할 포인트양
-     */
-    public void addPoint(Long amount){
-        if(amount==null){
-            amount=0L;
-        }
-        if(amount<=0){
-            throw new PointAmountError("0이하의 값은 증가시킬 수 없습니다");
-        }
-        point+=amount;
-        //TODO:증가시켰다는 기록 추가
-    }
-
-    /**
-     * 포인트를 감소시키고 해당 기록을 저장하는 메소드
-     * @param amount 감소시킬 포인트양
-     */
-    public void subPoint(Long amount){
-        if(amount==null){
-            amount=0L;
-        }
-        if(amount<=0){
-            throw new PointAmountError("0이하의 값은 감소시킬 수 없습니다");
-        }
-        if(this.point<amount){
-            throw new PointAmountError("포인트 보다 더 많은 값을 감소 시킬 수 없습니다");
-        }
-        point-=amount;
-        //TODO: 포인트를 감소시켰다는 기록을 추가
+        this.point = new Point();
     }
 }
