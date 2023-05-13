@@ -1,6 +1,7 @@
 package com.backend.backend.domain.transactionDetail;
 
 import com.backend.backend.domain.member.Member;
+import com.backend.backend.exception.NotExistException;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -42,6 +43,12 @@ public class TransactionDetail {
 
     @Builder
     public TransactionDetail(Member seller, Member buyer,String detail) {
+        if(seller==null){
+            throw new NotExistException("판매자가 없습니다");
+        }
+        if(buyer==null){
+            throw new NotExistException("구매자가 없습니다");
+        }
         this.seller = seller;
         this.buyer = buyer;
         this.status = TransactionStatus.TRADING;
