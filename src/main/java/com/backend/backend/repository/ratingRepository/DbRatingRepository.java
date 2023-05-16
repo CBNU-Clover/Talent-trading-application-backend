@@ -23,7 +23,13 @@ public class DbRatingRepository implements RatingRepository {
 
     @Override
     public List<Rating> getTopRanking(RatingCategory category) {
-        return null;
+        return query
+                .select(rating)
+                .from(rating)
+                .where(rating.category.eq(category))
+                .orderBy(rating.score.desc())
+                .limit(20)
+                .fetch();
     }
 
     @Override
