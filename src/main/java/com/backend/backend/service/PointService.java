@@ -21,6 +21,7 @@ public class PointService {
     /**
      * 포인트를 충전하는 메소드
      * @param nickname 충전할 사람
+     * @param sender 돈이 들어 오는 곳
      * @param amount 충전할 포인트 양
      */
     @Transactional
@@ -44,6 +45,7 @@ public class PointService {
     /**
      * 포인트를 인출하는 메소드
      * @param nickname 인출할 사람
+     * @param recipient 인출한 돈을 받는 곳
      * @param amount 인출할 포인트양
      */
     @Transactional
