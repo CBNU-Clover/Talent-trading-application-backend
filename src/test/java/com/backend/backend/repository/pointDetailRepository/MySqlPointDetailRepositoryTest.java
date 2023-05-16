@@ -57,7 +57,6 @@ class MySqlPointDetailRepositoryTest {
                 .status(PointStatus.CREDIT)
                 .build();
         Long id = pointDetailRepository.save(pointDetail);
-        System.out.println("pointDetail = " + pointDetail.getDate());
         Assertions.assertThat(pointDetailRepository.findDetailById(id)).isSameAs(pointDetail);
     }
 
