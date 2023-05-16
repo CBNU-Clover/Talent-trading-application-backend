@@ -115,6 +115,9 @@ class PointServiceTest {
 
         Assertions.assertThat(sender.getPoint().getAmount()).isEqualTo(initAmount-remittanceAmount);
         Assertions.assertThat(receiver.getPoint().getAmount()).isEqualTo(remittanceAmount);
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(receiver).size()).isEqualTo(1);
+        //입금, 출금 하나씩 기록됨
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(sender).size()).isEqualTo(2);
     }
 
     @Test
