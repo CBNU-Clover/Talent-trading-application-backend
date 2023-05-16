@@ -2,8 +2,11 @@ package com.backend.backend.service;
 
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.member.Point;
+import com.backend.backend.domain.pointDetail.PointDetail;
+import com.backend.backend.domain.pointDetail.PointStatus;
 import com.backend.backend.exception.NotExistException;
 import com.backend.backend.repository.memberRepository.MemberRepository;
+import com.backend.backend.repository.pointDetailRepository.PointDetailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,7 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class PointService {
     private final MemberRepository memberRepository;
+    private final PointDetailRepository pointDetailRepository;
 
     /**
      * 포인트를 충전하는 메소드
@@ -23,10 +27,18 @@ public class PointService {
     public void chargePoint(String nickname, String sender, Long amount, String detail){
         Member member=memberRepository.findMemberByNickname(nickname);
         Point memberPoint = member.getPoint();
+        PointDetail pointDetail = PointDetail.builder()
+                .owner(member)
+                .recipient(nickname)
+                .sender(sender)
+                .status(PointStatus.CREDIT)
+                .amount(amount)
+                .build();
         if(memberPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
         memberPoint.addPoint(amount);
+        pointDetailRepository.save(pointDetail);
     }
 
     /**

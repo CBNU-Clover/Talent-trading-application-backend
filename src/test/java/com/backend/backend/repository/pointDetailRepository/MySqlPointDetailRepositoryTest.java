@@ -54,6 +54,7 @@ class MySqlPointDetailRepositoryTest {
                 .recipient("a")
                 .sender("b")
                 .status(PointStatus.CREDIT)
+                .amount(10L)
                 .build();
         Long id = pointDetailRepository.save(pointDetail);
         Assertions.assertThat(pointDetailRepository.findDetailById(id)).isSameAs(pointDetail);
@@ -66,6 +67,7 @@ class MySqlPointDetailRepositoryTest {
                 .recipient("a")
                 .sender("b")
                 .status(PointStatus.CREDIT)
+                .amount(10L)
                 .build();
         pointDetailRepository.save(pointDetail1);
         PointDetail pointDetail2 = PointDetail.builder()
@@ -73,6 +75,7 @@ class MySqlPointDetailRepositoryTest {
                 .recipient("a")
                 .sender("b")
                 .status(PointStatus.CREDIT)
+                .amount(10L)
                 .build();
         pointDetailRepository.save(pointDetail2);
 
