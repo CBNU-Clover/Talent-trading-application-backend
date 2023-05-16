@@ -43,8 +43,14 @@ class DbRatingRepositoryTest {
 
     @Test
     void addRating() {
-        ratingRepository.addRating(member, RatingCategory.CATEGORY1,10L);
+        Long initScore = 10L;
+        Long id = ratingRepository.addRating(member, RatingCategory.CATEGORY1, initScore);
 
-        ratingRepository.addRating(member, RatingCategory.CATEGORY1,30L);
+        Assertions.assertThat(ratingRepository.findRatingById(id).getScore()).isEqualTo(initScore);
+
+        Long score = 20L;
+        ratingRepository.addRating(member, RatingCategory.CATEGORY1,score);
+
+        Assertions.assertThat(ratingRepository.findRatingById(id).getScore()).isEqualTo(initScore+score);
     }
 }
