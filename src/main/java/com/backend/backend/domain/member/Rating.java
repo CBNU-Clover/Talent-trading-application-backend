@@ -14,36 +14,24 @@ import javax.persistence.*;
 public class Rating {
 
     @Id
-    private Long ratingId;
+    @GeneratedValue
+    @Column(name = "rating_id")
+    private Long Id;
 
-    @JsonIgnore
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rating")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id",nullable = false)
     private Member member;
-    private Long category1=0L;
-    private Long category2=0L;
-    private Long category3=0L;
-    private Long category4=0L;
+    private RatingCategory category;
 
-    public Rating(Member member) {
+    private Long score= 0L;
+
+    public Rating(Member member,RatingCategory category) {
         this.member = member;
+        this.category = category;
     }
 
-    public void addCategory1(Long point) {
-        this.category1 += point;
-    }
-
-    public void addCategory2(Long point) {
-        this.category2 += point;
-    }
-
-    public void addCategory3(Long point) {
-        this.category3 += point;
-    }
-
-    public void addCategory4(Long point) {
-        this.category4 += point;
+    public void addScore(Long point) {
+        this.score += point;
     }
 
 }
