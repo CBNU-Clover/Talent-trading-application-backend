@@ -48,7 +48,6 @@ class MySqlPointDetailRepositoryTest {
     }
 
     @Test
-    //@Rollback(value = false)
     void save() {
         PointDetail pointDetail = PointDetail.builder()
                 .owner(member)
