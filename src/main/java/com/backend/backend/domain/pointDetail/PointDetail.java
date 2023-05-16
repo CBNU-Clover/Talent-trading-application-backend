@@ -1,7 +1,6 @@
 package com.backend.backend.domain.pointDetail;
 
 import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.transactionDetail.TransactionStatus;
 import com.backend.backend.exception.NotExistException;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -45,11 +44,11 @@ public class PointDetail {
     @Enumerated(EnumType.STRING)
     private PointStatus status;
 
-    private String detail;
+    private String memo;
 
     @Builder
     public PointDetail(Member owner, String recipient, String sender,
-                       PointStatus status,Long amount, String detail) {
+                       PointStatus status,Long amount, String memo) {
         Assert.hasText(recipient, "수신처가 없습니다");
         Assert.hasText(sender, "발신처가 없습니다");
         if(owner==null){
@@ -67,6 +66,6 @@ public class PointDetail {
         this.sender = sender;
         this.status = status;
         this.amount = amount;
-        this.detail = detail;
+        this.memo = memo;
     }
 }
