@@ -35,7 +35,7 @@ public class DbRatingRepository implements RatingRepository {
     }
 
     @Override
-    public void addRating(Member member,RatingCategory category, Long amount) {
+    public Long addRating(Member member,RatingCategory category, Long amount) {
 
         Rating categoryRating = query
                 .select(rating)
@@ -49,6 +49,13 @@ public class DbRatingRepository implements RatingRepository {
         }
 
         categoryRating.addScore(amount);
+
+        return categoryRating.getId();
+    }
+
+    @Override
+    public Rating findRatingById(Long id) {
+        return em.find(Rating.class,id);
     }
 
 }

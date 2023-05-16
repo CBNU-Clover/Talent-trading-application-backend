@@ -20,5 +20,7 @@ public interface RatingRepository {
      * @param category
      * @param amount 추가될 스코어 점수
      */
-    void addRating(Member member,RatingCategory category, Long amount);
+    Long addRating(Member member,RatingCategory category, Long amount);
+
+    Rating findRatingById(Long id);
 }
