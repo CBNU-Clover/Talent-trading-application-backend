@@ -1,4 +1,4 @@
-package com.backend.backend.repository.rankingRepository;
+package com.backend.backend.repository.ratingRepository;
 
 import com.backend.backend.domain.member.RatingCategory;
 import com.backend.backend.domain.member.Rating;
@@ -7,12 +7,12 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class DbRankingRepository implements RankingRepository{
+public class DbRatingRepository implements RatingRepository {
 
     private final EntityManager em;
     private final JPAQueryFactory query;
 
-    public DbRankingRepository(EntityManager em) {
+    public DbRatingRepository(EntityManager em) {
         this.em = em;
         this.query = new JPAQueryFactory(em);
     }
