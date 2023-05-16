@@ -42,8 +42,6 @@ public class Member {
     @Column(nullable = false)
     private Point point;
 
-    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
-    private Rating rating;
 
 
 

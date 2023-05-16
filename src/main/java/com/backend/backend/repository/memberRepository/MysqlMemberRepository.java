@@ -27,8 +27,6 @@ public class MysqlMemberRepository implements MemberRepository{
     @Override
     public Long save(Member member) {
         em.persist(member);
-        Rating rating = new Rating(member);
-        em.persist(rating);
         return member.getId();
     }
 
