@@ -20,8 +20,9 @@ public class PointService {
      * @param amount 충전할 포인트 양
      */
     @Transactional
-    public void chargePoint(String nickname, Long amount){
-        Point memberPoint = memberRepository.findMemberByNickname(nickname).getPoint();
+    public void chargePoint(String nickname, String sender, Long amount, String detail){
+        Member member=memberRepository.findMemberByNickname(nickname);
+        Point memberPoint = member.getPoint();
         if(memberPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
