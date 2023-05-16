@@ -44,6 +44,7 @@ public class PointDetail {
     @Enumerated(EnumType.STRING)
     private PointStatus status;
 
+    @Setter
     private String memo;
 
     @Builder

@@ -78,4 +78,10 @@ public class PointService {
         withdrawPoint(senderNickname,receiverNickname,amount);
     }
 
+    @Transactional
+    public void setMemo(Long id, String str){
+        PointDetail pointDetail = pointDetailRepository.findDetailById(id);
+
+        pointDetail.setMemo(str);
+    }
 }
