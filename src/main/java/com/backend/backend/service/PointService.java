@@ -72,13 +72,8 @@ public class PointService {
      */
     @Transactional
     public void remittancePoint(String senderNickname,String receiverNickname, Long amount){
-        Point senderPoint = memberRepository.findMemberByNickname(senderNickname).getPoint();
-        Point receiverPoint = memberRepository.findMemberByNickname(receiverNickname).getPoint();
-        if(senderPoint==null||receiverPoint==null){
-            throw new NotExistException("해당 회원이 존재하지 않습니다");
-        }
-        senderPoint.subPoint(amount);
-        receiverPoint.addPoint(amount);
+        chargePoint(receiverNickname,senderNickname,amount);
+        withdrawPoint(senderNickname,receiverNickname,amount);
     }
 
 }
