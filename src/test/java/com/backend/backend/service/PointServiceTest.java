@@ -81,6 +81,7 @@ class PointServiceTest {
         pointService.withdrawPoint(member.getNickname(),withdrawAmount);
 
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(initAmount-withdrawAmount);
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(1);
     }
 
     @Test

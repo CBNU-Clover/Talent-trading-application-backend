@@ -31,7 +31,7 @@ public class PointService {
                 .owner(member)
                 .recipient(nickname)
                 .sender(sender)
-                .status(PointStatus.CREDIT)
+                .status(PointStatus.DEPOSIT)
                 .amount(amount)
                 .build();
         if(memberPoint==null){
