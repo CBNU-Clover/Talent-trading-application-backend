@@ -78,10 +78,11 @@ class PointServiceTest {
         pointService.chargePoint(member.getNickname(),"test",initAmount,"");
 
         Long withdrawAmount=48L;
-        pointService.withdrawPoint(member.getNickname(),withdrawAmount);
+        pointService.withdrawPoint(member.getNickname(),"test",withdrawAmount);
 
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(initAmount-withdrawAmount);
-        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(1);
+        //입금, 출금 하나씩 기록됨
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(2);
     }
 
     @Test
@@ -93,12 +94,12 @@ class PointServiceTest {
 
         org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
             Long withdrawAmount=-48L;
-            pointService.withdrawPoint(member.getNickname(),withdrawAmount);
+            pointService.withdrawPoint(member.getNickname(),"test",withdrawAmount);
         });
 
         org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
             Long withdrawAmount=90L;
-            pointService.withdrawPoint(member.getNickname(),withdrawAmount);
+            pointService.withdrawPoint(member.getNickname(),"test",withdrawAmount);
         });
     }
 

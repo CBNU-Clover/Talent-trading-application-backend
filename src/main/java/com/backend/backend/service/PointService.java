@@ -47,12 +47,21 @@ public class PointService {
      * @param amount 인출할 포인트양
      */
     @Transactional
-    public void withdrawPoint(String nickname, Long amount){
-        Point memberPoint = memberRepository.findMemberByNickname(nickname).getPoint();
+    public void withdrawPoint(String nickname, String recipient, Long amount){
+        Member member=memberRepository.findMemberByNickname(nickname);
+        Point memberPoint = member.getPoint();
         if(memberPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
+        PointDetail pointDetail = PointDetail.builder()
+                .owner(member)
+                .recipient(recipient)
+                .sender(nickname)
+                .status(PointStatus.DEPOSIT)
+                .amount(amount)
+                .build();
         memberPoint.subPoint(amount);
+        pointDetailRepository.save(pointDetail);
     }
 
     /**
