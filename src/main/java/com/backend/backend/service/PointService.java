@@ -24,7 +24,7 @@ public class PointService {
      * @param amount 충전할 포인트 양
      */
     @Transactional
-    public void chargePoint(String nickname, String sender, Long amount, String detail){
+    public void chargePoint(String nickname, String sender, Long amount){
         Member member=memberRepository.findMemberByNickname(nickname);
         Point memberPoint = member.getPoint();
         PointDetail pointDetail = PointDetail.builder()
