@@ -1,5 +1,6 @@
 package com.backend.backend.repository.ratingRepository;
 
+import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.member.RatingCategory;
 import com.backend.backend.domain.member.Rating;
 
@@ -19,5 +20,5 @@ public interface RatingRepository {
      * @param category
      * @param amount 추가될 스코어 점수
      */
-    void addRating(RatingCategory category,Long amount);
+    void addRating(Member member,RatingCategory category, Long amount);
 }
