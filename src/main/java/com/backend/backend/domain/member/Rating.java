@@ -21,6 +21,9 @@ public class Rating {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id",nullable = false)
     private Member member;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private RatingCategory category;
 
     private Long score= 0L;
