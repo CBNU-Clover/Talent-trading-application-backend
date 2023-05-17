@@ -37,20 +37,35 @@ public class Post {
     @Lob
     private String content;
 
+    private Long price;
+
+    private LocalDateTime transactionDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PostStatus postStatus;
+
     @CreatedDate
     @LastModifiedDate
     private LocalDateTime date;
 
 
     @Builder
-    public Post(Member writer, String postName, String content) {
+    public Post(Member writer, String postName, String content, LocalDateTime transactionDate,Long price) {
         if(writer==null){
             throw new NotExistException("작성자가 없습니다");
         }
         Assert.hasText(postName, "게시글 이름이 없습니다");
 
+        if(price==null){
+            price=0L;
+        }
+
         this.writer = writer;
         this.postName = postName;
         this.content = content;
+        this.postStatus = PostStatus.OPEN;
+        this.transactionDate = transactionDate;
+        this.price = price;
     }
 }
