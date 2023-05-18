@@ -48,12 +48,16 @@ public class MemberService {
         //memberpassWord틀림
         if(!encoder.matches(passWord,selectedmember.getPassWord()))
         {
-
+            return "로그인이 실패했습니다!!";
         }
-        //앞에서 Exception 안났으면 토큰 발행
-        String token= JwtTokenUtil.createToken(selectedmember.getNickname(),key,expireTimeMs);
+        else {
+            String token= JwtTokenUtil.createToken(selectedmember.getNickname(),key,expireTimeMs);
 
-        return token;
+            return token;
+        }
+
+        //앞에서 Exception 안났으면 토큰 발행
+
     }
 
     public int check_Nickname(String nickname)

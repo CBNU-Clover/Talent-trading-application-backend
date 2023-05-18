@@ -36,6 +36,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'mysql:mysql-connector-java:8.0.27'
 	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+	implementation 'org.json:json:20190722' // json 파싱
+
+
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	//swagger 추가

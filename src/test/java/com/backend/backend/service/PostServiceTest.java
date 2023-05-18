@@ -75,7 +75,7 @@ class PostServiceTest {
         memberRepository.save(member);
 
         org.junit.jupiter.api.Assertions.assertThrows(PermissionDeniedException.class, ()->{
-            postService.deletePost(initPostId1,member);
+            postService.deletePost(initPostId1);
         });
     }
 }

@@ -62,6 +62,8 @@ public class PostService {
      * @return
      */
     public List<Post> searchPost(PostSearch postSearch){
+        System.out.println(postSearch.getPostName());
+        System.out.println("++++++++++++++++++++++++++++++++++");
         return postRepository.searchPost(postSearch);
     }
 
@@ -91,20 +93,27 @@ public class PostService {
     /**
      * post를 식별가능한 방법이 id 뿐이기에 id로 삭제
      * @param id
-     * @param member
      */
     @Transactional
-    public void deletePost(Long id, Member member){
-        Post post = postRepository.findPostById(id);
-        if(post==null){
-            throw new NotExistException("존재하지 않는 게시글 입니다");
-        }
-        if(post.getWriter().getId().equals(member.getId())) {
-            postRepository.deletePostById(id);
-        }
-        else {
-            throw new PermissionDeniedException("해당 멤버에게 이 글을 삭제 권한이 없습니다");
-        }
+    public void deletePost(Long id){
+        System.out.println(id);
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+
+        postRepository.deletePostById(id);
+
+    }
+
+    /**
+     * jwt 토큰를 decode하고 payload부분을 json 파싱해서 뽑아낸 nickname으로 유저가 작성한 게시글 조회
+     * @param nickname
+     */
+    @Transactional
+    public List<Post> getAllboard(String nickname)
+    {
+        List<Post> boardlist;
+        Member member=memberRepository.findMemberByNickname(nickname);
+        boardlist=postRepository.findPostsByMember(member);
+        return boardlist;
     }
 
 
