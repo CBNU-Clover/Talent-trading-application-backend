@@ -48,7 +48,7 @@ public class MysqlPostRepository implements PostRepository{
         return query
                 .select(post)
                 .from(post)
-                .where(postNameLike(postSearch.getPostName()))
+                .where(postNameContain(postSearch.getPostName()))
                 .orderBy(
                         orderByPostDate(postSearch.getOrderBy())
                 )
@@ -84,10 +84,10 @@ public class MysqlPostRepository implements PostRepository{
             return post.date.asc();
         }
     }
-    private BooleanExpression postNameLike(String name){
+    private BooleanExpression postNameContain(String name){
         if(!StringUtils.hasText(name)){
             return null;
         }
-        return post.postName.like(name);
+        return post.postName.contains(name);
     }
 }
