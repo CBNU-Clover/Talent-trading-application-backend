@@ -15,7 +15,7 @@ import java.util.List;
 public class RakingService {
     private final RatingRepository ratingRepository;
 
-    List<Rating> getTopRating(RatingCategory category){
+    public List<Rating> getTopRating(RatingCategory category){
         return ratingRepository.getTopRanking(category);
     }
 }
