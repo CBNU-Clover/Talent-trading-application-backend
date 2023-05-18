@@ -49,7 +49,7 @@ public class PostController {
      * @param postId
      * @return
      */
-    @GetMapping("/read/{}postId")
+    @GetMapping("/read/{postId}")
     public ResponseEntity<PostReadResponse> readPost(@PathVariable("postId") Long postId){
 
         Post post = postService.readPost(postId);
