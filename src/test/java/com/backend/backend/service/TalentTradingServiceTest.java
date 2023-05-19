@@ -3,7 +3,10 @@ package com.backend.backend.service;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
+import com.backend.backend.repository.pointDetailRepository.PointDetailRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
+import com.backend.backend.repository.transactionDetailRepository.TransactionDetailRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,10 +34,16 @@ class TalentTradingServiceTest {
     @Autowired
     private TalentTradingService talentTradingService;
 
+    @Autowired
+    private TransactionDetailRepository transactionDetailRepository;
+
+    @Autowired
+    private PointDetailRepository pointDetailRepository;
+
+
     String sellerNickname ="testMember1";
     String buyerNickname ="testMember2";
 
-    Long postId;
 
 
     @BeforeEach
@@ -52,19 +61,51 @@ class TalentTradingServiceTest {
                 .passWord("ghj")
                 .build();
         memberRepository.save(member2);
-        pointService.chargePoint(buyerNickname,"test",200L);
-
-
-        Post post1 = Post.builder()
-                .writer(memberRepository.findMemberByNickname(sellerNickname))
-                .postName("가나다 라")
-                .content(",")
-                .price(100L)
-                .build();
-        postId = postRepository.save(post1);
     }
 
     @Test
     void talentTrading() {
+        Long buyerPoint = 200L;
+        pointService.chargePoint(buyerNickname,"test",buyerPoint);
+
+        Long price = 110L;
+        Post post1 = Post.builder()
+                .writer(memberRepository.findMemberByNickname(sellerNickname))
+                .postName("가나다 라")
+                .content(",")
+                .price(price)
+                .build();
+        Long postId = postRepository.save(post1);
+
+
+        talentTradingService.talentTrading(postId,buyerNickname);
+
+        Assertions.assertThat(
+                transactionDetailRepository.findDetailsByMember(
+                        memberRepository.findMemberByNickname(buyerNickname)).size())
+                .isEqualTo(1);
+
+        Assertions.assertThat(
+                        transactionDetailRepository.findDetailsByMember(
+                                memberRepository.findMemberByNickname(sellerNickname)).size())
+                .isEqualTo(1);
+
+        Assertions.assertThat(
+                        pointDetailRepository.findDetailsByMember(
+                                memberRepository.findMemberByNickname(buyerNickname)).size())
+                .isEqualTo(2);
+
+        Assertions.assertThat(
+                        pointDetailRepository.findDetailsByMember(
+                                memberRepository.findMemberByNickname(sellerNickname)).size())
+                .isEqualTo(1);
+
+        Assertions.assertThat(memberRepository.findMemberByNickname(buyerNickname).getPoint().getAmount())
+                .isEqualTo(buyerPoint-price);
+
+        Assertions.assertThat(memberRepository.findMemberByNickname(sellerNickname).getPoint().getAmount())
+                .isEqualTo(price);
+
+
     }
 }
