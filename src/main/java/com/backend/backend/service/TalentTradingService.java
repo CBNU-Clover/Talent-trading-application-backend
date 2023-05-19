@@ -9,6 +9,8 @@ import com.backend.backend.repository.transactionDetailRepository.TransactionDet
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class TalentTradingService {
@@ -17,6 +19,7 @@ public class TalentTradingService {
     private final PointService pointService;
     private final TransactionDetailRepository transactionDetailRepository;
 
+    @Transactional
     public void talentTrading(Long postId, String buyerNickname){
         Member buyer = memberRepository.findMemberByNickname(buyerNickname);
         Post post = postRepository.findPostById(postId);
