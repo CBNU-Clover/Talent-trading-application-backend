@@ -14,7 +14,7 @@ import javax.persistence.Embeddable;
 public class Point {
 
     @Column(name = "point_amount")
-    private Long amount =0L;
+    private Long amount =50000L;
 
     /**
      * 포인트를 증가시키고 해당 기록을 저장하는 메소드
@@ -28,7 +28,6 @@ public class Point {
             throw new PointAmountError("0이하의 값은 증가시킬 수 없습니다");
         }
         this.amount +=amount;
-        //TODO:증가시켰다는 기록 추가
     }
 
     /**
@@ -46,6 +45,5 @@ public class Point {
             throw new PointAmountError("포인트 보다 더 많은 값을 감소 시킬 수 없습니다");
         }
         this.amount -=amount;
-        //TODO: 포인트를 감소시켰다는 기록을 추가
     }
 }
