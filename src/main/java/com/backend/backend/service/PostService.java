@@ -57,7 +57,7 @@ public class PostService {
     }
 
     /**
-     * 조건에 맞는 모든 post를 찾아서 반환
+     * 조건에 맞는 모든 post를 찾아서 반환 만약 postName이 null이면 전체 반환
      * @param postSearch
      * @return
      */
