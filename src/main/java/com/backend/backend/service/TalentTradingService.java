@@ -2,6 +2,7 @@ package com.backend.backend.service;
 
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
+import com.backend.backend.domain.post.PostStatus;
 import com.backend.backend.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.postRepository.PostRepository;
@@ -23,6 +24,7 @@ public class TalentTradingService {
     public void talentTrading(Long postId, String buyerNickname){
         Member buyer = memberRepository.findMemberByNickname(buyerNickname);
         Post post = postRepository.findPostById(postId);
+        post.setPostStatus(PostStatus.CLOSE);
 
         pointService.remittancePoint(buyerNickname,post.getWriter().getNickname(),post.getPrice());
 

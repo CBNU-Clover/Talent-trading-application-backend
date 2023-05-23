@@ -43,6 +43,7 @@ public class Post {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @Setter
     private PostStatus postStatus;
 
     @CreatedDate
