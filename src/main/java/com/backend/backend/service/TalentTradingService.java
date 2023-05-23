@@ -22,6 +22,10 @@ public class TalentTradingService {
 
     @Transactional
     public void talentTrading(Long postId, String buyerNickname){
+        System.out.println(postId);
+        System.out.println("+++++++++++++++++++++++++++++++++");
+        System.out.println(buyerNickname);
+        System.out.println("+++++++++++++++++++++++++++++++++");
         Member buyer = memberRepository.findMemberByNickname(buyerNickname);
         Post post = postRepository.findPostById(postId);
         post.setPostStatus(PostStatus.CLOSE);

@@ -99,13 +99,11 @@ public class PostController {
         postService.deletePost(Long.parseLong(id));
     }
 
-    @GetMapping("/postsearch")
-    public List<PostSearchBoard> searchPost(PostSearch postSearch)
+    @PostMapping("/postsearch")
+    public List<PostSearchBoard> searchPost(@RequestBody @Valid PostSearch postSearch)
     {
         List<PostSearchBoard> ResultBoard=new ArrayList<>();
         List<Post> searchboardlist=new ArrayList<>();
-        System.out.println(postSearch.getPostName());
-        System.out.println("+++++++++");
         searchboardlist=postService.searchPost(postSearch);
 
         for(int num=0 ; num<searchboardlist.size();num++)
