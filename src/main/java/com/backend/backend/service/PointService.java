@@ -84,4 +84,17 @@ public class PointService {
 
         pointDetail.setMemo(str);
     }
+    /**
+     * 로그인 했을때 그 사람의 포인트를 보여주는 서비스
+     * @param nickname
+     */
+    @Transactional
+    public Long showPoint(String nickname)
+    {
+        Long point;
+        Member member;
+        member=memberRepository.findMemberByNickname(nickname);
+        point=member.getPoint().getAmount();
+        return point;
+    }
 }

@@ -10,11 +10,11 @@ import lombok.Setter;
 public class ChargePoint {
 
     private Long point;
-    private String sender;
 
-    public ChargePoint(Long point,String sender) {
+
+    public ChargePoint(Long point) {
         this.point = point;
-        this.sender=sender;
+
     }
 
     public ChargePoint() {
