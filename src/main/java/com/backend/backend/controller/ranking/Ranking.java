@@ -1,10 +1,8 @@
 package com.backend.backend.controller.ranking;
 
-import com.backend.backend.controller.post.Dto.PostReadResponse;
 import com.backend.backend.controller.ranking.dto.ResponseRakingList;
 import com.backend.backend.domain.member.Rating;
 import com.backend.backend.domain.member.RatingCategory;
-import com.backend.backend.domain.post.Post;
 import com.backend.backend.service.RakingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +21,7 @@ public class Ranking {
     private final RakingService rakingService;
 
     @GetMapping("/top/{category}")
-    public ResponseEntity<ResponseRakingList> readPost(@PathVariable("category") RatingCategory category){
+    public ResponseEntity<ResponseRakingList> getRanking(@PathVariable("category") RatingCategory category){
 
         List<Rating> topRating = rakingService.getTopRating(category);
 
