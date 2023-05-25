@@ -3,6 +3,7 @@ package com.backend.backend.controller.point;
 
 import com.backend.backend.DataProcessing.TokenParsing;
 import com.backend.backend.controller.point.dto.ChargePoint;
+import com.backend.backend.controller.point.dto.ShowPointDTO;
 import com.backend.backend.controller.post.Dto.PostGetAllBoard;
 import com.backend.backend.controller.trading.tradeDto.TradePost;
 import com.backend.backend.domain.post.Post;
@@ -35,12 +36,15 @@ public class PointController {
     }
 
     @GetMapping("/show_point")
-    public Long show_point(HttpServletRequest request)
+    public ShowPointDTO show_point(HttpServletRequest request)
     {
         Long point;
+        ShowPointDTO showPointDTO=new ShowPointDTO();
         TokenParsing tokenParsing=new TokenParsing();
         String result= tokenParsing.ExtractNickname(request);
         point=pointService.showPoint(result);
-        return point;
+        showPointDTO.setPoint(point);
+        showPointDTO.setNickname(result);
+        return showPointDTO;
     }
 }
