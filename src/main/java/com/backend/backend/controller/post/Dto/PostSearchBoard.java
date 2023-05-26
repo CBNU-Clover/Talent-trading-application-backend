@@ -13,11 +13,13 @@ public class PostSearchBoard {
     private String writerNickname;
     private String postName;
     private String content;
-    public PostSearchBoard(Long id,String writerNickname, String postName, String content) {
+    private Long price;
+    public PostSearchBoard(Long id,String writerNickname, String postName, String content,Long price) {
         this.writerNickname=writerNickname;
         this.id=id;
         this.postName = postName;
         this.content = content;
+        this.price=price;
     }
 
 
