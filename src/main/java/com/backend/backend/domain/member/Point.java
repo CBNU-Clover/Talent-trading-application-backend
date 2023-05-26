@@ -14,7 +14,7 @@ import javax.persistence.Embeddable;
 public class Point {
 
     @Column(name = "point_amount")
-    private Long amount =50000L;
+    private Long amount =0L;
 
     /**
      * 포인트를 증가시키고 해당 기록을 저장하는 메소드
