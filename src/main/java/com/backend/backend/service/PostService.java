@@ -34,6 +34,7 @@ public class PostService {
                 .writer(getMember(postWriteRequest))
                 .postName(postWriteRequest.getPostName())
                 .content(postWriteRequest.getContent())
+                .price(postWriteRequest.getPrice())
                 .build();
 
         return postRepository.save(post);

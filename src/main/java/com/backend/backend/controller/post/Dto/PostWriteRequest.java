@@ -17,10 +17,13 @@ public class PostWriteRequest {
 
     private String content;
 
-    public PostWriteRequest(String writerNickname, String postName, String content) {
+    private Long price;
+
+    public PostWriteRequest(String writerNickname, String postName, String content,Long price) {
         this.writerNickname = writerNickname;
         this.postName = postName;
         this.content = content;
+        this.price=price;
     }
 
     public PostWriteRequest() {
