@@ -78,7 +78,7 @@ class TalentTradingServiceTest {
         Long postId = postRepository.save(post1);
 
 
-        talentTradingService.talentTrading(postId,buyerNickname);
+        talentTradingService.talentTrading(postId,buyerNickname,"test",0L);
 
         Assertions.assertThat(
                 transactionDetailRepository.findDetailsByMember(

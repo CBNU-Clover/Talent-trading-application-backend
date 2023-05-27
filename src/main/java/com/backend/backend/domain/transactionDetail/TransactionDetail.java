@@ -38,11 +38,12 @@ public class TransactionDetail {
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
-    @Lob
-    private String detail;
+    private String postName;
+
+    private Long price;
 
     @Builder
-    public TransactionDetail(Member seller, Member buyer,String detail) {
+    public TransactionDetail(Member seller, Member buyer,String postName,Long price) {
         if(seller==null){
             throw new NotExistException("판매자가 없습니다");
         }
@@ -52,6 +53,7 @@ public class TransactionDetail {
         this.seller = seller;
         this.buyer = buyer;
         this.status = TransactionStatus.TRADING;
-        this.detail = detail;
+        this.postName = postName;
+        this.price = price;
     }
 }

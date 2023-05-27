@@ -30,7 +30,7 @@ public class TradingController {
         TokenParsing tokenParsing=new TokenParsing();
         String result= tokenParsing.ExtractNickname(request);
         // 클라이언트에서 postID값만 보내서 받는다.
-        talentTradingService.talentTrading(tradePost.getTradePost_id(),result);
+        talentTradingService.talentTrading(tradePost.getTradePost_id(),result,"test",0L);
     }
 
 }

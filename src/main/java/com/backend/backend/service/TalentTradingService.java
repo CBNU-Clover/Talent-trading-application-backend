@@ -21,7 +21,7 @@ public class TalentTradingService {
     private final TransactionDetailRepository transactionDetailRepository;
 
     @Transactional
-    public void talentTrading(Long postId, String buyerNickname){
+    public void talentTrading(Long postId, String buyerNickname,String postName, Long price){
         System.out.println(postId);
         System.out.println("+++++++++++++++++++++++++++++++++");
         System.out.println(buyerNickname);
@@ -35,6 +35,8 @@ public class TalentTradingService {
         TransactionDetail transactionDetail = TransactionDetail.builder()
                 .seller(post.getWriter())
                 .buyer(buyer)
+                .postName(postName)
+                .price(price)
                 .build();
         transactionDetailRepository.save(transactionDetail);
 
