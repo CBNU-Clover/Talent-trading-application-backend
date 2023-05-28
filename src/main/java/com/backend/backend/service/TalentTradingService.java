@@ -1,5 +1,7 @@
 package com.backend.backend.service;
 
+import com.backend.backend.controller.post.Dto.PostSearchBoard;
+import com.backend.backend.controller.trading.tradeDto.TradingHistory;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.domain.post.PostStatus;
@@ -11,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,8 +24,12 @@ public class TalentTradingService {
     private final PointService pointService;
     private final TransactionDetailRepository transactionDetailRepository;
 
+    /**
+     * postId를 인식해 그 게시물에 대한 거래 진행
+     * @param postId
+     */
     @Transactional
-    public void talentTrading(Long postId, String buyerNickname,String postName, Long price){
+    public void talentTrading(Long postId, String buyerNickname){
         System.out.println(postId);
         System.out.println("+++++++++++++++++++++++++++++++++");
         System.out.println(buyerNickname);
@@ -35,11 +43,24 @@ public class TalentTradingService {
         TransactionDetail transactionDetail = TransactionDetail.builder()
                 .seller(post.getWriter())
                 .buyer(buyer)
-                .postName(postName)
-                .price(price)
+                .postName(post.getPostName())
+                .price(post.getPrice())
                 .build();
         transactionDetailRepository.save(transactionDetail);
 
     }
+    /**
+     * 로그한 사용자의 거래기록 불러오기
+     * @param nickname
+     * return 거래기록
+     */
+    @Transactional
+    public List<TransactionDetail> tradinghistory(String nickname)
+    {
+        
+        Member member=memberRepository.findMemberByNickname(nickname);
+        List<TransactionDetail>trade_info=transactionDetailRepository.findDetailsByMember(member);
 
+        return trade_info;
+    }
 }

@@ -1,4 +1,4 @@
-package com.backend.backend.controller;
+package com.backend.backend.controller.member;
 
 import com.backend.backend.dto.memberdto.*;
 import com.backend.backend.service.MemberService;
