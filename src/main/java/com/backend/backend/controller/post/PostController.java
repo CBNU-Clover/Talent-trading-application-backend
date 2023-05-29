@@ -84,7 +84,7 @@ public class PostController {
 
             for(int num=0 ; num<boardlist.size();num++)
             {
-                ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),boardlist.get(num).getPostName(),boardlist.get(num).getContent(),boardlist.get(num).getPrice()));
+                ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),boardlist.get(num).getPostName(),boardlist.get(num).getContent(),boardlist.get(num).getPrice(),boardlist.get(num).getDate().toString().replace("T"," ")));
             }
 
         return ResultBoard;
@@ -101,12 +101,12 @@ public class PostController {
     public List<PostSearchBoard> searchPost(@RequestBody @Valid PostSearch postSearch)
     {
         List<PostSearchBoard> ResultBoard=new ArrayList<>();
-        List<Post> searchboardlist=new ArrayList<>();
+        List<Post> searchboardlist;
         searchboardlist=postService.searchPost(postSearch);
 
         for(int num=0 ; num<searchboardlist.size();num++)
         {
-            ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),searchboardlist.get(num).getWriter().getNickname(),searchboardlist.get(num).getPostName(),searchboardlist.get(num).getContent(),searchboardlist.get(num).getPrice()));
+            ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),searchboardlist.get(num).getWriter().getNickname(),searchboardlist.get(num).getPostName(),searchboardlist.get(num).getContent(),searchboardlist.get(num).getPrice(),searchboardlist.get(num).getDate().toString().replace("T"," ")));
         }
 
         return ResultBoard;

@@ -12,10 +12,13 @@ public class PostGetAllBoard {
     private String postName;
     private String content;
     private Long price;
-    public PostGetAllBoard( Long id,String postName, String content,Long price) {
+
+    private String date;
+    public PostGetAllBoard( Long id,String postName, String content,Long price,String date) {
         this.id=id;
         this.postName = postName;
         this.content = content;
         this.price=price;
+        this.date=date;
     }
 }
