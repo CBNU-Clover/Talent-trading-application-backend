@@ -28,6 +28,7 @@ public class PointService {
     public void chargePoint(String nickname, String sender, Long amount){
         Member member=memberRepository.findMemberByNickname(nickname);
         Point memberPoint = member.getPoint();
+        memberPoint.addPoint(amount);
         PointDetail pointDetail = PointDetail.builder()
                 .owner(member)
                 .recipient(nickname)
@@ -38,7 +39,6 @@ public class PointService {
         if(memberPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
-        memberPoint.addPoint(amount);
         pointDetailRepository.save(pointDetail);
     }
 
@@ -55,6 +55,7 @@ public class PointService {
         if(memberPoint==null){
             throw new NotExistException("해당 회원이 존재하지 않습니다");
         }
+        memberPoint.subPoint(amount);
         PointDetail pointDetail = PointDetail.builder()
                 .owner(member)
                 .recipient(recipient)
@@ -62,7 +63,6 @@ public class PointService {
                 .status(PointStatus.DEPOSIT)
                 .amount(amount)
                 .build();
-        memberPoint.subPoint(amount);
         pointDetailRepository.save(pointDetail);
     }
 
