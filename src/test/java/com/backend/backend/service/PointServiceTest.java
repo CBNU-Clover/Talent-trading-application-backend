@@ -59,6 +59,9 @@ class PointServiceTest {
 
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(amount);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(1);
+        System.out.println("member = " + member.getPoint().getAmount());
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getBalance())
+                .isEqualTo(amount);
     }
 
     @Test
@@ -83,6 +86,8 @@ class PointServiceTest {
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(initAmount-withdrawAmount);
         //입금, 출금 하나씩 기록됨
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(2);
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(1).getBalance())
+                .isEqualTo(initAmount-withdrawAmount);
     }
 
     @Test

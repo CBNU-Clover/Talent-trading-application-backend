@@ -37,6 +37,9 @@ public class PointDetail {
     @Column(nullable = false)
     private Long  amount;
 
+    @Column(nullable = false)
+    private Long  balance;
+
     @CreatedDate
     private LocalDateTime date;
 
@@ -68,5 +71,6 @@ public class PointDetail {
         this.status = status;
         this.amount = amount;
         this.memo = memo;
+        this.balance = owner.getPoint().getAmount();
     }
 }
