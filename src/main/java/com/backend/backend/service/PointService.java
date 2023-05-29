@@ -60,7 +60,7 @@ public class PointService {
                 .owner(member)
                 .recipient(recipient)
                 .sender(nickname)
-                .status(PointStatus.DEPOSIT)
+                .status(PointStatus.TRANSFER)
                 .amount(amount)
                 .build();
         pointDetailRepository.save(pointDetail);
