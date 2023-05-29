@@ -4,6 +4,7 @@ import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.member.Point;
 import com.backend.backend.domain.pointDetail.PointDetail;
 import com.backend.backend.domain.pointDetail.PointStatus;
+import com.backend.backend.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.exception.NotExistException;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.pointDetailRepository.PointDetailRepository;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -96,5 +98,15 @@ public class PointService {
         member=memberRepository.findMemberByNickname(nickname);
         point=member.getPoint().getAmount();
         return point;
+    }
+
+    @Transactional
+    public List<PointDetail> point_history(String nickname)
+    {
+
+        Member member=memberRepository.findMemberByNickname(nickname);
+        List<PointDetail>point_history_info=pointDetailRepository.findDetailsByMember(member);
+
+        return point_history_info;
     }
 }

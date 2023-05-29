@@ -22,6 +22,7 @@ public class TradingHistory {
         this.seller_nickname=seller_nickname;
     }
 
-    public TradingHistory() {
+    public TradingHistory()
+    {
     }
 }
