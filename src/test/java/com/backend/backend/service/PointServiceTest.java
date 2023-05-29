@@ -2,6 +2,7 @@ package com.backend.backend.service;
 
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.pointDetail.PointDetail;
+import com.backend.backend.domain.pointDetail.PointStatus;
 import com.backend.backend.exception.pointException.PointAmountError;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import com.backend.backend.repository.pointDetailRepository.PointDetailRepository;
@@ -62,6 +63,8 @@ class PointServiceTest {
         System.out.println("member = " + member.getPoint().getAmount());
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getBalance())
                 .isEqualTo(amount);
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getStatus())
+                .isEqualTo(PointStatus.DEPOSIT);
     }
 
     @Test
@@ -88,6 +91,8 @@ class PointServiceTest {
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(2);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(1).getBalance())
                 .isEqualTo(initAmount-withdrawAmount);
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(1).getStatus())
+                .isEqualTo(PointStatus.TRANSFER);
     }
 
     @Test
