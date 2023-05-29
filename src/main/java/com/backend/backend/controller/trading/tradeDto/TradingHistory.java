@@ -14,12 +14,15 @@ public class TradingHistory {
     private String buyer_nickname;
     private String seller_nickname;
 
-    public TradingHistory( String trade_postname,Long trade_price, String buyer_nickname,String seller_nickname) {
+    private String date;
+
+    public TradingHistory( String trade_postname,Long trade_price, String buyer_nickname,String seller_nickname,String date) {
 
         this.trade_postname = trade_postname;
         this.trade_price=trade_price;
         this.buyer_nickname=buyer_nickname;
         this.seller_nickname=seller_nickname;
+        this.date=date;
     }
 
     public TradingHistory()
