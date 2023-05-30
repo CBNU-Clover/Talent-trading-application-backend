@@ -84,7 +84,7 @@ public class PostController {
 
             for(int num=0 ; num<boardlist.size();num++)
             {
-                ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),boardlist.get(num).getPostName(),boardlist.get(num).getContent(),boardlist.get(num).getPrice(),boardlist.get(num).getDate().toString().replace("T"," ")));
+                ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),boardlist.get(num).getPostName(),boardlist.get(num).getContent(),boardlist.get(num).getPrice(),boardlist.get(num).getDate().toString().replace("T"," "),result));
             }
 
         return ResultBoard;
