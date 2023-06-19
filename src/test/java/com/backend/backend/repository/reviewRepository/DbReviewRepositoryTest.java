@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
-class MysqlReviewRepositoryTest extends TestSetting {
+class DbReviewRepositoryTest extends TestSetting {
 
     @Autowired
     private ReviewRepository reviewRepository;
