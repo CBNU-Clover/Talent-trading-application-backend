@@ -1,6 +1,7 @@
 package com.backend.backend.repository.transactionDetailRepository;
 
 import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.repository.memberRepository.MemberRepository;
@@ -18,11 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MySqlTransactionDetailRepositoryTest {
+class MySqlTransactionDetailRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;

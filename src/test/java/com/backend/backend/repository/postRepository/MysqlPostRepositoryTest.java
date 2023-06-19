@@ -1,6 +1,7 @@
 package com.backend.backend.repository.postRepository;
 
 import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
@@ -19,11 +20,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MysqlPostRepositoryTest {
+class MysqlPostRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;

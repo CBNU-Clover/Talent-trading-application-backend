@@ -1,5 +1,6 @@
 package com.backend.backend.repository.memberRepository;
 
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,11 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MysqlMemberRepositoryTest {
+class MysqlMemberRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;

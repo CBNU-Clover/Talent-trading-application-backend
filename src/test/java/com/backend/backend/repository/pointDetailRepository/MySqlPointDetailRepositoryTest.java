@@ -1,6 +1,7 @@
 package com.backend.backend.repository.pointDetailRepository;
 
 import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.pointDetail.PointDetail;
 import com.backend.backend.domain.pointDetail.PointStatus;
@@ -19,11 +20,8 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MySqlPointDetailRepositoryTest {
+
+class MySqlPointDetailRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;

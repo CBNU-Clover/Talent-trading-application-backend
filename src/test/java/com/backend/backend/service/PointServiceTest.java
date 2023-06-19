@@ -1,6 +1,7 @@
 package com.backend.backend.service;
 
 import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.pointDetail.PointDetail;
 import com.backend.backend.domain.pointDetail.PointStatus;
@@ -19,11 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class PointServiceTest {
+
+class PointServiceTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;

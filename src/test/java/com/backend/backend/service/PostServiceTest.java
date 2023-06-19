@@ -1,6 +1,7 @@
 package com.backend.backend.service;
 
 import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.exception.PermissionDeniedException;
@@ -19,11 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.mockito.ArgumentMatchers.any;
 
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class PostServiceTest {
+
+class PostServiceTest extends TestSetting {
 
 
     @Autowired
