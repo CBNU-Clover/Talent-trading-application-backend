@@ -1,5 +1,6 @@
 package com.backend.backend.repository.postRepository;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
@@ -33,11 +34,7 @@ class MysqlPostRepositoryTest {
     @Test
 
     void save() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post = Post.builder()
@@ -54,11 +51,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void findPostById() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
@@ -80,11 +73,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void deletePostById() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("115465165")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
@@ -109,11 +98,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void findAll(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("54654949898198")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
@@ -138,11 +123,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void findAllOrder(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("419651965819198")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
@@ -168,11 +149,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void searchPost(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("54654949898198")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
