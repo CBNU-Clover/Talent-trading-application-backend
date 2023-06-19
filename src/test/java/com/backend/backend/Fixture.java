@@ -1,7 +1,7 @@
 package com.backend.backend;
 
-import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.post.Post;
+import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.post.Post;
 
 public class Fixture {
 

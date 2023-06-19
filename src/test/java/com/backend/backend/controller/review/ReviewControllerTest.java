@@ -1,12 +1,12 @@
 package com.backend.backend.controller.review;
 
-import com.backend.backend.controller.review.dto.ReviewWriteRequest;
-import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.post.Post;
-import com.backend.backend.domain.review.Review;
-import com.backend.backend.repository.memberRepository.MemberRepository;
-import com.backend.backend.repository.postRepository.PostRepository;
-import com.backend.backend.repository.reviewRepository.ReviewRepository;
+import com.backend.backend.mvc.controller.review.dto.ReviewWriteRequest;
+import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.domain.review.Review;
+import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.repository.postRepository.PostRepository;
+import com.backend.backend.mvc.repository.reviewRepository.ReviewRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

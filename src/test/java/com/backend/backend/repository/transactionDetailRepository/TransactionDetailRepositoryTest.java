@@ -2,9 +2,10 @@ package com.backend.backend.repository.transactionDetailRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
-import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.transactionDetail.TransactionDetail;
-import com.backend.backend.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.transactionDetail.TransactionDetail;
+import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.repository.transactionDetailRepository.TransactionDetailRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
