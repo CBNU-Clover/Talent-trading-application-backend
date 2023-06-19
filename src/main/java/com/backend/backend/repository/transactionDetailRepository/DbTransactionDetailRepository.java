@@ -11,12 +11,12 @@ import java.util.List;
 import static com.backend.backend.domain.transactionDetail.QTransactionDetail.transactionDetail;
 
 @Repository
-public class MySqlTransactionDetailRepository implements TransactionDetailRepository{
+public class DbTransactionDetailRepository implements TransactionDetailRepository{
 
     private final EntityManager em;
     private final JPAQueryFactory query;
 
-    public MySqlTransactionDetailRepository(EntityManager em) {
+    public DbTransactionDetailRepository(EntityManager em) {
         this.em = em;
         this.query = new JPAQueryFactory(em);
     }

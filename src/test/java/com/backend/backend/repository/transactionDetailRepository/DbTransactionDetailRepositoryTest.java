@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-class MySqlTransactionDetailRepositoryTest extends TestSetting {
+class DbTransactionDetailRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
