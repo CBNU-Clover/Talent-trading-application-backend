@@ -41,11 +41,7 @@ class MysqlReviewRepositoryTest {
         Member member = Fixture.createMember("1");
         memberId = memberRepository.save(member);
 
-        Post post = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         postId = postRepository.save(post);
     }
 
