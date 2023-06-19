@@ -1,5 +1,6 @@
 package com.backend.backend.repository.memberRepository;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import org.junit.jupiter.api.Test;
@@ -19,11 +20,7 @@ class MysqlMemberRepositoryTest extends TestSetting {
     private MemberRepository memberRepository;
     @Test
     void save() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         assertThat(memberRepository.findMemberById(memberId)).isSameAs(member);
@@ -61,17 +58,9 @@ class MysqlMemberRepositoryTest extends TestSetting {
 
     @Test
     void findMemberById() {
-        Member member1 = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member1 = Fixture.createMember("1");
         Long memberId1 = memberRepository.save(member1);
-        Member member2 = Member.builder()
-                .name("11")
-                .nickname("111")
-                .passWord("ghj")
-                .build();
+        Member member2 = Fixture.createMember("2");
         Long memberId2 = memberRepository.save(member2);
 
         assertThat(memberRepository.findMemberById(memberId2)).isSameAs(member2);
@@ -80,17 +69,9 @@ class MysqlMemberRepositoryTest extends TestSetting {
 
     @Test
     void deleteMemberById() {
-        Member member1 = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member1 = Fixture.createMember("1");
         Long memberId1 = memberRepository.save(member1);
-        Member member2 = Member.builder()
-                .name("11")
-                .nickname("111")
-                .passWord("ghj")
-                .build();
+        Member member2 = Fixture.createMember("2");
         Long memberId2 = memberRepository.save(member2);
 
         memberRepository.deleteMemberById(memberId1);
