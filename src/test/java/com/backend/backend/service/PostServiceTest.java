@@ -1,5 +1,6 @@
 package com.backend.backend.service;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.exception.PermissionDeniedException;
@@ -41,11 +42,7 @@ class PostServiceTest {
     @BeforeEach
     void init(){
         MockitoAnnotations.initMocks(this);
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         initMemberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
