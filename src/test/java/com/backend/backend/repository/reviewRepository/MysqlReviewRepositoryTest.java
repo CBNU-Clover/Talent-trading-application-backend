@@ -1,5 +1,6 @@
 package com.backend.backend.repository.reviewRepository;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.domain.review.Review;
@@ -37,11 +38,7 @@ class MysqlReviewRepositoryTest {
     Long postId;
     @BeforeEach
     void init(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         memberId = memberRepository.save(member);
 
         Post post = Post.builder()
