@@ -1,5 +1,6 @@
 package com.backend.backend.repository.pointDetailRepository;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.pointDetail.PointDetail;
 import com.backend.backend.domain.pointDetail.PointStatus;
@@ -34,12 +35,7 @@ class MySqlPointDetailRepositoryTest {
 
     @BeforeEach
     void setup(){
-        member = Member.builder()
-                .name("415646556456")
-                .nickname("huysdagsibib")
-                .passWord("5456")
-                .email("566511561sd1")
-                .build();
+        member = Fixture.createMember("1");
         memberRepository.save(member);
 
     }
