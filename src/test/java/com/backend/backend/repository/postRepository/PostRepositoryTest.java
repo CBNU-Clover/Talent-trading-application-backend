@@ -7,20 +7,15 @@ import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 
-class DbPostRepositoryTest extends TestSetting {
+class PostRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;

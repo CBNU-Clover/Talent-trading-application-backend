@@ -8,18 +8,12 @@ import com.backend.backend.repository.memberRepository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
-class DbTransactionDetailRepositoryTest extends TestSetting {
+class TransactionDetailRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
