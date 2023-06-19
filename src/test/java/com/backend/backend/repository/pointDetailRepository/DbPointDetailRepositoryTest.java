@@ -21,7 +21,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
-class MySqlPointDetailRepositoryTest extends TestSetting {
+class DbPointDetailRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
