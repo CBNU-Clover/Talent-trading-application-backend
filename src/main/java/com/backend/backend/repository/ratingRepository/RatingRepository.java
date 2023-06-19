@@ -1,8 +1,8 @@
 package com.backend.backend.repository.ratingRepository;
 
 import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.member.RatingCategory;
-import com.backend.backend.domain.member.Rating;
+import com.backend.backend.domain.rating.RatingCategory;
+import com.backend.backend.domain.rating.Rating;
 
 import java.util.List;
 

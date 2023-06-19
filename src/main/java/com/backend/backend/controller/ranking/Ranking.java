@@ -1,8 +1,8 @@
 package com.backend.backend.controller.ranking;
 
 import com.backend.backend.controller.ranking.dto.ResponseRakingList;
-import com.backend.backend.domain.member.Rating;
-import com.backend.backend.domain.member.RatingCategory;
+import com.backend.backend.domain.rating.Rating;
+import com.backend.backend.domain.rating.RatingCategory;
 import com.backend.backend.service.RakingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

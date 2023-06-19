@@ -1,7 +1,7 @@
 package com.backend.backend.service;
 
-import com.backend.backend.domain.member.Rating;
-import com.backend.backend.domain.member.RatingCategory;
+import com.backend.backend.domain.rating.Rating;
+import com.backend.backend.domain.rating.RatingCategory;
 import com.backend.backend.repository.ratingRepository.RatingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

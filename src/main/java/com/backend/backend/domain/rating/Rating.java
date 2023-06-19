@@ -1,10 +1,9 @@
-package com.backend.backend.domain.member;
+package com.backend.backend.domain.rating;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.backend.backend.domain.member.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 

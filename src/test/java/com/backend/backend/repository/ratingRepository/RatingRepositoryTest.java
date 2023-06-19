@@ -3,7 +3,7 @@ package com.backend.backend.repository.ratingRepository;
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.member.RatingCategory;
+import com.backend.backend.domain.rating.RatingCategory;
 import com.backend.backend.repository.memberRepository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

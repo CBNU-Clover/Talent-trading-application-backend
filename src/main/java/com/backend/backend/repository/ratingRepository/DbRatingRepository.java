@@ -1,15 +1,14 @@
 package com.backend.backend.repository.ratingRepository;
 
 import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.member.RatingCategory;
-import com.backend.backend.domain.member.Rating;
+import com.backend.backend.domain.rating.RatingCategory;
+import com.backend.backend.domain.rating.Rating;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.member.QMember.member;
 import static com.backend.backend.domain.member.QRating.rating;
 
 @Repository
