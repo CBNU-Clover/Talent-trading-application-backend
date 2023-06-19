@@ -45,20 +45,12 @@ class PostServiceTest {
         Member member = Fixture.createMember("1");
         initMemberId = memberRepository.save(member);
 
-        Post post1 = Post.builder()
-                .writer(memberRepository.findMemberById(initMemberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post1 = Fixture.createPost(memberRepository.findMemberById(initMemberId), 0L);
 
         initPostId1=postRepository.save(post1);
 
 
-        Post post2 = Post.builder()
-                .writer(memberRepository.findMemberById(initMemberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post2 = Fixture.createPost(memberRepository.findMemberById(initMemberId), 0L);
         initPostId2=postRepository.save(post2);
     }
     /**
