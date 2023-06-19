@@ -1,5 +1,6 @@
 package com.backend.backend.repository.ratingRepository;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.member.RatingCategory;
 import com.backend.backend.repository.memberRepository.MemberRepository;
@@ -32,12 +33,7 @@ class DbRatingRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        member = Member.builder()
-                .name("415646556456")
-                .nickname("huysdagsibib")
-                .passWord("5456")
-                .email("566511561sd1")
-                .build();
+        member = Fixture.createMember("1");
         memberRepository.save(member);
     }
 
