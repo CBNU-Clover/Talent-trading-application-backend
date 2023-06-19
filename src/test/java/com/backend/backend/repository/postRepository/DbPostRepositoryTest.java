@@ -20,7 +20,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 
-class MysqlPostRepositoryTest extends TestSetting {
+class DbPostRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
