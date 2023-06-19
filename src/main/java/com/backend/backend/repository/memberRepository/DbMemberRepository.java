@@ -1,7 +1,6 @@
 package com.backend.backend.repository.memberRepository;
 
 import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.member.Rating;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
@@ -14,12 +13,12 @@ import static com.backend.backend.domain.member.QMember.member;
 import static com.backend.backend.domain.post.QPost.post;
 
 @Repository
-public class MysqlMemberRepository implements MemberRepository{
+public class DbMemberRepository implements MemberRepository{
     
     private final EntityManager em;
     private final JPAQueryFactory query;
 
-    public MysqlMemberRepository(EntityManager em) {
+    public DbMemberRepository(EntityManager em) {
         this.em = em;
         this.query = new JPAQueryFactory(em);
     }

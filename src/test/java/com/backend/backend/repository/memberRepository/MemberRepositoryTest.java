@@ -4,17 +4,12 @@ import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class MysqlMemberRepositoryTest extends TestSetting {
+class MemberRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;

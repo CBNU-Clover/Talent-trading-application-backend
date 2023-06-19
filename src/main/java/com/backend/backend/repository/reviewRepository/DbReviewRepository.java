@@ -4,22 +4,20 @@ import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.domain.review.Review;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.post.QPost.post;
 import static com.backend.backend.domain.review.QReview.review;
 
 @Repository
-public class MysqlReviewRepository implements ReviewRepository{
+public class DbReviewRepository implements ReviewRepository{
 
     private final EntityManager em;
     private final JPAQueryFactory query;
 
-    public MysqlReviewRepository(EntityManager em) {
+    public DbReviewRepository(EntityManager em) {
         this.em = em;
         this.query = new JPAQueryFactory(em);
     }

@@ -11,12 +11,12 @@ import java.util.List;
 import static com.backend.backend.domain.pointDetail.QPointDetail.pointDetail;
 
 @Repository
-public class MySqlPointDetailRepository implements PointDetailRepository{
+public class DbPointDetailRepository implements PointDetailRepository{
 
     private final EntityManager em;
     private final JPAQueryFactory query;
 
-    public MySqlPointDetailRepository(EntityManager em) {
+    public DbPointDetailRepository(EntityManager em) {
         this.em = em;
         this.query = new JPAQueryFactory(em);
     }

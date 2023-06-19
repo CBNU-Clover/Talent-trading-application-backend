@@ -16,12 +16,12 @@ import java.util.List;
 import static com.backend.backend.domain.post.QPost.post;
 
 @Repository
-public class MysqlPostRepository implements PostRepository{
+public class DbPostRepository implements PostRepository{
     
     private final EntityManager em;
     private final JPAQueryFactory query;
 
-    public MysqlPostRepository(EntityManager em) {
+    public DbPostRepository(EntityManager em) {
         this.em = em;
         this.query = new JPAQueryFactory(em);
     }

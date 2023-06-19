@@ -2,7 +2,7 @@ package com.backend.backend.service;
 
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.dto.memberdto.MemberJoinRequest;
-import com.backend.backend.repository.memberRepository.MysqlMemberRepository;
+import com.backend.backend.repository.memberRepository.DbMemberRepository;
 import com.backend.backend.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import javax.transaction.Transactional;
 public class MemberService {
 
     @Autowired
-    private final MysqlMemberRepository mysqlMemberRepository;
+    private final DbMemberRepository dbMemberRepository;
     private final BCryptPasswordEncoder encoder;
 
     @Value("${jwt.token.secret}")
@@ -34,7 +34,7 @@ public class MemberService {
                         .phoneNumber(memberJoinRequest.getPhoneNumber())
                         .passWord(encoder.encode(memberJoinRequest.getPassWord()))
                         .build();
-        mysqlMemberRepository.save(member);
+        dbMemberRepository.save(member);
         
         return "Success";
     }
@@ -42,7 +42,7 @@ public class MemberService {
     public String login(String nickname,String passWord)
     {
         //membernickname없음
-        Member selectedmember=mysqlMemberRepository.findMemberByNickname(nickname);
+        Member selectedmember= dbMemberRepository.findMemberByNickname(nickname);
         // exception 필요
 
         //memberpassWord틀림
@@ -63,7 +63,7 @@ public class MemberService {
     public int check_Nickname(String nickname)
     {
         Boolean check;
-        check=mysqlMemberRepository.nicknameDuplicateCheck(nickname);
+        check= dbMemberRepository.nicknameDuplicateCheck(nickname);
         if(check)
         {
 
@@ -77,7 +77,7 @@ public class MemberService {
     public int check_Email(String email)
     {
         Boolean check;
-        check=mysqlMemberRepository.emailDuplicateCheck(email);
+        check= dbMemberRepository.emailDuplicateCheck(email);
         if(check)
         {
 
