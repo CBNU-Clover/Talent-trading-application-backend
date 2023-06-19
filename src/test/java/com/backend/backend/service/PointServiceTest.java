@@ -1,5 +1,7 @@
 package com.backend.backend.service;
 
+import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.pointDetail.PointDetail;
 import com.backend.backend.domain.pointDetail.PointStatus;
@@ -18,11 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class PointServiceTest {
+
+class PointServiceTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
@@ -32,22 +31,16 @@ class PointServiceTest {
 
     @Autowired
     private PointDetailRepository pointDetailRepository;
-    String memberNickname1="testMember1";
-    String memberNickname2="testMember2";
+    String memberNickname1;
+    String memberNickname2;
     @BeforeEach
     void setUp() {
-        Member member1 = Member.builder()
-                .name("1")
-                .nickname(memberNickname1)
-                .passWord("ghj")
-                .build();
+        Member member1 = Fixture.createMember("1");
+        memberNickname1 = member1.getNickname();
         memberRepository.save(member1);
 
-        Member member2 = Member.builder()
-                .name("1")
-                .nickname(memberNickname2)
-                .passWord("ghj")
-                .build();
+        Member member2 = Fixture.createMember("2");
+        memberNickname2 = member2.getNickname();
         memberRepository.save(member2);
     }
 
@@ -60,7 +53,6 @@ class PointServiceTest {
 
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(amount);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(1);
-        System.out.println("member = " + member.getPoint().getAmount());
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getBalance())
                 .isEqualTo(amount);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getStatus())

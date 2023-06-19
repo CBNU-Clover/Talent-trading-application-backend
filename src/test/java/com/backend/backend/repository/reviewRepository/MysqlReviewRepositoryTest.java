@@ -1,5 +1,7 @@
 package com.backend.backend.repository.reviewRepository;
 
+import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.domain.review.Review;
@@ -18,11 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MysqlReviewRepositoryTest {
+
+class MysqlReviewRepositoryTest extends TestSetting {
 
     @Autowired
     private ReviewRepository reviewRepository;
@@ -37,18 +36,10 @@ class MysqlReviewRepositoryTest {
     Long postId;
     @BeforeEach
     void init(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         memberId = memberRepository.save(member);
 
-        Post post = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         postId = postRepository.save(post);
     }
 

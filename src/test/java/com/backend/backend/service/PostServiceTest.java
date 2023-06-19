@@ -1,5 +1,7 @@
 package com.backend.backend.service;
 
+import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.exception.PermissionDeniedException;
@@ -18,11 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.mockito.ArgumentMatchers.any;
 
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class PostServiceTest {
+
+class PostServiceTest extends TestSetting {
 
 
     @Autowired
@@ -41,27 +40,15 @@ class PostServiceTest {
     @BeforeEach
     void init(){
         MockitoAnnotations.initMocks(this);
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         initMemberId = memberRepository.save(member);
 
-        Post post1 = Post.builder()
-                .writer(memberRepository.findMemberById(initMemberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post1 = Fixture.createPost(memberRepository.findMemberById(initMemberId), 0L);
 
         initPostId1=postRepository.save(post1);
 
 
-        Post post2 = Post.builder()
-                .writer(memberRepository.findMemberById(initMemberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post2 = Fixture.createPost(memberRepository.findMemberById(initMemberId), 0L);
         initPostId2=postRepository.save(post2);
     }
     /**

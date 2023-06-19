@@ -1,5 +1,7 @@
 package com.backend.backend.repository.postRepository;
 
+import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
@@ -18,11 +20,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MysqlPostRepositoryTest {
+class MysqlPostRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
@@ -33,18 +31,11 @@ class MysqlPostRepositoryTest {
     @Test
 
     void save() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
-        Post post = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
+
         Long postId = postRepository.save(post);
 
         Assertions.assertThat(postRepository.findPostById(postId)).isSameAs(post);
@@ -54,24 +45,12 @@ class MysqlPostRepositoryTest {
 
     @Test
     void findPostById() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
-        Post post1 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post1 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId1 = postRepository.save(post1);
-        Post post2 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post2 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId2 = postRepository.save(post2);
 
         Assertions.assertThat(postRepository.findPostById(postId2)).isSameAs(post2);
@@ -80,24 +59,12 @@ class MysqlPostRepositoryTest {
 
     @Test
     void deletePostById() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("115465165")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
-        Post post1 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post1 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId1 = postRepository.save(post1);
-        Post post2 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post2 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId2 = postRepository.save(post2);
 
         postRepository.deletePostById(postId1);
@@ -109,11 +76,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void findAll(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("54654949898198")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
@@ -138,11 +101,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void findAllOrder(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("419651965819198")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()
@@ -168,11 +127,7 @@ class MysqlPostRepositoryTest {
 
     @Test
     void searchPost(){
-        Member member = Member.builder()
-                .name("1")
-                .nickname("54654949898198")
-                .passWord("ghj")
-                .build();
+        Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
         Post post1 = Post.builder()

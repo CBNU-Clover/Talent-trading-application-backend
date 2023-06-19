@@ -1,5 +1,7 @@
 package com.backend.backend.repository.transactionDetailRepository;
 
+import com.backend.backend.Fixture;
+import com.backend.backend.TestSetting;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.repository.memberRepository.MemberRepository;
@@ -17,11 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MySqlTransactionDetailRepositoryTest {
+class MySqlTransactionDetailRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
@@ -34,19 +32,9 @@ class MySqlTransactionDetailRepositoryTest {
 
     @BeforeEach
     void setup(){
-        member1 = Member.builder()
-                .name("415646556456")
-                .nickname("huysdagsibib")
-                .passWord("5456")
-                .email("566511561sd1")
-                .build();
+        member1 = Fixture.createMember("1");
         memberRepository.save(member1);
-        member2 = Member.builder()
-                .name("41564655ggg6456")
-                .nickname("huysdaggggsibib")
-                .passWord("5456dff")
-                .email("566511561gggsd1")
-                .build();
+        member2 = Fixture.createMember("2");
         memberRepository.save(member2);
     }
 
