@@ -37,11 +37,8 @@ class MysqlPostRepositoryTest {
         Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
-        Post post = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
+
         Long postId = postRepository.save(post);
 
         Assertions.assertThat(postRepository.findPostById(postId)).isSameAs(post);
@@ -54,17 +51,9 @@ class MysqlPostRepositoryTest {
         Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
-        Post post1 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post1 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId1 = postRepository.save(post1);
-        Post post2 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post2 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId2 = postRepository.save(post2);
 
         Assertions.assertThat(postRepository.findPostById(postId2)).isSameAs(post2);
@@ -76,17 +65,9 @@ class MysqlPostRepositoryTest {
         Member member = Fixture.createMember("1");
         Long memberId = memberRepository.save(member);
 
-        Post post1 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post1 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId1 = postRepository.save(post1);
-        Post post2 = Post.builder()
-                .writer(memberRepository.findMemberById(memberId))
-                .postName(".")
-                .content(",")
-                .build();
+        Post post2 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         Long postId2 = postRepository.save(post2);
 
         postRepository.deletePostById(postId1);
