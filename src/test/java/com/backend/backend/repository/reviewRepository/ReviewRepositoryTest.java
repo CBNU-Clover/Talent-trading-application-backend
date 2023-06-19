@@ -2,11 +2,12 @@ package com.backend.backend.repository.reviewRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
-import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.post.Post;
-import com.backend.backend.domain.review.Review;
-import com.backend.backend.repository.memberRepository.MemberRepository;
-import com.backend.backend.repository.postRepository.PostRepository;
+import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.domain.review.Review;
+import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.repository.postRepository.PostRepository;
+import com.backend.backend.mvc.repository.reviewRepository.ReviewRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

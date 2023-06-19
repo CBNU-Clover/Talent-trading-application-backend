@@ -2,9 +2,11 @@ package com.backend.backend.repository.postRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
-import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.post.Post;
-import com.backend.backend.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.repository.postRepository.PostRepository;
+import com.backend.backend.mvc.repository.postRepository.PostSearch;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

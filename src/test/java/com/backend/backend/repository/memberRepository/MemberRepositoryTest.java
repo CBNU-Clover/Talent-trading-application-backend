@@ -2,7 +2,8 @@ package com.backend.backend.repository.memberRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
-import com.backend.backend.domain.member.Member;
+import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;

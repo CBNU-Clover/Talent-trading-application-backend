@@ -2,23 +2,16 @@ package com.backend.backend.service;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
-import com.backend.backend.domain.member.Member;
-import com.backend.backend.domain.pointDetail.PointDetail;
-import com.backend.backend.domain.pointDetail.PointStatus;
-import com.backend.backend.exception.pointException.PointAmountError;
-import com.backend.backend.repository.memberRepository.MemberRepository;
-import com.backend.backend.repository.pointDetailRepository.PointDetailRepository;
+import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.pointDetail.PointStatus;
+import com.backend.backend.common.exception.pointException.PointAmountError;
+import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.repository.pointDetailRepository.PointDetailRepository;
+import com.backend.backend.mvc.service.PointService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 class PointServiceTest extends TestSetting {
