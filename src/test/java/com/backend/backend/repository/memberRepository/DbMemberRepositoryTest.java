@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class MysqlMemberRepositoryTest extends TestSetting {
+class DbMemberRepositoryTest extends TestSetting {
 
     @Autowired
     private MemberRepository memberRepository;
