@@ -1,5 +1,6 @@
 package com.backend.backend.service;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.domain.member.Member;
 import com.backend.backend.domain.post.Post;
 import com.backend.backend.repository.memberRepository.MemberRepository;
@@ -41,25 +42,19 @@ class TalentTradingServiceTest {
     private PointDetailRepository pointDetailRepository;
 
 
-    String sellerNickname ="testMember1";
-    String buyerNickname ="testMember2";
+    String sellerNickname;
+    String buyerNickname;
 
 
 
     @BeforeEach
     void setUp() {
-        Member member1 = Member.builder()
-                .name("1")
-                .nickname(sellerNickname)
-                .passWord("ghj")
-                .build();
+        Member member1 = Fixture.createMember("1");
+        sellerNickname = member1.getNickname();
         memberRepository.save(member1);
 
-        Member member2 = Member.builder()
-                .name("1")
-                .nickname(buyerNickname)
-                .passWord("ghj")
-                .build();
+        Member member2 = Fixture.createMember("2");
+        buyerNickname = member2.getNickname();
         memberRepository.save(member2);
     }
 
