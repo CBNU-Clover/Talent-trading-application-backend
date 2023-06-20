@@ -1,9 +1,13 @@
 package com.backend.backend.mvc.domain.pointDetail.values;
 
 import com.backend.backend.mvc.domain.member.values.Name;
+import lombok.Getter;
 
+import javax.persistence.Embeddable;
 import java.util.Objects;
 
+@Embeddable
+@Getter
 public class Recipient {
 
     private String name;
