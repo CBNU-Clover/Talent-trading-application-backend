@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 @Getter
 public class PhoneNumber {
 
-    private static final Pattern pattern = Pattern.compile("^010\\d{7,8}$\n");
+    private static final Pattern pattern = Pattern.compile("^010\\d{7,8}$");
 
     private String phoneNumber;
 
