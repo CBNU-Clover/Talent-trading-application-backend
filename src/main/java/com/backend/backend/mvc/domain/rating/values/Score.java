@@ -1,8 +1,13 @@
 package com.backend.backend.mvc.domain.rating.values;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.util.Objects;
 
+@Embeddable
+@Getter
 public class Score {
     @Column(name = "score")
     private Long amount;
