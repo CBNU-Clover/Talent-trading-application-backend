@@ -1,6 +1,7 @@
 package com.backend.backend.mvc.domain.rating;
 
 import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.rating.values.RatingCategory;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ public class Rating {
 
     private Long score= 0L;
 
-    public Rating(Member member,RatingCategory category) {
+    public Rating(Member member, RatingCategory category) {
         this.member = member;
         this.category = category;
     }
