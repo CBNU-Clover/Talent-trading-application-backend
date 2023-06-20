@@ -30,7 +30,7 @@ public class Email {
 
     private void validateEmail(String email) {
         if (email == null) {
-            throw new IllegalArgumentException("이름을 입력해주세요.");
+            throw new IllegalArgumentException("이메일을 입력해주세요.");
         }
         if (!pattern.matcher(email).matches()) {
             throw new IllegalArgumentException("올바른 양식의 이메일을 입력해주세요.");
