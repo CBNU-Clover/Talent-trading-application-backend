@@ -25,11 +25,11 @@ public class Name {
     }
 
     private Name(String name) {
-        validateNickname(name);
+        validateCheck(name);
         this.name = name;
     }
 
-    private void validateNickname(String name) {
+    private void validateCheck(String name) {
         if (name == null) {
             throw new IllegalArgumentException("이름을 입력해주세요.");
         }
