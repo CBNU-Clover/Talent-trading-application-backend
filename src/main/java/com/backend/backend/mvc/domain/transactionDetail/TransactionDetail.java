@@ -2,6 +2,7 @@ package com.backend.backend.mvc.domain.transactionDetail;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
+import com.backend.backend.mvc.domain.transactionDetail.values.TransactionStatus;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
