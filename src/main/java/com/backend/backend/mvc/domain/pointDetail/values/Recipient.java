@@ -3,6 +3,7 @@ package com.backend.backend.mvc.domain.pointDetail.values;
 import com.backend.backend.mvc.domain.member.values.Name;
 import lombok.Getter;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import java.util.Objects;
 @Getter
 public class Recipient {
 
+    @Column(name = "recipient")
     private String name;
 
     /**

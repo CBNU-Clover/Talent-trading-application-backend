@@ -2,12 +2,15 @@ package com.backend.backend.mvc.domain.pointDetail.values;
 
 import lombok.Getter;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
 @Getter
 public class Sender {
+
+    @Column(name = "sender")
     private String name;
 
     /**
