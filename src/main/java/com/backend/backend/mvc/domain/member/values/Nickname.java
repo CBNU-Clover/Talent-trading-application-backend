@@ -48,8 +48,8 @@ public class Nickname {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Nickname nickName)) return false;
-        return getNickname().equals(nickName.getNickname());
+        if (!(o instanceof Name nickName)) return false;
+        return getNickname().equals(nickName.getName());
     }
 
     @Override
