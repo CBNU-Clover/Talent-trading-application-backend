@@ -13,7 +13,7 @@ public class Recipient {
     private String name;
 
     /**
-     * @Nullary-Constructor JPA 기본 생성자로 member 외부 패키지에서 호출하면 안됨
+     * @Nullary-Constructor JPA 기본 생성자로 외부 패키지에서 호출하면 안됨
      */
     protected Recipient() {
 
