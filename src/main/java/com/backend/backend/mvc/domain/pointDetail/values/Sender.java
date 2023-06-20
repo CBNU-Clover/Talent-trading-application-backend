@@ -1,5 +1,11 @@
 package com.backend.backend.mvc.domain.pointDetail.values;
 
+import lombok.Getter;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+@Getter
 public class Sender {
     private String name;
 
