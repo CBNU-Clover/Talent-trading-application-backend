@@ -10,7 +10,7 @@ import java.util.Objects;
 @Getter
 public class Score {
     @Column(name = "score")
-    private Long amount;
+    private Long amount=0L;
 
     /**
      * @Nullary-Constructor JPA 기본 생성자로 외부 패키지에서 호출하면 안됨
