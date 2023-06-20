@@ -1,4 +1,4 @@
-package com.backend.backend.mvc.domain.member;
+package com.backend.backend.mvc.domain.member.values;
 
 import com.backend.backend.common.exception.pointException.PointAmountError;
 import lombok.AccessLevel;
@@ -10,7 +10,6 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Point {
 
     @Column(name = "point_amount")

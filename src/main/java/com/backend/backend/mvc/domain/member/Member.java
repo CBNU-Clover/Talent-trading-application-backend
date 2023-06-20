@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.domain.member;
 
+import com.backend.backend.mvc.domain.member.values.Point;
 import lombok.*;
 import org.springframework.util.Assert;
 
