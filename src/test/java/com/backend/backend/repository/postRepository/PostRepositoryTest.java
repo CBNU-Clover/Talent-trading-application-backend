@@ -80,12 +80,14 @@ class PostRepositoryTest extends TestSetting {
                 .writer(memberRepository.findMemberById(memberId))
                 .postName(".")
                 .content(",")
+                .price(0L)
                 .build();
         Long postId1 = postRepository.save(post1);
         Post post2 = Post.builder()
                 .writer(memberRepository.findMemberById(memberId))
                 .postName(".")
                 .content(",")
+                .price(0L)
                 .build();
         Long postId2 = postRepository.save(post2);
 
@@ -105,12 +107,14 @@ class PostRepositoryTest extends TestSetting {
                 .writer(memberRepository.findMemberById(memberId))
                 .postName(".")
                 .content(",")
+                .price(0L)
                 .build();
         Long postId1 = postRepository.save(post1);
         Post post2 = Post.builder()
                 .writer(memberRepository.findMemberById(memberId))
                 .postName(".")
                 .content(",")
+                .price(0L)
                 .build();
         Long postId2 = postRepository.save(post2);
 
@@ -131,12 +135,14 @@ class PostRepositoryTest extends TestSetting {
                 .writer(memberRepository.findMemberById(memberId))
                 .postName("가낙닥 라")
                 .content(",")
+                .price(0L)
                 .build();
         Long postId1 = postRepository.save(post1);
         Post post2 = Post.builder()
                 .writer(memberRepository.findMemberById(memberId))
                 .postName("가나다 라")
                 .content(",")
+                .price(0L)
                 .build();
         Long postId2 = postRepository.save(post2);
 

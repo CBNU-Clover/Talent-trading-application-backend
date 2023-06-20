@@ -6,7 +6,7 @@ import com.backend.backend.mvc.controller.point.dto.ChargePoint;
 import com.backend.backend.mvc.controller.point.dto.PointHistory;
 import com.backend.backend.mvc.controller.point.dto.ShowPointDTO;
 import com.backend.backend.mvc.domain.pointDetail.PointDetail;
-import com.backend.backend.mvc.domain.pointDetail.PointStatus;
+import com.backend.backend.mvc.domain.pointDetail.values.PointStatus;
 import com.backend.backend.mvc.service.MemberService;
 import com.backend.backend.mvc.service.PointService;
 import lombok.RequiredArgsConstructor;
@@ -57,10 +57,16 @@ public class PointController {
         {
             if(point_history_info.get(num).getStatus().equals(PointStatus.DEPOSIT))
             {
-                pointHistories.add(num,new PointHistory(point_history_info.get(num).getRecipient(),point_history_info.get(num).getAmount(),point_history_info.get(num).getBalance(),"입금",point_history_info.get(num).getDate().toString().replace("T"," ")));
+                pointHistories.add(num,new PointHistory(point_history_info.get(num).getRecipient().toString(),
+                        point_history_info.get(num).getAmount().getAmount()
+                        ,point_history_info.get(num).getBalance().getAmount()
+                        ,"입금",point_history_info.get(num).getDate().toString().replace("T"," ")));
             }
             else if(point_history_info.get(num).getStatus().equals(PointStatus.TRANSFER)){
-                pointHistories.add(num,new PointHistory(point_history_info.get(num).getRecipient(),point_history_info.get(num).getAmount(),point_history_info.get(num).getBalance(),"출금",point_history_info.get(num).getDate().toString().replace("T"," ")));
+                pointHistories.add(num,new PointHistory(point_history_info.get(num).getRecipient().toString()
+                        ,point_history_info.get(num).getAmount().getAmount(),
+                        point_history_info.get(num).getBalance().getAmount(),"출금",
+                        point_history_info.get(num).getDate().toString().replace("T"," ")));
             }
            
         }

@@ -36,7 +36,7 @@ class PostControllerTest {
         memberRepository.save(Member.builder()
                 .name("415646556456")
                 .nickname(writerNickname)
-                .passWord("5456")
+                .password("5456")
                 .email("566511561sd1")
                 .build()
         );

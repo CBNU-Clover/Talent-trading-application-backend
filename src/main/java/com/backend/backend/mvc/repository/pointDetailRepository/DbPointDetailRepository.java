@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.pointDetail.QPointDetail.pointDetail;
+import static com.backend.backend.mvc.domain.pointDetail.QPointDetail.pointDetail;
+
 
 @Repository
 public class DbPointDetailRepository implements PointDetailRepository{

@@ -26,28 +26,30 @@ class MemberRepositoryTest extends TestSetting {
     @Test
     void emailDuplicateCheck() {
         Member member = Member.builder()
-                .name("1")
-                .nickname("11")
-                .passWord("ghj")
-                .email("819819519519")
+                .name("가나다")
+                .nickname("a123")
+                .password("ghj")
+                .email("test@test.com")
+                .phoneNumber("01012345678")
                 .build();
         Long memberId = memberRepository.save(member);
 
-        assertThat(memberRepository.emailDuplicateCheck("819819519519")).isTrue();
+        assertThat(memberRepository.emailDuplicateCheck("test@test.com")).isTrue();
 
     }
 
     @Test
     void nicknameDuplicateCheck() {
         Member member = Member.builder()
-                .name("1")
-                .nickname("516516516516")
-                .passWord("ghj")
-                .email("456")
+                .name("가나다")
+                .nickname("516516516516a")
+                .password("ghj")
+                .email("test@test.com")
+                .phoneNumber("01012345678")
                 .build();
         Long memberId = memberRepository.save(member);
 
-        assertThat(memberRepository.nicknameDuplicateCheck("516516516516")).isTrue();
+        assertThat(memberRepository.nicknameDuplicateCheck("516516516516a")).isTrue();
 
     }
 

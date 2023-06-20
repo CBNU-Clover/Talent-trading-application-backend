@@ -2,6 +2,7 @@ package com.backend.backend.mvc.domain.pointDetail;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
+import com.backend.backend.mvc.domain.pointDetail.values.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -28,17 +29,21 @@ public class PointDetail {
     private Member owner;
 
 
+    @Embedded
     @Column(nullable = false)
-    private String  recipient;
+    private Recipient recipient;
 
+    @Embedded
     @Column(nullable = false)
-    private String  sender;
+    private Sender sender;
 
+    @Embedded
     @Column(nullable = false)
-    private Long  amount;
+    private Amount amount;
 
+    @Embedded
     @Column(nullable = false)
-    private Long  balance;
+    private Balance balance;
 
     @CreatedDate
     private LocalDateTime date;
@@ -53,24 +58,19 @@ public class PointDetail {
     @Builder
     public PointDetail(Member owner, String recipient, String sender,
                        PointStatus status,Long amount, String memo) {
-        Assert.hasText(recipient, "수신처가 없습니다");
-        Assert.hasText(sender, "발신처가 없습니다");
         if(owner==null){
             throw new NotExistException("기록 소유자가 없습니다");
-        }
-        if(amount==null){
-            throw new NotExistException("포인트 양이 입력되지 않았습니다");
         }
         if(status==null){
             throw new NotExistException("포인트거래가 입력인지 출력인지 알수 없습니다");
         }
 
         this.owner = owner;
-        this.recipient = recipient;
-        this.sender = sender;
+        this.recipient = Recipient.from(recipient);
+        this.sender = Sender.from(sender);
         this.status = status;
-        this.amount = amount;
+        this.amount = Amount.from(amount);
         this.memo = memo;
-        this.balance = owner.getPoint().getAmount();
+        this.balance = Balance.from(owner.getPoint().getAmount());
     }
 }

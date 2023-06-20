@@ -1,5 +1,6 @@
 package com.backend.backend.controller.review;
 
+import com.backend.backend.Fixture;
 import com.backend.backend.mvc.controller.review.dto.ReviewWriteRequest;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
@@ -42,25 +43,16 @@ class ReviewControllerTest {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    private String writerNickname="74981519";
+    private String writerNickname;
     private Long postId;
 
     @BeforeEach
     void setup(){
-        memberRepository.save(Member.builder()
-                .name("415646556456")
-                .nickname(writerNickname)
-                .passWord("5456")
-                .email("566511561sd1")
-                .build()
-        );
+        Member member = Fixture.createMember("1");
+        memberRepository.save(member);
+        writerNickname = member.getNickname().toString();
 
-        postId = postRepository.save(Post.builder()
-                .writer(memberRepository.findMemberByNickname(writerNickname))
-                .postName("49849849849848")
-                .content("51919519598")
-                .build()
-        );
+        postId = postRepository.save(Fixture.createPost(member,0L));
 
 
     }

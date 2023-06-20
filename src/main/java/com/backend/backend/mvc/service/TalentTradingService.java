@@ -2,7 +2,7 @@ package com.backend.backend.mvc.service;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
-import com.backend.backend.mvc.domain.post.PostStatus;
+import com.backend.backend.mvc.domain.post.values.PostStatus;
 import com.backend.backend.mvc.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.mvc.repository.transactionDetailRepository.TransactionDetailRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
@@ -35,13 +35,13 @@ public class TalentTradingService {
         Post post = postRepository.findPostById(postId);
         post.setPostStatus(PostStatus.CLOSE);
 
-        pointService.remittancePoint(buyerNickname,post.getWriter().getNickname(),post.getPrice());
+        pointService.remittancePoint(buyerNickname,post.getWriter().getNickname().toString(),post.getPrice().getAmount());
 
         TransactionDetail transactionDetail = TransactionDetail.builder()
                 .seller(post.getWriter())
                 .buyer(buyer)
-                .postName(post.getPostName())
-                .price(post.getPrice())
+                .postName(post.getPostName().toString())
+                .price(post.getPrice().getAmount())
                 .build();
         transactionDetailRepository.save(transactionDetail);
 

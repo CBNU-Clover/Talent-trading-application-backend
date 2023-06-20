@@ -1,9 +1,9 @@
 package com.backend.backend.mvc.service;
 
 import com.backend.backend.mvc.domain.member.Member;
-import com.backend.backend.mvc.domain.member.Point;
+import com.backend.backend.mvc.domain.member.values.Point;
 import com.backend.backend.mvc.domain.pointDetail.PointDetail;
-import com.backend.backend.mvc.domain.pointDetail.PointStatus;
+import com.backend.backend.mvc.domain.pointDetail.values.PointStatus;
 import com.backend.backend.common.exception.NotExistException;
 import com.backend.backend.mvc.repository.pointDetailRepository.PointDetailRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;

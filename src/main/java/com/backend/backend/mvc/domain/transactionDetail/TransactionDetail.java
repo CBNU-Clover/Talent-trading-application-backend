@@ -2,6 +2,9 @@ package com.backend.backend.mvc.domain.transactionDetail;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
+import com.backend.backend.mvc.domain.post.values.PostName;
+import com.backend.backend.mvc.domain.post.values.Price;
+import com.backend.backend.mvc.domain.transactionDetail.values.TransactionStatus;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -38,9 +41,9 @@ public class TransactionDetail {
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
-    private String postName;
+    private PostName postName;
 
-    private Long price;
+    private Price price;
 
     @Builder
     public TransactionDetail(Member seller, Member buyer,String postName,Long price) {
@@ -53,7 +56,7 @@ public class TransactionDetail {
         this.seller = seller;
         this.buyer = buyer;
         this.status = TransactionStatus.TRADING;
-        this.postName = postName;
-        this.price = price;
+        this.postName = PostName.from(postName);
+        this.price = Price.from(price);
     }
 }

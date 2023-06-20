@@ -45,11 +45,11 @@ class TalentTradingServiceTest extends TestSetting {
     @BeforeEach
     void setUp() {
         Member member1 = Fixture.createMember("1");
-        sellerNickname = member1.getNickname();
+        sellerNickname = member1.getNickname().toString();
         memberRepository.save(member1);
 
         Member member2 = Fixture.createMember("2");
-        buyerNickname = member2.getNickname();
+        buyerNickname = member2.getNickname().toString();
         memberRepository.save(member2);
     }
 

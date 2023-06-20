@@ -38,11 +38,15 @@ class TransactionDetailRepositoryTest extends TestSetting {
         TransactionDetail detail1 = TransactionDetail.builder()
                 .buyer(member1)
                 .seller(member2)
+                .postName("test")
+                .price(10L)
                 .build();
         Long id1 = transactionDetailRepository.save(detail1);
         TransactionDetail detail2 = TransactionDetail.builder()
                 .buyer(member2)
                 .seller(member1)
+                .postName("test")
+                .price(10L)
                 .build();
         Long id2 = transactionDetailRepository.save(detail2);
 
@@ -58,11 +62,15 @@ class TransactionDetailRepositoryTest extends TestSetting {
         TransactionDetail detail1 = TransactionDetail.builder()
                 .buyer(member1)
                 .seller(member2)
+                .postName("test")
+                .price(10L)
                 .build();
         transactionDetailRepository.save(detail1);
         TransactionDetail detail2 = TransactionDetail.builder()
                 .buyer(member1)
                 .seller(member2)
+                .postName("test")
+                .price(10L)
                 .build();
         transactionDetailRepository.save(detail2);
 

@@ -10,7 +10,7 @@ public class ResponseRaking {
     private Long score;
 
     public ResponseRaking(Rating rating) {
-        this.nickname = rating.getMember().getNickname();
+        this.nickname = rating.getMember().getNickname().toString();
         this.score = rating.getScore();
     }
 }

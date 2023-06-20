@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.transactionDetail.QTransactionDetail.transactionDetail;
+import static com.backend.backend.mvc.domain.transactionDetail.QTransactionDetail.transactionDetail;
+
 
 @Repository
 public class DbTransactionDetailRepository implements TransactionDetailRepository{

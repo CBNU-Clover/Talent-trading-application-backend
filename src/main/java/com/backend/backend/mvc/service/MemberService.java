@@ -32,7 +32,7 @@ public class MemberService {
                         .name(memberJoinRequest.getName())
                         .email(memberJoinRequest.getEmail())
                         .phoneNumber(memberJoinRequest.getPhoneNumber())
-                        .passWord(encoder.encode(memberJoinRequest.getPassWord()))
+                        .password(encoder.encode(memberJoinRequest.getPassWord()))
                         .build();
         dbMemberRepository.save(member);
         
@@ -46,12 +46,12 @@ public class MemberService {
         // exception 필요
 
         //memberpassWord틀림
-        if(!encoder.matches(passWord,selectedmember.getPassWord()))
+        if(!encoder.matches(passWord,selectedmember.getPassword().toString()))
         {
             return "로그인이 실패했습니다!!";
         }
         else {
-            String token= JwtTokenUtil.createToken(selectedmember.getNickname(),key,expireTimeMs);
+            String token= JwtTokenUtil.createToken(selectedmember.getNickname().toString(),key,expireTimeMs);
 
             return token;
         }

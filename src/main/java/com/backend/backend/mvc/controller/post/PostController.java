@@ -81,7 +81,9 @@ public class PostController {
 
             for(int num=0 ; num<boardlist.size();num++)
             {
-                ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),boardlist.get(num).getPostName(),boardlist.get(num).getContent(),boardlist.get(num).getPrice(),boardlist.get(num).getDate().toString().replace("T"," "),result));
+                ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),
+                        boardlist.get(num).getPostName().toString(),boardlist.get(num).getContent().toString(),
+                        boardlist.get(num).getPrice().getAmount(),boardlist.get(num).getDate().toString().replace("T"," "),result));
             }
 
         return ResultBoard;
@@ -103,7 +105,11 @@ public class PostController {
 
         for(int num=0 ; num<searchboardlist.size();num++)
         {
-            ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),searchboardlist.get(num).getWriter().getNickname(),searchboardlist.get(num).getPostName(),searchboardlist.get(num).getContent(),searchboardlist.get(num).getPrice(),searchboardlist.get(num).getDate().toString().replace("T"," ")));
+            ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),
+                    searchboardlist.get(num).getWriter().getNickname().toString(),
+                    searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
+                    searchboardlist.get(num).getPrice().getAmount(),
+                    searchboardlist.get(num).getDate().toString().replace("T"," ")));
         }
 
         return ResultBoard;

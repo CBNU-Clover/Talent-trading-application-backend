@@ -1,7 +1,7 @@
 package com.backend.backend.mvc.repository.ratingRepository;
 
 import com.backend.backend.mvc.domain.member.Member;
-import com.backend.backend.mvc.domain.rating.RatingCategory;
+import com.backend.backend.mvc.domain.rating.values.RatingCategory;
 import com.backend.backend.mvc.domain.rating.Rating;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.member.QRating.rating;
+import static com.backend.backend.mvc.domain.rating.QRating.rating;
+
 
 @Repository
 public class DbRatingRepository implements RatingRepository {
