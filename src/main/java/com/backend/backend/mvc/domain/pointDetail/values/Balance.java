@@ -2,13 +2,16 @@ package com.backend.backend.mvc.domain.pointDetail.values;
 
 import lombok.Getter;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
 @Getter
 public class Balance {
-    private Long balance;
+
+    @Column(name = "balance")
+    private Long amount;
 
     /**
      * @Nullary-Constructor JPA 기본 생성자로 외부 패키지에서 호출하면 안됨
@@ -17,9 +20,9 @@ public class Balance {
 
     }
 
-    private Balance(Long balance) {
-        validateCheck(balance);
-        this.balance = balance;
+    private Balance(Long amount) {
+        validateCheck(amount);
+        this.amount = amount;
     }
 
     private void validateCheck(Long balance) {
@@ -40,16 +43,16 @@ public class Balance {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Balance balance = (Balance) o;
-        return Objects.equals(this.balance, balance.balance);
+        return Objects.equals(this.amount, balance.amount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(balance);
+        return Objects.hash(amount);
     }
 
     @Override
     public String toString() {
-        return balance.toString();
+        return amount.toString();
     }
 }

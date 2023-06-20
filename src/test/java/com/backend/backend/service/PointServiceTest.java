@@ -46,7 +46,7 @@ class PointServiceTest extends TestSetting {
 
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(amount);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(1);
-        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getBalance().getBalance())
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getBalance().getAmount())
                 .isEqualTo(amount);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(0).getStatus())
                 .isEqualTo(PointStatus.DEPOSIT);
@@ -74,7 +74,7 @@ class PointServiceTest extends TestSetting {
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(initAmount-withdrawAmount);
         //입금, 출금 하나씩 기록됨
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(2);
-        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(1).getBalance().getBalance())
+        Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(1).getBalance().getAmount())
                 .isEqualTo(initAmount-withdrawAmount);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).get(1).getStatus())
                 .isEqualTo(PointStatus.TRANSFER);
