@@ -39,7 +39,7 @@ class PriceTest {
     void to_string_returns_string_representation() {
         Long validValue = 10L;
 
-        Balance validObject = Balance.from(validValue);
+        Price validObject = Price.from(validValue);
 
         assertEquals(validValue.toString(), validObject.toString());
     }
