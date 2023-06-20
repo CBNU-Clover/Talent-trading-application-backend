@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 public class Nickname {
 
     /**
-     * 최소한개의 한글 문자 또는 알파벳이 존재하여야 하고 문자열의 길이는 1~39이다
+     * 최소3개의 한글 문자 또는 알파벳이 존재하여야 하고 문자열의 길이는 1~39이다
      */
-    private static final Pattern pattern = Pattern.compile("^(?=.*[\\p{IsHangul}\\p{IsAlphabetic}]).{1,39}$");
+    private static final Pattern pattern = Pattern.compile("^(?=.*[\\p{IsHangul}\\p{IsAlphabetic}]).{3,39}$");
 
     private String nickname;
 
@@ -36,7 +36,7 @@ public class Nickname {
         if (nickname.length() > 39) {
             throw new IllegalArgumentException("입력 가능한 닉네임의 최대길이를 초과했습니다.");
         }
-        if (nickname.length() < 1) {
+        if (nickname.length() < 3) {
             throw new IllegalArgumentException("입력 가능한 닉네임의 최소길이 미만입니다.");
         }
         if (!pattern.matcher(nickname).matches()) {
