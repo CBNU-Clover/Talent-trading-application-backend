@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EmailTest {
     @Test
-    @DisplayName("Null name value throws IllegalArgumentException")
+    @DisplayName("Null email value throws IllegalArgumentException")
     void from_null_email_throws_exception() {
         String nullEmail = null;
 

@@ -31,8 +31,8 @@ class NameTest {
     }
 
     @Test
-    @DisplayName("Valid name returns Nickname object")
-    void from_valid_name_returns_nickname() {
+    @DisplayName("Valid name returns Name object")
+    void from_valid_name_returns_name() {
         String validName = "가나다";
 
         Name name = Name.from(validName);
@@ -42,7 +42,7 @@ class NameTest {
     }
 
     @Test
-    @DisplayName("Name toString returns string representation of nickname")
+    @DisplayName("Name toString returns string representation of name")
     void to_string_returns_string_representation_of_name() {
         String validName = "가나다";
 
