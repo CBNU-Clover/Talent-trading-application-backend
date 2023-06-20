@@ -18,9 +18,9 @@ public class PostName {
 
     }
 
-    private PostName(String PostName) {
-        validateCheck(PostName);
-        this.postName = PostName;
+    private PostName(String postName) {
+        validateCheck(postName);
+        this.postName = postName;
     }
 
     private void validateCheck(String postName) {
