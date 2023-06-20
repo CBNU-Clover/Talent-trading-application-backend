@@ -3,6 +3,7 @@ package com.backend.backend.mvc.domain.pointDetail.values;
 import lombok.Getter;
 
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 @Getter
@@ -29,5 +30,23 @@ public class Sender {
 
     public static Sender from(String name) {
         return new Sender(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sender sender = (Sender) o;
+        return Objects.equals(name, sender.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
