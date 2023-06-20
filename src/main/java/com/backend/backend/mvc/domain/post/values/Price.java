@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 @Getter
@@ -37,4 +38,21 @@ public class Price {
         return new Price(amount);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Price price = (Price) o;
+        return Objects.equals(amount, price.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount);
+    }
+
+    @Override
+    public String toString() {
+        return amount.toString();
+    }
 }
