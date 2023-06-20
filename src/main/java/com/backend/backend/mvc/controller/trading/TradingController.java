@@ -44,7 +44,9 @@ public class TradingController {
         List<TradingHistory> tradingHistories=new ArrayList<>();
         for(int num=0 ; num<trade_info.size();num++)
         {
-            tradingHistories.add(num,new TradingHistory(trade_info.get(num).getPostName(),trade_info.get(num).getPrice(),trade_info.get(num).getBuyer().getNickname(),trade_info.get(num).getSeller().getNickname(),trade_info.get(num).getStartDate().toString().replace("T"," ")));
+            tradingHistories.add(num,new TradingHistory(trade_info.get(num).getPostName(),
+                    trade_info.get(num).getPrice(),trade_info.get(num).getBuyer().getNickname().toString(),
+                    trade_info.get(num).getSeller().getNickname().toString(),trade_info.get(num).getStartDate().toString().replace("T"," ")));
         }
 
         return tradingHistories;

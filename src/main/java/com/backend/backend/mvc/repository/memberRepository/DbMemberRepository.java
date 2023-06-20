@@ -9,8 +9,9 @@ import org.springframework.util.StringUtils;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.member.QMember.member;
-import static com.backend.backend.domain.post.QPost.post;
+import static com.backend.backend.mvc.domain.member.QMember.member;
+import static com.backend.backend.mvc.domain.post.QPost.post;
+
 
 @Repository
 public class DbMemberRepository implements MemberRepository{
@@ -39,7 +40,7 @@ public class DbMemberRepository implements MemberRepository{
         return query
                 .select(member)
                 .from(member)
-                .where(member.nickname.eq(nickname))
+                .where(member.nickname.nickname.eq(nickname))
                 .fetchOne();
     }
 
@@ -64,7 +65,7 @@ public class DbMemberRepository implements MemberRepository{
         Integer fetchOne = query
                 .selectOne()
                 .from(member)
-                .where(member.nickname.eq(nickname))
+                .where(member.nickname.nickname.eq(nickname))
                 .fetchFirst();
         return fetchOne!=null;
     }
@@ -74,7 +75,7 @@ public class DbMemberRepository implements MemberRepository{
         Integer fetchOne = query
                 .selectOne()
                 .from(member)
-                .where(member.email.eq(email))
+                .where(member.email.email.eq(email))
                 .fetchFirst();
         return fetchOne!=null;
     }

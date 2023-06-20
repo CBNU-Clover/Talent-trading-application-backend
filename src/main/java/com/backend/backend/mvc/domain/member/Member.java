@@ -1,6 +1,6 @@
 package com.backend.backend.mvc.domain.member;
 
-import com.backend.backend.mvc.domain.member.values.Point;
+import com.backend.backend.mvc.domain.member.values.*;
 import lombok.*;
 import org.springframework.util.Assert;
 
@@ -18,19 +18,24 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    @Embedded
     @Column(name = "member_name", nullable = false)
-    private String name;
+    private Name name;
 
+    @Embedded
     @Column(unique = true, nullable = false)
-    private String nickname;
+    private Nickname nickname;
 
+    @Embedded
     @Column(unique = true)
-    private String email;
+    private Email email;
 
-    private String phoneNumber;
+    @Embedded
+    private PhoneNumber phoneNumber;
 
+    @Embedded
     @Column(nullable = false)
-    private String passWord;
+    private Password password;
 
     @Embedded
     @Column(nullable = false)
@@ -40,14 +45,17 @@ public class Member {
 
 
     @Builder
-    public Member(String name, String nickname, String email, String phoneNumber, String passWord) {
+    public Member(String name, String nickname, String email, String phoneNumber, String password) {
         Assert.hasText(name, "회원 이름이 없습니다");
         Assert.hasText(nickname, "회원 닉네임이 없습니다");
-        this.name = name;
-        this.nickname = nickname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.passWord = passWord;
+        this.name = Name.from(name);
+        this.nickname = Nickname.from(nickname);
+        this.email = Email.from(email);
+        this.phoneNumber = PhoneNumber.from(phoneNumber);
+        this.password = Password.from(password);
         this.point = new Point();
     }
+
+
+
 }

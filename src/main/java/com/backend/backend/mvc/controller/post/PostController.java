@@ -103,7 +103,11 @@ public class PostController {
 
         for(int num=0 ; num<searchboardlist.size();num++)
         {
-            ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),searchboardlist.get(num).getWriter().getNickname(),searchboardlist.get(num).getPostName(),searchboardlist.get(num).getContent(),searchboardlist.get(num).getPrice(),searchboardlist.get(num).getDate().toString().replace("T"," ")));
+            ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),
+                    searchboardlist.get(num).getWriter().getNickname().toString(),
+                    searchboardlist.get(num).getPostName(),searchboardlist.get(num).getContent(),
+                    searchboardlist.get(num).getPrice(),
+                    searchboardlist.get(num).getDate().toString().replace("T"," ")));
         }
 
         return ResultBoard;

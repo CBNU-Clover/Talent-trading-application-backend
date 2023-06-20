@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.review.QReview.review;
+import static com.backend.backend.mvc.domain.review.QReview.review;
+
 
 @Repository
 public class DbReviewRepository implements ReviewRepository{

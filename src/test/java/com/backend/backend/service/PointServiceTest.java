@@ -29,11 +29,11 @@ class PointServiceTest extends TestSetting {
     @BeforeEach
     void setUp() {
         Member member1 = Fixture.createMember("1");
-        memberNickname1 = member1.getNickname();
+        memberNickname1 = member1.getNickname().toString();
         memberRepository.save(member1);
 
         Member member2 = Fixture.createMember("2");
-        memberNickname2 = member2.getNickname();
+        memberNickname2 = member2.getNickname().toString();
         memberRepository.save(member2);
     }
 
@@ -42,7 +42,7 @@ class PointServiceTest extends TestSetting {
         Member member = memberRepository.findMemberByNickname(memberNickname1);
 
         Long amount=50L;
-        pointService.chargePoint(member.getNickname(),"test",amount);
+        pointService.chargePoint(member.getNickname().toString(),"test",amount);
 
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(amount);
         Assertions.assertThat(pointDetailRepository.findDetailsByMember(member).size()).isEqualTo(1);
@@ -58,7 +58,7 @@ class PointServiceTest extends TestSetting {
         Long amount=-50L;
 
         org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
-            pointService.chargePoint(member.getNickname(),"test",amount);
+            pointService.chargePoint(member.getNickname().toString(),"test",amount);
         });
     }
 
@@ -66,10 +66,10 @@ class PointServiceTest extends TestSetting {
     void withdrawPoint() {
         Long initAmount = 86L;
         Member member = memberRepository.findMemberByNickname(memberNickname1);
-        pointService.chargePoint(member.getNickname(),"test",initAmount);
+        pointService.chargePoint(member.getNickname().toString(),"test",initAmount);
 
         Long withdrawAmount=48L;
-        pointService.withdrawPoint(member.getNickname(),"test",withdrawAmount);
+        pointService.withdrawPoint(member.getNickname().toString(),"test",withdrawAmount);
 
         Assertions.assertThat(member.getPoint().getAmount()).isEqualTo(initAmount-withdrawAmount);
         //입금, 출금 하나씩 기록됨
@@ -84,17 +84,17 @@ class PointServiceTest extends TestSetting {
     void withdrawPointError() {
         Long initAmount = 86L;
         Member member = memberRepository.findMemberByNickname(memberNickname1);
-        pointService.chargePoint(member.getNickname(),"test",initAmount);
+        pointService.chargePoint(member.getNickname().toString(),"test",initAmount);
 
 
         org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
             Long withdrawAmount=-48L;
-            pointService.withdrawPoint(member.getNickname(),"test",withdrawAmount);
+            pointService.withdrawPoint(member.getNickname().toString(),"test",withdrawAmount);
         });
 
         org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
             Long withdrawAmount=90L;
-            pointService.withdrawPoint(member.getNickname(),"test",withdrawAmount);
+            pointService.withdrawPoint(member.getNickname().toString(),"test",withdrawAmount);
         });
     }
 
@@ -103,10 +103,10 @@ class PointServiceTest extends TestSetting {
         Long initAmount = 86L;
         Member sender = memberRepository.findMemberByNickname(memberNickname1);
         Member receiver = memberRepository.findMemberByNickname(memberNickname2);
-        pointService.chargePoint(sender.getNickname(),"test",initAmount);
+        pointService.chargePoint(sender.getNickname().toString(),"test",initAmount);
 
         Long remittanceAmount=48L;
-        pointService.remittancePoint(sender.getNickname(),receiver.getNickname(),remittanceAmount);
+        pointService.remittancePoint(sender.getNickname().toString(),receiver.getNickname().toString(),remittanceAmount);
 
         Assertions.assertThat(sender.getPoint().getAmount()).isEqualTo(initAmount-remittanceAmount);
         Assertions.assertThat(receiver.getPoint().getAmount()).isEqualTo(remittanceAmount);
@@ -120,17 +120,17 @@ class PointServiceTest extends TestSetting {
         Long initAmount = 86L;
         Member sender = memberRepository.findMemberByNickname(memberNickname1);
         Member receiver = memberRepository.findMemberByNickname(memberNickname2);
-        pointService.chargePoint(sender.getNickname(),"test",initAmount);
+        pointService.chargePoint(sender.getNickname().toString(),"test",initAmount);
 
 
         org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
             Long remittanceAmount=-48L;
-            pointService.remittancePoint(sender.getNickname(),receiver.getNickname(),remittanceAmount);
+            pointService.remittancePoint(sender.getNickname().toString(),receiver.getNickname().toString(),remittanceAmount);
         });
 
         org.junit.jupiter.api.Assertions.assertThrows(PointAmountError.class,()->{
             Long remittanceAmount=initAmount+20L;
-            pointService.remittancePoint(sender.getNickname(),receiver.getNickname(),remittanceAmount);
+            pointService.remittancePoint(sender.getNickname().toString(),receiver.getNickname().toString(),remittanceAmount);
         });
     }
 }

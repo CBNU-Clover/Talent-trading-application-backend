@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.backend.backend.domain.member.QRating.rating;
+import static com.backend.backend.mvc.domain.rating.QRating.rating;
+
 
 @Repository
 public class DbRatingRepository implements RatingRepository {
