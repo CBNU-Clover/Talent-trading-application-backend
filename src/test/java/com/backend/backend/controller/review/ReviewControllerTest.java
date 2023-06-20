@@ -52,12 +52,7 @@ class ReviewControllerTest {
         memberRepository.save(member);
         writerNickname = member.getNickname().toString();
 
-        postId = postRepository.save(Post.builder()
-                .writer(member)
-                .postName("49849849849848")
-                .content("51919519598")
-                .build()
-        );
+        postId = postRepository.save(Fixture.createPost(member,0L));
 
 
     }

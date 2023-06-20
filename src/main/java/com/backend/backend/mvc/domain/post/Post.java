@@ -2,7 +2,10 @@ package com.backend.backend.mvc.domain.post;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
+import com.backend.backend.mvc.domain.post.values.Content;
+import com.backend.backend.mvc.domain.post.values.PostName;
 import com.backend.backend.mvc.domain.post.values.PostStatus;
+import com.backend.backend.mvc.domain.post.values.Price;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -28,13 +31,14 @@ public class Post {
     Member writer;
 
     @Column(nullable = false)
-    @Setter
-    private String postName;
-    @Setter
-    @Lob
-    private String content;
+    @Embedded
+    private PostName postName;
 
-    private Long price;
+    @Embedded
+    private Content content;
+
+    @Embedded
+    private Price price;
 
     private LocalDateTime transactionDate;
 
@@ -53,17 +57,24 @@ public class Post {
         if(writer==null){
             throw new NotExistException("작성자가 없습니다");
         }
-        Assert.hasText(postName, "게시글 이름이 없습니다");
-
-        if(price==null){
-            price=0L;
-        }
 
         this.writer = writer;
-        this.postName = postName;
-        this.content = content;
+        this.postName = PostName.from(postName);
+        this.content = Content.from(content);
         this.postStatus = PostStatus.OPEN;
         this.transactionDate = transactionDate;
-        this.price = price;
+        this.price = Price.from(price);
+    }
+
+    public void setPostName(String  postName) {
+        this.postName = PostName.from(postName);
+    }
+
+    public void setContent(String content) {
+        this.content = Content.from(content);
+    }
+
+    public void setPrice(Long price) {
+        this.price = Price.from(price);
     }
 }

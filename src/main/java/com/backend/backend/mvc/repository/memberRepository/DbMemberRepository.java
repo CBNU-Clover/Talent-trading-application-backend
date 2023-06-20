@@ -85,6 +85,6 @@ public class DbMemberRepository implements MemberRepository{
         if(!StringUtils.hasText(name)){
             return null;
         }
-        return post.postName.like(name);
+        return post.postName.postName.like(name);
     }
 }

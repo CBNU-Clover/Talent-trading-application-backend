@@ -35,13 +35,13 @@ public class TalentTradingService {
         Post post = postRepository.findPostById(postId);
         post.setPostStatus(PostStatus.CLOSE);
 
-        pointService.remittancePoint(buyerNickname,post.getWriter().getNickname().toString(),post.getPrice());
+        pointService.remittancePoint(buyerNickname,post.getWriter().getNickname().toString(),post.getPrice().getAmount());
 
         TransactionDetail transactionDetail = TransactionDetail.builder()
                 .seller(post.getWriter())
                 .buyer(buyer)
-                .postName(post.getPostName())
-                .price(post.getPrice())
+                .postName(post.getPostName().toString())
+                .price(post.getPrice().getAmount())
                 .build();
         transactionDetailRepository.save(transactionDetail);
 

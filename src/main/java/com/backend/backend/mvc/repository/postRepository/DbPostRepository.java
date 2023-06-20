@@ -89,6 +89,6 @@ public class DbPostRepository implements PostRepository{
         if(!StringUtils.hasText(name)){
             return null;
         }
-        return post.postName.contains(name);
+        return post.postName.postName.contains(name);
     }
 }
