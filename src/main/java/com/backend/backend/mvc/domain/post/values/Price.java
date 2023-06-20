@@ -1,9 +1,13 @@
 package com.backend.backend.mvc.domain.post.values;
 
 import com.backend.backend.mvc.domain.pointDetail.values.Balance;
+import lombok.Getter;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
+@Getter
 public class Price {
     @Column(name = "price")
     private Long amount;
