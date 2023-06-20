@@ -44,6 +44,9 @@ public class Name {
         }
     }
 
+    public static Name from(String name) {
+        return new Name(name);
+    }
 
     @Override
     public boolean equals(Object o) {
