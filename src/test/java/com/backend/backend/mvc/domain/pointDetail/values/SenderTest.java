@@ -22,7 +22,7 @@ class SenderTest {
         Sender sender = Sender.from(validValue);
 
         assertNotNull(sender);
-        assertEquals(validValue, Sender.toString());
+        assertEquals(validValue, sender.toString());
     }
 
     @Test
@@ -30,7 +30,7 @@ class SenderTest {
     void to_string_returns_string_representation() {
         String validValue = "test";
 
-        Recipient validObject = Recipient.from(validValue);
+        Sender validObject = Sender.from(validValue);
 
         assertEquals(validValue, validObject.toString());
     }
