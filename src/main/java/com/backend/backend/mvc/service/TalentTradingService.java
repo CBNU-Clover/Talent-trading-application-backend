@@ -2,7 +2,7 @@ package com.backend.backend.mvc.service;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
-import com.backend.backend.mvc.domain.post.PostStatus;
+import com.backend.backend.mvc.domain.post.values.PostStatus;
 import com.backend.backend.mvc.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.mvc.repository.transactionDetailRepository.TransactionDetailRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;

@@ -2,6 +2,7 @@ package com.backend.backend.mvc.domain.post;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
+import com.backend.backend.mvc.domain.post.values.PostStatus;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
