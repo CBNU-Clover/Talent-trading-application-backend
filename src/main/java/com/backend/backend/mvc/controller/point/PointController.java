@@ -6,7 +6,7 @@ import com.backend.backend.mvc.controller.point.dto.ChargePoint;
 import com.backend.backend.mvc.controller.point.dto.PointHistory;
 import com.backend.backend.mvc.controller.point.dto.ShowPointDTO;
 import com.backend.backend.mvc.domain.pointDetail.PointDetail;
-import com.backend.backend.mvc.domain.pointDetail.PointStatus;
+import com.backend.backend.mvc.domain.pointDetail.values.PointStatus;
 import com.backend.backend.mvc.service.MemberService;
 import com.backend.backend.mvc.service.PointService;
 import lombok.RequiredArgsConstructor;

@@ -4,7 +4,7 @@ import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.pointDetail.PointDetail;
-import com.backend.backend.mvc.domain.pointDetail.PointStatus;
+import com.backend.backend.mvc.domain.pointDetail.values.PointStatus;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.pointDetailRepository.PointDetailRepository;
 import org.assertj.core.api.Assertions;
