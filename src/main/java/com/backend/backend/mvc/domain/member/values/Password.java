@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 @Getter
 public class Password {
 
-    private static final Pattern pattern = Pattern.compile("^010\\d{7,8}$");
+    private static final Pattern pattern = Pattern.compile("");
 
 
     /**
