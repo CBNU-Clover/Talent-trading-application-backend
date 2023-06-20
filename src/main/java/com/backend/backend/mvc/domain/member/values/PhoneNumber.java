@@ -18,11 +18,11 @@ public class PhoneNumber {
     }
 
     public PhoneNumber(String phoneNumber) {
-        validateEmail(phoneNumber);
+        validateCheck(phoneNumber);
         this.phoneNumber = phoneNumber;
     }
 
-    private void validateEmail(String phoneNumber) {
+    private void validateCheck(String phoneNumber) {
         if (phoneNumber == null) {
             throw new IllegalArgumentException("전화번호를 입력해주세요.");
         }
