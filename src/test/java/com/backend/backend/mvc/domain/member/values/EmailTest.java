@@ -19,7 +19,7 @@ class EmailTest {
     @Test
     @DisplayName("Invalid email format throws IllegalArgumentException")
     void from_invalid_name_format_throws_exception() {
-        String invalidName = "123a.ht";
+        String invalidName = "123a.ht@";
 
         assertThrows(IllegalArgumentException.class, () -> Name.from(invalidName));
     }
