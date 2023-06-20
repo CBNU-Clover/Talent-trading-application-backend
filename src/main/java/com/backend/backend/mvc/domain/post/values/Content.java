@@ -1,9 +1,13 @@
 package com.backend.backend.mvc.domain.post.values;
 
+import lombok.Setter;
+
+import javax.persistence.Lob;
 import java.util.Objects;
 
 public class Content {
 
+    @Lob
     private String content;
 
     /**
