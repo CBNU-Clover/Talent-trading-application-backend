@@ -44,6 +44,10 @@ public class Nickname {
         }
     }
 
+    public static Nickname from(String nickname) {
+        return new Nickname(nickname);
+    }
+
 
     @Override
     public boolean equals(Object o) {
