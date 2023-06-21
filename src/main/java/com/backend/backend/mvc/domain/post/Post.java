@@ -2,10 +2,7 @@ package com.backend.backend.mvc.domain.post;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
-import com.backend.backend.mvc.domain.post.values.Content;
-import com.backend.backend.mvc.domain.post.values.PostName;
-import com.backend.backend.mvc.domain.post.values.PostStatus;
-import com.backend.backend.mvc.domain.post.values.Price;
+import com.backend.backend.mvc.domain.post.values.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -51,6 +48,9 @@ public class Post {
     @LastModifiedDate
     private LocalDateTime date;
 
+    @Embedded
+    private ViewCount viewCount;
+
 
     @Builder
     public Post(Member writer, String postName, String content, LocalDateTime transactionDate,Long price) {
@@ -64,6 +64,7 @@ public class Post {
         this.postStatus = PostStatus.OPEN;
         this.transactionDate = transactionDate;
         this.price = Price.from(price);
+        this.viewCount = ViewCount.from();
     }
 
     public void setPostName(String  postName) {
@@ -76,5 +77,9 @@ public class Post {
 
     public void setPrice(Long price) {
         this.price = Price.from(price);
+    }
+
+    public void addViewCount(){
+        viewCount.addCount(1L);
     }
 }
