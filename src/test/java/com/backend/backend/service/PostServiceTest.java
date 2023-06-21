@@ -7,7 +7,9 @@ import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.service.PostService;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,19 +47,14 @@ class PostServiceTest extends TestSetting {
         Post post2 = Fixture.createPost(memberRepository.findMemberById(initMemberId), 0L);
         initPostId2=postRepository.save(post2);
     }
-    /**
     @Test
-    void deletePost() {
-        Member member = Member.builder()
-                .name("1")
-                .nickname("111")
-                .passWord("ghj")
-                .build();
-        memberRepository.save(member);
+    void addViewCountValidTest(){
+        Member member = memberRepository.findMemberById(initMemberId);
+        Post post = postRepository.findPostById(initPostId1);
 
-        org.junit.jupiter.api.Assertions.assertThrows(PermissionDeniedException.class, ()->{
-            postService.deletePost(initPostId1);
-        });
+        postService.readPost(post.getId());
+        postService.readPost(post.getId());
+
+        Assertions.assertThat(post.getViewCount().getCount()).isEqualTo(2L);
     }
-    */
 }
