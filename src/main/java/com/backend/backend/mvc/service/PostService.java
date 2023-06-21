@@ -10,6 +10,8 @@ import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.repository.postRepository.PostSearch;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,8 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
+
+    private final RedisTemplate<String ,String> redisTemplate;
 
     /**
      * post객체 전달시 저장
@@ -58,6 +62,20 @@ public class PostService {
         Post post = postRepository.findPostById(id);
         post.addViewCount();
         return post;
+    }
+    public Post readPost(Long id,String memberNickname){
+        addViewCount(id.toString(),memberNickname);
+        return postRepository.findPostById(id);
+    }
+
+
+    private void addViewCount(String  postId, String memberNickname){
+        SetOperations<String, String> setOperations = redisTemplate.opsForSet();
+        Boolean isExist = setOperations.isMember(postId, memberNickname);
+        if(!isExist){
+            setOperations.add(postId, memberNickname);
+            redisTemplate.opsForValue().increment(postId);
+        }
     }
 
     /**
