@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.service;
 
+import com.backend.backend.common.configuration.redis.RedisKey;
 import com.backend.backend.mvc.controller.post.Dto.PostModifyRequest;
 import com.backend.backend.mvc.controller.post.Dto.PostWriteRequest;
 import com.backend.backend.mvc.domain.member.Member;
@@ -63,6 +64,8 @@ public class PostService {
         post.addViewCount();
         return post;
     }
+
+    @Transactional
     public Post readPost(Long id,String memberNickname){
         addViewCount(id.toString(),memberNickname);
         return postRepository.findPostById(id);
@@ -72,9 +75,9 @@ public class PostService {
     private void addViewCount(String  postId, String memberNickname){
         SetOperations<String, String> setOperations = redisTemplate.opsForSet();
         Boolean isExist = setOperations.isMember(postId, memberNickname);
-        if(!isExist){
+        if(isExist==false){
             setOperations.add(postId, memberNickname);
-            redisTemplate.opsForValue().increment(postId);
+            redisTemplate.opsForValue().increment(RedisKey.PostViewCount +postId);
         }
     }
 
