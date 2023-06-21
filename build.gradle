@@ -55,6 +55,10 @@ dependencies {
 /**spring security*/
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	//redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'it.ozimov:embedded-redis:0.7.2'
+
 }
 
 tasks.named('test') {
