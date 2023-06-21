@@ -53,8 +53,11 @@ public class PostService {
      * @param id
      * @return
      */
+    @Transactional
     public Post readPost(Long id){
-        return postRepository.findPostById(id);
+        Post post = postRepository.findPostById(id);
+        post.addViewCount();
+        return post;
     }
 
     /**
