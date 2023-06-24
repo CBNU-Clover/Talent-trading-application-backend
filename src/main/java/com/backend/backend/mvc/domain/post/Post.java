@@ -82,4 +82,7 @@ public class Post {
     public void addViewCount(){
         viewCount.addCount(1L);
     }
+    public void addViewCount(Long num){
+        viewCount.addCount(num);
+    }
 }
