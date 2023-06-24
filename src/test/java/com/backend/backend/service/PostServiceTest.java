@@ -65,12 +65,17 @@ class PostServiceTest extends TestSetting {
     @Test
     void addViewCountValidWithoutDuplicateTest(){
         redisInitialization.init();
+
         Member member = memberRepository.findMemberById(initMemberId);
+        Member member2 = Fixture.createMember("2");
+        memberRepository.save(member2);
         Post post = postRepository.findPostById(initPostId1);
 
         postService.readPost(post.getId(),member.getNickname().toString());
         postService.readPost(post.getId(),member.getNickname().toString());
+        postService.readPost(post.getId(),member2.getNickname().toString());
+        postService.readPost(post.getId(),member2.getNickname().toString());
 
-        Assertions.assertThat(post.getViewCount().getCount()).isEqualTo(1L);
+        Assertions.assertThat(post.getViewCount().getCount()).isEqualTo(2L);
     }
 }
