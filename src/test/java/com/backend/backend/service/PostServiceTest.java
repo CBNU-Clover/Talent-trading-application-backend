@@ -7,6 +7,7 @@ import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.service.PostService;
+import com.backend.backend.setting.RedisInitialization;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,9 @@ class PostServiceTest extends TestSetting {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    RedisInitialization redisInitialization;
 
     Long initMemberId;
     Long initPostId1;
@@ -56,5 +60,17 @@ class PostServiceTest extends TestSetting {
         postService.readPost(post.getId());
 
         Assertions.assertThat(post.getViewCount().getCount()).isEqualTo(2L);
+    }
+
+    @Test
+    void addViewCountValidWithoutDuplicateTest(){
+        redisInitialization.init();
+        Member member = memberRepository.findMemberById(initMemberId);
+        Post post = postRepository.findPostById(initPostId1);
+
+        postService.readPost(post.getId(),member.getNickname().toString());
+        postService.readPost(post.getId(),member.getNickname().toString());
+
+        Assertions.assertThat(post.getViewCount().getCount()).isEqualTo(1L);
     }
 }
