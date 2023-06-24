@@ -67,17 +67,19 @@ public class PostService {
 
     @Transactional
     public Post readPost(Long id,String memberNickname){
-        addViewCount(id.toString(),memberNickname);
+        addViewCount(id,memberNickname);
         return postRepository.findPostById(id);
     }
 
 
-    private void addViewCount(String  postId, String memberNickname){
+    private void addViewCount(Long  postId, String memberNickname){
+        String key = postId.toString() + "_" + memberNickname;
         SetOperations<String, String> setOperations = redisTemplate.opsForSet();
-        Boolean isExist = setOperations.isMember(postId, memberNickname);
+        Boolean isExist = setOperations.isMember(key, "");
         if(isExist==false){
-            setOperations.add(postId, memberNickname);
-            redisTemplate.opsForValue().increment(RedisKey.PostViewCount +postId);
+            setOperations.add(key, "");
+            //redisTemplate.opsForValue().increment(RedisKey.PostViewCount +postId);
+            postRepository.findPostById(postId).addViewCount();
         }
     }
 
