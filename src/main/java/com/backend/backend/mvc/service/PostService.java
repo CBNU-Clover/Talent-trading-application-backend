@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -78,7 +79,7 @@ public class PostService {
         Boolean isExist = setOperations.isMember(key, "");
         if(isExist==false){
             setOperations.add(key, "");
-            //redisTemplate.opsForValue().increment(RedisKey.PostViewCount +postId);
+            redisTemplate.expire(key, 30, TimeUnit.MINUTES);
             postRepository.findPostById(postId).addViewCount();
         }
     }
