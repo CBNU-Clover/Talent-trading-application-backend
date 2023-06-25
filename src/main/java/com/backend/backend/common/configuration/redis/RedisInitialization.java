@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ public class RedisInitialization {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @PostConstruct
     public void init() {
         initRedisStringTemplate();
     }
