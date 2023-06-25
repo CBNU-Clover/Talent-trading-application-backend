@@ -2,6 +2,7 @@ package com.backend.backend.mvc.service;
 
 import com.backend.backend.common.configuration.redis.RedisKey;
 import com.backend.backend.mvc.controller.post.Dto.PostModifyRequest;
+import com.backend.backend.mvc.controller.post.Dto.PostReadResponse;
 import com.backend.backend.mvc.controller.post.Dto.PostWriteRequest;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
@@ -67,9 +68,14 @@ public class PostService {
     }
 
     @Transactional
-    public Post readPost(Long id,String memberNickname){
-        addViewCount(id,memberNickname);
-        return postRepository.findPostById(id);
+    public PostReadResponse readPost(Long postId, String memberNickname){
+        addViewCount(postId,memberNickname);
+        Post post = postRepository.findPostById(postId);
+        String viewCount = redisTemplate.opsForValue().get(RedisKey.PostViewCount + "_" + postId.toString());
+        if(viewCount==null){
+            viewCount = "0";
+        }
+        return new PostReadResponse(post, Long.parseLong(viewCount));
     }
 
 
@@ -81,6 +87,7 @@ public class PostService {
             setOperations.add(key, "");
             //30분뒤 해당 키가 제거됨
             redisTemplate.expire(key, 30, TimeUnit.MINUTES);
+            //redisTemplate.opsForValue().increment(RedisKey.PostViewCount+"_"+postId.toString());
             postRepository.findPostById(postId).addViewCount();
         }
     }
