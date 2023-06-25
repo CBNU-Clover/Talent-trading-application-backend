@@ -7,7 +7,7 @@ import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.service.PostService;
-import com.backend.backend.setting.RedisInitialization;
+import com.backend.backend.common.configuration.redis.RedisInitialization;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

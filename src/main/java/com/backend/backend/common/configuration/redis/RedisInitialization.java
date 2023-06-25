@@ -1,4 +1,4 @@
-package com.backend.backend.setting;
+package com.backend.backend.common.configuration.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
