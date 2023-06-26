@@ -75,14 +75,10 @@ public class PostService {
      * @return
      */
     @Transactional
-    public PostReadResponse readPost(Long postId, String memberNickname){
+    public Post readPost(Long postId, String memberNickname){
         addViewCount(postId,memberNickname);
         Post post = postRepository.findPostById(postId);
-        String viewCount = redisTemplate.opsForValue().get(RedisKey.PostViewCount + "_" + postId.toString());
-        if(viewCount==null){
-            viewCount = "0";
-        }
-        return new PostReadResponse(post, Long.parseLong(viewCount));
+        return post;
     }
 
 
