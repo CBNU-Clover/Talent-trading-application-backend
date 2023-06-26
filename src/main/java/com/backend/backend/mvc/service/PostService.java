@@ -67,6 +67,13 @@ public class PostService {
         return post;
     }
 
+    /**
+     * post를 식별 가능한 방법이 id 뿐이기에 id로 검색하여 Post반환,
+     * 일정 시간 내에같은 사람이 여러번 조회해도 조회수가 한 번만 증가
+     * @param postId 게시글의 id
+     * @param memberNickname 조회하는 사람의 이름
+     * @return
+     */
     @Transactional
     public PostReadResponse readPost(Long postId, String memberNickname){
         addViewCount(postId,memberNickname);
