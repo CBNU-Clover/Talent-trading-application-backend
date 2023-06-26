@@ -5,12 +5,19 @@ import lombok.Data;
 
 @Data
 public class PostReadResponse {
-    private String  WriterNickname;
+    private String WriterNickname;
     private String postName;
 
     private String content;
 
+
     public PostReadResponse(Post post) {
+        this.WriterNickname = post.getWriter().getNickname().toString();
+        this.postName = post.getPostName().toString();
+        this.content = post.getContent().toString();
+    }
+
+    public PostReadResponse(Post post, Long viewCount) {
         this.WriterNickname = post.getWriter().getNickname().toString();
         this.postName = post.getPostName().toString();
         this.content = post.getContent().toString();

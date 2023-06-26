@@ -1,6 +1,8 @@
 package com.backend.backend.mvc.service;
 
+import com.backend.backend.common.configuration.redis.RedisKey;
 import com.backend.backend.mvc.controller.post.Dto.PostModifyRequest;
+import com.backend.backend.mvc.controller.post.Dto.PostReadResponse;
 import com.backend.backend.mvc.controller.post.Dto.PostWriteRequest;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
@@ -10,10 +12,13 @@ import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.repository.postRepository.PostSearch;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -21,6 +26,8 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
+
+    private final RedisTemplate<String ,String> redisTemplate;
 
     /**
      * post객체 전달시 저장
@@ -58,6 +65,34 @@ public class PostService {
         Post post = postRepository.findPostById(id);
         post.addViewCount();
         return post;
+    }
+
+    /**
+     * post를 식별 가능한 방법이 id 뿐이기에 id로 검색하여 Post반환,
+     * 일정 시간 내에같은 사람이 여러번 조회해도 조회수가 한 번만 증가
+     * @param postId 게시글의 id
+     * @param memberNickname 조회하는 사람의 이름
+     * @return
+     */
+    @Transactional
+    public Post readPost(Long postId, String memberNickname){
+        addViewCount(postId,memberNickname);
+        Post post = postRepository.findPostById(postId);
+        return post;
+    }
+
+
+    private void addViewCount(Long  postId, String memberNickname){
+        String key = postId.toString() + "_" + memberNickname;
+        SetOperations<String, String> setOperations = redisTemplate.opsForSet();
+        Boolean isExist = setOperations.isMember(key, "");
+        if(isExist==false){
+            setOperations.add(key, "");
+            //30분뒤 해당 키가 제거됨
+            redisTemplate.expire(key, 30, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().increment(RedisKey.PostViewCount+"_"+postId.toString());
+            //postRepository.findPostById(postId).addViewCount();
+        }
     }
 
     /**
