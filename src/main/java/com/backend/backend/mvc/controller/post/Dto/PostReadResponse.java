@@ -10,7 +10,6 @@ public class PostReadResponse {
 
     private String content;
 
-    private Long viewCount;
 
     public PostReadResponse(Post post) {
         this.WriterNickname = post.getWriter().getNickname().toString();
@@ -22,6 +21,5 @@ public class PostReadResponse {
         this.WriterNickname = post.getWriter().getNickname().toString();
         this.postName = post.getPostName().toString();
         this.content = post.getContent().toString();
-        this.viewCount = post.getViewCount().getCount() + viewCount;
     }
 }
