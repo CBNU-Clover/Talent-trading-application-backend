@@ -90,8 +90,8 @@ public class PostService {
             setOperations.add(key, "");
             //30분뒤 해당 키가 제거됨
             redisTemplate.expire(key, 30, TimeUnit.MINUTES);
-            //redisTemplate.opsForValue().increment(RedisKey.PostViewCount+"_"+postId.toString());
-            postRepository.findPostById(postId).addViewCount();
+            redisTemplate.opsForValue().increment(RedisKey.PostViewCount+"_"+postId.toString());
+            //postRepository.findPostById(postId).addViewCount();
         }
     }
 
