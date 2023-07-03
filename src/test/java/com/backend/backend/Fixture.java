@@ -14,6 +14,15 @@ public class Fixture {
                 .phoneNumber("01012345678")
                 .build();
     }
+    public static Member createMember2(){
+        return Member.builder()
+                .name("홀란드")
+                .nickname("striker")
+                .password("7777")
+                .email("holand7777@naver.com")
+                .phoneNumber("01077777777")
+                .build();
+    }
 
     public static Post createPost(Member seller,Long price){
         return Post.builder()

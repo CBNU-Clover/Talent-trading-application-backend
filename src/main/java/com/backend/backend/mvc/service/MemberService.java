@@ -32,7 +32,7 @@ public class MemberService {
                         .name(memberJoinRequest.getName())
                         .email(memberJoinRequest.getEmail())
                         .phoneNumber(memberJoinRequest.getPhoneNumber())
-                        .password(encoder.encode(memberJoinRequest.getPassWord()))
+                        .password(memberJoinRequest.getPassWord())
                         .build();
         dbMemberRepository.save(member);
         
@@ -46,7 +46,7 @@ public class MemberService {
         // exception 필요
 
         //memberpassWord틀림
-        if(!encoder.matches(passWord,selectedmember.getPassword().toString()))
+        if(!passWord.equals(selectedmember.getPassword().toString()))
         {
             return "로그인이 실패했습니다!!";
         }

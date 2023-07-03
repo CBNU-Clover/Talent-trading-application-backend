@@ -65,7 +65,7 @@ public class MemberController {
     @PostMapping("/login")
     public ResponseEntity<String>login(@RequestBody MemberLoginRequest memberLoginRequest)
     {
-        String token=memberService.login(memberLoginRequest.getNickname(),memberLoginRequest.getPassWord());;
+        String token=memberService.login(memberLoginRequest.getNickname(),memberLoginRequest.getPassWord());
         return ResponseEntity.ok().body(token);
     }
 
