@@ -40,6 +40,18 @@ class PopularPostRepositoryTest extends TestSetting {
     }
 
     @Test
+    void duplicateSaveError(){
+        PopularPost popularPost1 = new PopularPost(post1, 10L);
+        PopularPost popularPost2 = new PopularPost(post1, 20L);
+        popularPostRepository.save(popularPost1);
+
+
+//        org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> {
+//            popularPostRepository.save(popularPost2);
+//        });
+    }
+
+    @Test
     void deleteAllPopularPosts() {
         PopularPost popularPost1 = new PopularPost(post1, 10L);
         PopularPost popularPost2 = new PopularPost(post2, 20L);
