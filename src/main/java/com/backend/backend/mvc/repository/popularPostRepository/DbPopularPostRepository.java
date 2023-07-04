@@ -41,6 +41,7 @@ public class DbPopularPostRepository implements PopularPostRepository{
     public List<PopularPost> getAllPopularPosts() {
         return query
                 .select(popularPost)
+                .from(popularPost)
                 .orderBy(popularPost.viewCount.desc())
                 .fetch();
     }
