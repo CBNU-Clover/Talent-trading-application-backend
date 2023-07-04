@@ -27,6 +27,13 @@ public class PopularPost {
     private Long viewCount;
 
     public PopularPost(Post post,Long viewCount) {
+        if(post==null){
+            throw new IllegalArgumentException("post가 null이면 안됩니다");
+        }
+        if(viewCount==null){
+            throw new IllegalArgumentException("viewCount가 null이면 안됩니다");
+        }
+
         this.post = post;
         this.viewCount = viewCount;
     }
