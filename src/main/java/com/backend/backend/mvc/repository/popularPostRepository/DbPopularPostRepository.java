@@ -34,6 +34,7 @@ public class DbPopularPostRepository implements PopularPostRepository{
     @Override
     public void deleteAllPopularPosts() {
         query.delete(popularPost).execute();
+        em.flush();
         em.clear();
     }
 
