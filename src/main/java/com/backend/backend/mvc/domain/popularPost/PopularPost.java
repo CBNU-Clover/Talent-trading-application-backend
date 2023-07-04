@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PopularPost {
+public class PopularPost implements Comparable<PopularPost>{
     @Id
     @GeneratedValue
     private Long id;
@@ -36,5 +36,10 @@ public class PopularPost {
 
         this.post = post;
         this.viewCount = viewCount;
+    }
+
+    @Override
+    public int compareTo(PopularPost other) {
+        return this.viewCount.compareTo(other.viewCount);
     }
 }
