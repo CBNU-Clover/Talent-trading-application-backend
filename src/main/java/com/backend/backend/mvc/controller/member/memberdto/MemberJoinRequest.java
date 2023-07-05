@@ -14,5 +14,6 @@ public class MemberJoinRequest {
     private String passWord;
     private String phoneNumber;
 
-
+    public MemberJoinRequest() {
+    }
 }
