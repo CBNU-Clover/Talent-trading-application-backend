@@ -2,6 +2,7 @@ package com.backend.backend.mvc.service;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
 import com.backend.backend.mvc.domain.post.values.PostStatus;
 import com.backend.backend.mvc.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.mvc.repository.transactionDetailRepository.TransactionDetailRepository;
@@ -46,8 +47,8 @@ public class TalentTradingService {
                 .build();
         transactionDetailRepository.save(transactionDetail);
 
-        rankingService.addRating(post.getWriter(),null);
-        rankingService.addRating(buyer,null);
+        rankingService.addRating(post.getWriter(), PostCategory.OTHER);
+        rankingService.addRating(buyer,PostCategory.OTHER);
     }
     /**
      * 로그한 사용자의 거래기록 불러오기

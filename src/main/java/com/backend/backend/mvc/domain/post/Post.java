@@ -63,7 +63,7 @@ public class Post {
             throw new NotExistException("작성자가 없습니다");
         }
         if(category==null){
-            throw new IllegalArgumentException("카테코리가 존재하지 않습니다");
+            category = PostCategory.OTHER;
         }
 
         this.writer = writer;
