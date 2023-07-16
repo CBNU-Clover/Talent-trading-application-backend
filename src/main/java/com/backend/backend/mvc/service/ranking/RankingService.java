@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class RakingService {
+public class RankingService {
     private final RatingRepository ratingRepository;
     private final RatingPolicy ratingPolicy;
 
