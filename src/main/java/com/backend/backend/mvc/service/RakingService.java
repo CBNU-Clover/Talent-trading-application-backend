@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.service;
 
+import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.rating.Rating;
 import com.backend.backend.mvc.domain.rating.values.RatingCategory;
 import com.backend.backend.mvc.repository.ratingRepository.RatingRepository;
@@ -17,5 +18,10 @@ public class RakingService {
 
     public List<Rating> getTopRating(RatingCategory category){
         return ratingRepository.getTopRanking(category);
+    }
+
+    public void addRating(Member member,RatingCategory category){
+        Long amount = 0L;
+        ratingRepository.addRating(member, category, amount);
     }
 }
