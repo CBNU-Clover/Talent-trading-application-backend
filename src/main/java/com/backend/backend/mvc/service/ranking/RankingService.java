@@ -22,6 +22,7 @@ public class RankingService {
         return ratingRepository.getTopRanking(category);
     }
 
+    @Transactional
     public void addRating(Member member,RatingCategory category){
         Long amount = ratingPolicy.calculate();
         ratingRepository.addRating(member, category, amount);
