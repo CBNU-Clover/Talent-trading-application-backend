@@ -3,7 +3,7 @@ package com.backend.backend.mvc.controller.ranking;
 import com.backend.backend.mvc.controller.ranking.dto.ResponseRakingList;
 import com.backend.backend.mvc.domain.rating.Rating;
 import com.backend.backend.mvc.domain.rating.values.RatingCategory;
-import com.backend.backend.mvc.service.RakingService;
+import com.backend.backend.mvc.service.ranking.RakingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

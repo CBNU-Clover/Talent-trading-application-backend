@@ -1,4 +1,4 @@
-package com.backend.backend.mvc.service;
+package com.backend.backend.mvc.service.ranking;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.rating.Rating;
