@@ -1,7 +1,7 @@
 package com.backend.backend.mvc.repository.ratingRepository;
 
 import com.backend.backend.mvc.domain.member.Member;
-import com.backend.backend.mvc.domain.rating.values.RatingCategory;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
 import com.backend.backend.mvc.domain.rating.Rating;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
@@ -24,7 +24,7 @@ public class DbRatingRepository implements RatingRepository {
     }
 
     @Override
-    public List<Rating> getTopRanking(RatingCategory category) {
+    public List<Rating> getTopRanking(PostCategory category) {
         return query
                 .select(rating)
                 .from(rating)
@@ -35,7 +35,7 @@ public class DbRatingRepository implements RatingRepository {
     }
 
     @Override
-    public Long addRating(Member member,RatingCategory category, Long amount) {
+    public Long addRating(Member member, PostCategory category, Long amount) {
 
         Rating categoryRating = query
                 .select(rating)

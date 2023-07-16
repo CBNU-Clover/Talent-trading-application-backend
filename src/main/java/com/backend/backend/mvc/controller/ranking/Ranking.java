@@ -2,7 +2,7 @@ package com.backend.backend.mvc.controller.ranking;
 
 import com.backend.backend.mvc.controller.ranking.dto.ResponseRakingList;
 import com.backend.backend.mvc.domain.rating.Rating;
-import com.backend.backend.mvc.domain.rating.values.RatingCategory;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
 import com.backend.backend.mvc.service.ranking.RankingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class Ranking {
     private final RankingService rankingService;
 
     @GetMapping("/top/{category}")
-    public ResponseEntity<ResponseRakingList> getRanking(@PathVariable("category") RatingCategory category){
+    public ResponseEntity<ResponseRakingList> getRanking(@PathVariable("category") PostCategory category){
 
         List<Rating> topRating = rankingService.getTopRating(category);
 

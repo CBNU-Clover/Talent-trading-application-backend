@@ -1,7 +1,7 @@
 package com.backend.backend.mvc.repository.ratingRepository;
 
 import com.backend.backend.mvc.domain.member.Member;
-import com.backend.backend.mvc.domain.rating.values.RatingCategory;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
 import com.backend.backend.mvc.domain.rating.Rating;
 
 import java.util.List;
@@ -13,14 +13,14 @@ public interface RatingRepository {
      * @param category
      * @return
      */
-    List<Rating> getTopRanking(RatingCategory category);
+    List<Rating> getTopRanking(PostCategory category);
 
     /**
      * 해당 카테고리에 amount 점수를 추가, 만약 해당카테고리에 대한 점수가 처음 들어가는 것이라면 해당 튜플 생성
      * @param category
      * @param amount 추가될 스코어 점수
      */
-    Long addRating(Member member,RatingCategory category, Long amount);
+    Long addRating(Member member, PostCategory category, Long amount);
 
     Rating findRatingById(Long id);
 }
