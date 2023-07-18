@@ -14,12 +14,15 @@ public class ReviewWriteRequest {
     private String writerNickname;
     private String content;
 
+    private Long starRating;
+
     public ReviewWriteRequest() {
     }
 
-    public ReviewWriteRequest(Long postId, String writerNickname, String content) {
+    public ReviewWriteRequest(Long postId, String writerNickname, String content, Long starRating) {
         this.postId = postId;
         this.writerNickname = writerNickname;
         this.content = content;
+        this.starRating = starRating;
     }
 }

@@ -35,6 +35,7 @@ public class ReviewService {
                 .writer(memberRepository
                         .findMemberByNickname(reviewWriteRequest.getWriterNickname()))
                 .content(reviewWriteRequest.getContent())
+                .starRating(reviewWriteRequest.getStarRating())
                 .build();
 
         return reviewRepository.save(review);

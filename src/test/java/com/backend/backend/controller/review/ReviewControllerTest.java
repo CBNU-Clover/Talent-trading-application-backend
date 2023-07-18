@@ -59,7 +59,8 @@ class ReviewControllerTest {
 
     @Test
     void writeReview() throws Exception {
-        ReviewWriteRequest reviewWriteRequest = new ReviewWriteRequest(postId, writerNickname, "4546500");
+        ReviewWriteRequest reviewWriteRequest =
+                new ReviewWriteRequest(postId, writerNickname, "4546500",3L);
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders
                 .post("/review/write")
                 .content(objectMapper.writeValueAsString(reviewWriteRequest))
@@ -70,7 +71,8 @@ class ReviewControllerTest {
 
     @Test
     void writeReviewError() throws Exception {
-        ReviewWriteRequest reviewWriteRequest = new ReviewWriteRequest(null, writerNickname, "4546500");
+        ReviewWriteRequest reviewWriteRequest =
+                new ReviewWriteRequest(null, writerNickname, "4546500",3L);
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders
                 .post("/review/write")
@@ -87,6 +89,7 @@ class ReviewControllerTest {
                 .post(postRepository.findPostById(postId))
                 .writer(memberRepository.findMemberByNickname(writerNickname))
                 .content(content)
+                .starRating(3L)
                 .build();
         Long reviewId = reviewRepository.save(review);
 

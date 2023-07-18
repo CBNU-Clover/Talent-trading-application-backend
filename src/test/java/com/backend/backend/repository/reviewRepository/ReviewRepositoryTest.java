@@ -45,6 +45,7 @@ class ReviewRepositoryTest extends TestSetting {
                 .writer(memberRepository.findMemberById(memberId))
                 .post(postRepository.findPostById(postId))
                 .content(".")
+                .starRating(3L)
                 .build();
         Long reviewId = reviewRepository.save(review);
 
@@ -58,6 +59,7 @@ class ReviewRepositoryTest extends TestSetting {
                 .writer(memberRepository.findMemberById(memberId))
                 .post(postRepository.findPostById(postId))
                 .content(".")
+                .starRating(1L)
                 .build();
         Long reviewId1 = reviewRepository.save(review1);
 
@@ -65,6 +67,7 @@ class ReviewRepositoryTest extends TestSetting {
                 .writer(memberRepository.findMemberById(memberId))
                 .post(postRepository.findPostById(postId))
                 .content(".")
+                .starRating(4L)
                 .build();
         Long reviewId2 = reviewRepository.save(review2);
 
@@ -79,6 +82,7 @@ class ReviewRepositoryTest extends TestSetting {
                 .writer(memberRepository.findMemberById(memberId))
                 .post(postRepository.findPostById(postId))
                 .content(".")
+                .starRating(3L)
                 .build();
         Long reviewId = reviewRepository.save(review);
 
