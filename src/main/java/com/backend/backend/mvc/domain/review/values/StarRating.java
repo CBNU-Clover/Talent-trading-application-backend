@@ -1,9 +1,13 @@
 package com.backend.backend.mvc.domain.review.values;
 
 import com.backend.backend.mvc.domain.rating.values.Score;
+import lombok.Getter;
 
+import javax.persistence.Embeddable;
 import java.util.Objects;
 
+@Embeddable
+@Getter
 public class StarRating {
     
     private Long rating=0L;
