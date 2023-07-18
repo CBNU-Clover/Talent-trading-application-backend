@@ -3,6 +3,7 @@ package com.backend.backend.mvc.domain.review;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.common.exception.NotExistException;
+import com.backend.backend.mvc.domain.review.values.StarRating;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -36,12 +37,15 @@ public class Review {
     private Member writer;
     private String content;
 
+    @Embedded
+    private StarRating starRating;
+
     @CreatedDate
     @LastModifiedDate
     private LocalDateTime date;
 
     @Builder
-    public Review(Post post, Member writer, String content) {
+    public Review(Post post, Member writer, String content, Long starRating) {
         if(post==null){
             throw new NotExistException("해당되는 게시글이 없습니다");
         }
@@ -51,5 +55,6 @@ public class Review {
         this.post = post;
         this.writer = writer;
         this.content = content;
+        this.starRating = StarRating.from(starRating);
     }
 }
