@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 public class DefaultLogic implements RatingPolicy{
     @Override
     public Long calculate() {
-        return 0L;
+        return 10L;
     }
 }
