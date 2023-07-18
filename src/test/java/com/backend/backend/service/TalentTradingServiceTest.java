@@ -4,9 +4,11 @@ import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.pointDetailRepository.PointDetailRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
+import com.backend.backend.mvc.repository.ratingRepository.RatingRepository;
 import com.backend.backend.mvc.repository.transactionDetailRepository.TransactionDetailRepository;
 import com.backend.backend.mvc.service.PointService;
 import com.backend.backend.mvc.service.TalentTradingService;
@@ -36,6 +38,9 @@ class TalentTradingServiceTest extends TestSetting {
     @Autowired
     private PointDetailRepository pointDetailRepository;
 
+    @Autowired
+    private RatingRepository ratingRepository;
+
 
     String sellerNickname;
     String buyerNickname;
@@ -64,6 +69,7 @@ class TalentTradingServiceTest extends TestSetting {
                 .postName("가나다 라")
                 .content(",")
                 .price(price)
+                .category(PostCategory.OTHER)
                 .build();
         Long postId = postRepository.save(post1);
 
@@ -96,6 +102,13 @@ class TalentTradingServiceTest extends TestSetting {
         Assertions.assertThat(memberRepository.findMemberByNickname(sellerNickname).getPoint().getAmount())
                 .isEqualTo(price);
 
+        Assertions.assertThat(ratingRepository.findRatingByNicknameAndCategory(
+                        sellerNickname, PostCategory.OTHER).getScore())
+                .isEqualTo(10L);
+
+        Assertions.assertThat(ratingRepository.findRatingByNicknameAndCategory(
+                        buyerNickname, PostCategory.OTHER).getScore())
+                .isEqualTo(10L);
 
     }
 }
