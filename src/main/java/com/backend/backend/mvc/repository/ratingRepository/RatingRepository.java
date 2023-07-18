@@ -23,4 +23,12 @@ public interface RatingRepository {
     Long addRating(Member member, PostCategory category, Long amount);
 
     Rating findRatingById(Long id);
+
+    /**
+     * 해당 멤버의 특정 카테고리의 레이팅을 보여줌
+     * @param nickname 멤버의 닉네임
+     * @param category 카테고리
+     * @return 레이팅 객체
+     */
+    Rating findRatingByNicknameAndCategory(String nickname, PostCategory category);
 }

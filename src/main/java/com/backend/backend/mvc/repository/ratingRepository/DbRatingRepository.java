@@ -58,4 +58,14 @@ public class DbRatingRepository implements RatingRepository {
         return em.find(Rating.class,id);
     }
 
+    @Override
+    public Rating findRatingByNicknameAndCategory(String nickname, PostCategory category) {
+        return query
+                .select(rating)
+                .from(rating)
+                .where(rating.member.nickname.nickname.eq(nickname)
+                        .and(rating.category.eq(category)))
+                .fetchOne();
+    }
+
 }
