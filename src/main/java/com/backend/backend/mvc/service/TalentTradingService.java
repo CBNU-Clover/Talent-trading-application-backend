@@ -2,11 +2,13 @@ package com.backend.backend.mvc.service;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
 import com.backend.backend.mvc.domain.post.values.PostStatus;
 import com.backend.backend.mvc.domain.transactionDetail.TransactionDetail;
 import com.backend.backend.mvc.repository.transactionDetailRepository.TransactionDetailRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
+import com.backend.backend.mvc.service.ranking.RankingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ public class TalentTradingService {
     private final PostRepository postRepository;
     private final PointService pointService;
     private final TransactionDetailRepository transactionDetailRepository;
-
+    private final RankingService rankingService;
     /**
      * postId를 인식해 그 게시물에 대한 거래 진행
      * @param postId
@@ -45,6 +47,8 @@ public class TalentTradingService {
                 .build();
         transactionDetailRepository.save(transactionDetail);
 
+        rankingService.addRating(post.getWriter(), PostCategory.OTHER);
+        rankingService.addRating(buyer,PostCategory.OTHER);
     }
     /**
      * 로그한 사용자의 거래기록 불러오기

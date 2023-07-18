@@ -7,7 +7,6 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -44,6 +43,10 @@ public class Post {
     @Setter
     private PostStatus postStatus;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PostCategory category;
+
     @CreatedDate
     @LastModifiedDate
     private LocalDateTime date;
@@ -53,9 +56,14 @@ public class Post {
 
 
     @Builder
-    public Post(Member writer, String postName, String content, LocalDateTime transactionDate,Long price) {
+    public Post(Member writer, String postName, String content,
+                LocalDateTime transactionDate,Long price,
+                PostCategory category) {
         if(writer==null){
             throw new NotExistException("작성자가 없습니다");
+        }
+        if(category==null){
+            category = PostCategory.OTHER;
         }
 
         this.writer = writer;
@@ -65,6 +73,7 @@ public class Post {
         this.transactionDate = transactionDate;
         this.price = Price.from(price);
         this.viewCount = ViewCount.from();
+        this.category = category;
     }
 
     public void setPostName(String  postName) {

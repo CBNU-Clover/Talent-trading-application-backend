@@ -1,7 +1,7 @@
 package com.backend.backend.mvc.domain.rating;
 
 import com.backend.backend.mvc.domain.member.Member;
-import com.backend.backend.mvc.domain.rating.values.RatingCategory;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,11 +24,11 @@ public class Rating {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private RatingCategory category;
+    private PostCategory category;
 
     private Long score= 0L;
 
-    public Rating(Member member, RatingCategory category) {
+    public Rating(Member member, PostCategory category) {
         this.member = member;
         this.category = category;
     }
