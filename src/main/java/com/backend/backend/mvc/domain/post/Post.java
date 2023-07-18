@@ -36,8 +36,6 @@ public class Post {
     @Embedded
     private Price price;
 
-    private LocalDateTime transactionDate;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Setter
@@ -56,9 +54,7 @@ public class Post {
 
 
     @Builder
-    public Post(Member writer, String postName, String content,
-                LocalDateTime transactionDate,Long price,
-                PostCategory category) {
+    public Post(Member writer, String postName, String content, Long price, PostCategory category) {
         if(writer==null){
             throw new NotExistException("작성자가 없습니다");
         }
@@ -70,7 +66,6 @@ public class Post {
         this.postName = PostName.from(postName);
         this.content = Content.from(content);
         this.postStatus = PostStatus.OPEN;
-        this.transactionDate = transactionDate;
         this.price = Price.from(price);
         this.viewCount = ViewCount.from();
         this.category = category;
