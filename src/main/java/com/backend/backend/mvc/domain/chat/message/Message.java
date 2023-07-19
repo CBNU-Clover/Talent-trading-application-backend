@@ -24,7 +24,7 @@ public class Message {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "chatting_room",nullable = false)
     private ChattingRoom room;
 
