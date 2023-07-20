@@ -33,4 +33,18 @@ public class ChattingRoom {
     @JoinColumn(name = "buyer_id",nullable = false)
     private Member buyer;
 
+    public ChattingRoom(Post post, Member seller, Member buyer) {
+        if(post==null){
+            throw new IllegalArgumentException("게시글이 입력되지 않았습니다");
+        }
+        if(seller==null){
+            throw new IllegalArgumentException("판매자가 입력되지 않았습니다");
+        }
+        if(buyer==null){
+            throw new IllegalArgumentException("구매자가 입력되지 않았습니다");
+        }
+        this.post = post;
+        this.seller = seller;
+        this.buyer = buyer;
+    }
 }
