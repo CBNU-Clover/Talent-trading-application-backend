@@ -1,4 +1,4 @@
-package com.backend.backend.service;
+package com.backend.backend.mvc.service;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
