@@ -1,4 +1,4 @@
-package com.backend.backend.repository.postRepository;
+package com.backend.backend.mvc.repository.postRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;

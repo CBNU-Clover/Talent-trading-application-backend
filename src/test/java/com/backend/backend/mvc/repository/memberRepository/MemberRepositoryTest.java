@@ -1,4 +1,4 @@
-package com.backend.backend.repository.memberRepository;
+package com.backend.backend.mvc.repository.memberRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;

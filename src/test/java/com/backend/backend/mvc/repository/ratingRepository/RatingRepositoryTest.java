@@ -1,4 +1,4 @@
-package com.backend.backend.repository.ratingRepository;
+package com.backend.backend.mvc.repository.ratingRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;

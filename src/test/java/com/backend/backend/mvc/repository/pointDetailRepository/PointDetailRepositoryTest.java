@@ -1,4 +1,4 @@
-package com.backend.backend.repository.pointDetailRepository;
+package com.backend.backend.mvc.repository.pointDetailRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;

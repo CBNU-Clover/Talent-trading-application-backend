@@ -1,4 +1,4 @@
-package com.backend.backend.repository.transactionDetailRepository;
+package com.backend.backend.mvc.repository.transactionDetailRepository;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
