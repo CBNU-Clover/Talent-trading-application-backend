@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MessageContentTest {
+class ChatMessageContentTest {
 
     @Test
     @DisplayName("Null value throws IllegalArgumentException")
