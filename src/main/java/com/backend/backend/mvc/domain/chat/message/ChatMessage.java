@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Message {
+public class ChatMessage {
 
     @Id
     @Column(name = "message_id")
@@ -40,7 +40,7 @@ public class Message {
     @LastModifiedDate
     private LocalDateTime date;
 
-    public Message(ChattingRoom room, Member sender, String content) {
+    public ChatMessage(ChattingRoom room, Member sender, String content) {
         this.room = room;
         this.sender = sender;
         this.content = MessageContent.from(content);

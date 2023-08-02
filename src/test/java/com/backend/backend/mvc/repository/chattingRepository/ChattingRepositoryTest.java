@@ -3,7 +3,7 @@ package com.backend.backend.mvc.repository.chattingRepository;
 import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
 import com.backend.backend.mvc.domain.chat.chattingRoom.ChattingRoom;
-import com.backend.backend.mvc.domain.chat.message.Message;
+import com.backend.backend.mvc.domain.chat.message.ChatMessage;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
@@ -57,14 +57,14 @@ class ChattingRepositoryTest extends TestSetting {
     void findMessagesByRoomId() {
         ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
         chattingRepository.saveRoom(chattingRoom);
-        Message message1 = new Message(chattingRoom, seller, "test");
-        chattingRepository.saveMessage(message1);
-        Message message2 = new Message(chattingRoom, buyer, "test2");
-        chattingRepository.saveMessage(message2);
+        ChatMessage chatMessage1 = new ChatMessage(chattingRoom, seller, "test");
+        chattingRepository.saveMessage(chatMessage1);
+        ChatMessage chatMessage2 = new ChatMessage(chattingRoom, buyer, "test2");
+        chattingRepository.saveMessage(chatMessage2);
 
-        List<Message> messageList = chattingRepository.findMessagesByRoomId(chattingRoom.getId());
+        List<ChatMessage> chatMessageList = chattingRepository.findMessagesByRoomId(chattingRoom.getId());
 
-        Assertions.assertThat(messageList.get(0)).isSameAs(message2);
-        Assertions.assertThat(messageList.get(1)).isSameAs(message1);
+        Assertions.assertThat(chatMessageList.get(0)).isSameAs(chatMessage2);
+        Assertions.assertThat(chatMessageList.get(1)).isSameAs(chatMessage1);
     }
 }
