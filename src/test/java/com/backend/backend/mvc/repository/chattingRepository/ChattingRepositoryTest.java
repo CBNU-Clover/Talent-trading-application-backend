@@ -4,6 +4,7 @@ import com.backend.backend.Fixture;
 import com.backend.backend.TestSetting;
 import com.backend.backend.mvc.domain.chat.chattingRoom.ChattingRoom;
 import com.backend.backend.mvc.domain.chat.message.ChatMessage;
+import com.backend.backend.mvc.domain.chat.message.values.ChatMessageType;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
@@ -57,9 +58,9 @@ class ChattingRepositoryTest extends TestSetting {
     void findMessagesByRoomId() {
         ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
         chattingRepository.saveRoom(chattingRoom);
-        ChatMessage chatMessage1 = new ChatMessage(chattingRoom, seller, "test");
+        ChatMessage chatMessage1 = new ChatMessage(chattingRoom, seller, "test", ChatMessageType.MESSAGE);
         chattingRepository.saveMessage(chatMessage1);
-        ChatMessage chatMessage2 = new ChatMessage(chattingRoom, buyer, "test2");
+        ChatMessage chatMessage2 = new ChatMessage(chattingRoom, buyer, "test2", ChatMessageType.MESSAGE);
         chattingRepository.saveMessage(chatMessage2);
 
         List<ChatMessage> chatMessageList = chattingRepository.findMessagesByRoomId(chattingRoom.getId());

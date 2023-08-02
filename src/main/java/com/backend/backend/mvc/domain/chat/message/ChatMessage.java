@@ -1,6 +1,7 @@
 package com.backend.backend.mvc.domain.chat.message;
 
 import com.backend.backend.mvc.domain.chat.chattingRoom.ChattingRoom;
+import com.backend.backend.mvc.domain.chat.message.values.ChatMessageType;
 import com.backend.backend.mvc.domain.chat.message.values.MessageContent;
 import com.backend.backend.mvc.domain.member.Member;
 import lombok.AccessLevel;
@@ -40,9 +41,14 @@ public class ChatMessage {
     @LastModifiedDate
     private LocalDateTime date;
 
-    public ChatMessage(ChattingRoom room, Member sender, String content) {
+    @Enumerated(EnumType.STRING)
+    private ChatMessageType messageType;
+
+
+    public ChatMessage(ChattingRoom room, Member sender, String content,ChatMessageType chatMessageType) {
         this.room = room;
         this.sender = sender;
         this.content = MessageContent.from(content);
+        this.messageType = chatMessageType;
     }
 }
