@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.backend.backend.mvc.domain.chat.chattingRoom.QChattingRoom.chattingRoom;
+import static com.backend.backend.mvc.domain.chat.chattingRoom.QUserChattingRoom.userChattingRoom;
 import static com.backend.backend.mvc.domain.chat.message.QChatMessage.chatMessage;
 
 @Repository
@@ -59,10 +60,10 @@ public class DbChattingRepository implements ChattingRepository{
     @Override
     public List<ChattingRoom> findChattingRoomByMember(Member member) {
         return query
-                .select(chattingRoom)
-                .from(chattingRoom)
-                .where(chattingRoom.buyer.id.eq(member.getId())
-                        .or(chattingRoom.seller.id.eq(member.getId())))
+                .select(userChattingRoom.room)
+                .from(userChattingRoom)
+                .where(userChattingRoom.member.id.eq(member.getId())
+                        .or(userChattingRoom.member.id.eq(member.getId())))
                 .fetch();
     }
 }
