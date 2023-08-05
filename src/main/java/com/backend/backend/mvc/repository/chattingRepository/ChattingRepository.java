@@ -45,4 +45,11 @@ public interface ChattingRepository {
      * @return 채팅방 리스트
      */
     List<ChattingRoom> findChattingRoomByMember(Member member);
+
+    /**
+     * 해당 유저의 채팅방 리스트에서 해당 채팅방이 뜨지 않도록 삭제
+     * @param member 채팅방을 삭제할 유저
+     * @param room 삭제할 채팅방
+     */
+    void removeUserCattingRoom(Member member, ChattingRoom room);
 }

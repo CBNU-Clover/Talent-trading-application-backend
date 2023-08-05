@@ -66,4 +66,25 @@ public class DbChattingRepository implements ChattingRepository{
                         .or(userChattingRoom.member.id.eq(member.getId())))
                 .fetch();
     }
+
+    @Override
+    public void removeUserCattingRoom(Member member, ChattingRoom room) {
+        if(member==null){
+            throw new IllegalArgumentException("회원이 입력되지 않았습니다");
+        }
+        if(room==null){
+            throw new IllegalArgumentException("채팅방이 입력되지 않았습니다");
+        }
+
+        //삭제
+        query
+                .delete(chattingRoom)
+                .where(userChattingRoom.member.id.eq(member.getId())
+                        .and(userChattingRoom.room.id.eq(room.getId())))
+                .execute();
+
+        //영속성컨텍스트 비우기
+        em.flush();
+        em.clear();
+    }
 }
