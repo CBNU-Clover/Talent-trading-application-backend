@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.backend.backend.mvc.domain.chat.chattingRoom.QChattingRoom.chattingRoom;
-import static com.backend.backend.mvc.domain.chat.message.QMessage.message;
+import static com.backend.backend.mvc.domain.chat.message.QChatMessage.chatMessage;
 
 @Repository
 public class DbChattingRepository implements ChattingRepository{
@@ -49,10 +49,10 @@ public class DbChattingRepository implements ChattingRepository{
     @Override
     public List<ChatMessage> findMessagesByRoomId(Long roomId) {
         return query
-                .select(message)
-                .from(message)
-                .where(message.room.id.eq(roomId))
-                .orderBy(message.id.desc()) //나중에 생긴 것일 수록 숫자가 큼
+                .select(chatMessage)
+                .from(chatMessage)
+                .where(chatMessage.room.id.eq(roomId))
+                .orderBy(chatMessage.id.desc()) //나중에 생긴 것일 수록 숫자가 큼
                 .fetch();
     }
 
