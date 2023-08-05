@@ -62,8 +62,7 @@ public class DbChattingRepository implements ChattingRepository{
         return query
                 .select(userChattingRoom.room)
                 .from(userChattingRoom)
-                .where(userChattingRoom.member.id.eq(member.getId())
-                        .or(userChattingRoom.member.id.eq(member.getId())))
+                .where(userChattingRoom.member.id.eq(member.getId()))
                 .fetch();
     }
 
