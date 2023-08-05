@@ -86,5 +86,19 @@ public class DbChattingRepository implements ChattingRepository{
         //영속성컨텍스트 비우기
         em.flush();
         em.clear();
+
+        removeEmptyChatRoom(room);
+    }
+
+    private void removeEmptyChatRoom(ChattingRoom room){
+        Long count = query
+                .select(userChattingRoom.count())
+                .from(userChattingRoom)
+                .where(userChattingRoom.room.id.eq(room.getId()))
+                .fetchFirst();
+
+        if(count==0){
+            em.remove(room);
+        }
     }
 }
