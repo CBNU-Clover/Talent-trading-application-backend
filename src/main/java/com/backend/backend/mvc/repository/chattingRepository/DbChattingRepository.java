@@ -1,6 +1,7 @@
 package com.backend.backend.mvc.repository.chattingRepository;
 
 import com.backend.backend.mvc.domain.chat.chattingRoom.ChattingRoom;
+import com.backend.backend.mvc.domain.chat.chattingRoom.UserChattingRoom;
 import com.backend.backend.mvc.domain.chat.message.ChatMessage;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
@@ -32,7 +33,11 @@ public class DbChattingRepository implements ChattingRepository{
 
     @Override
     public Long makeRoom( Post post, Member seller, Member buyer) {
-        return null;
+        ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
+        saveRoom(chattingRoom);
+        em.persist(new UserChattingRoom(seller, chattingRoom));
+        em.persist(new UserChattingRoom(buyer, chattingRoom));
+        return chattingRoom.getId();
     }
 
     @Override
