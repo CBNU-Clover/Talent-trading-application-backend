@@ -3,6 +3,7 @@ package com.backend.backend.mvc.repository.chattingRepository;
 import com.backend.backend.mvc.domain.chat.chattingRoom.ChattingRoom;
 import com.backend.backend.mvc.domain.chat.message.ChatMessage;
 import com.backend.backend.mvc.domain.member.Member;
+import com.backend.backend.mvc.domain.post.Post;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,11 @@ public class DbChattingRepository implements ChattingRepository{
     public Long saveRoom(ChattingRoom chattingRoom) {
         em.persist(chattingRoom);
         return chattingRoom.getId();
+    }
+
+    @Override
+    public Long makeRoom( Post post, Member seller, Member buyer) {
+        return null;
     }
 
     @Override
