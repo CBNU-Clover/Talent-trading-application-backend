@@ -10,11 +10,11 @@ import java.util.List;
 public interface ChattingRepository {
 
     /**
-     * 채팅방 저장
-     * @param chattingRoom 제작된 채팅방
-     * @return 채팅방 id
+     * 채팅방을 아이디로 찾음
+     * @param id 채팅방 아이디
+     * @return 채팅방
      */
-    Long saveRoom(ChattingRoom chattingRoom);
+    ChattingRoom findChattingRoomById(Long id);
 
     /**
      * 두 회원간의 해당 게시글에 대한 채팅방 제작

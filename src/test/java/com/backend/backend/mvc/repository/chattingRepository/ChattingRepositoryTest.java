@@ -44,8 +44,8 @@ class ChattingRepositoryTest extends TestSetting {
 
     @Test
     void findChattingRoomByMember() {
-        ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
-        chattingRepository.saveRoom(chattingRoom);
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
 
         List<ChattingRoom> sellerChat = chattingRepository.findChattingRoomByMember(seller);
         List<ChattingRoom> buyerChat = chattingRepository.findChattingRoomByMember(buyer);
@@ -56,8 +56,8 @@ class ChattingRepositoryTest extends TestSetting {
 
     @Test
     void findMessagesByRoomId() {
-        ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
-        chattingRepository.saveRoom(chattingRoom);
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
         ChatMessage chatMessage1 = new ChatMessage(chattingRoom, seller, "test", ChatMessageType.MESSAGE);
         chattingRepository.saveMessage(chatMessage1);
         ChatMessage chatMessage2 = new ChatMessage(chattingRoom, buyer, "test2", ChatMessageType.MESSAGE);

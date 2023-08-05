@@ -25,16 +25,16 @@ public class DbChattingRepository implements ChattingRepository{
         this.query = new JPAQueryFactory(em);
     }
 
+
     @Override
-    public Long saveRoom(ChattingRoom chattingRoom) {
-        em.persist(chattingRoom);
-        return chattingRoom.getId();
+    public ChattingRoom findChattingRoomById(Long id) {
+        return em.find(ChattingRoom.class,id);
     }
 
     @Override
     public Long makeRoom( Post post, Member seller, Member buyer) {
         ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
-        saveRoom(chattingRoom);
+        em.persist(chattingRoom);
         em.persist(new UserChattingRoom(seller, chattingRoom));
         em.persist(new UserChattingRoom(buyer, chattingRoom));
         return chattingRoom.getId();
