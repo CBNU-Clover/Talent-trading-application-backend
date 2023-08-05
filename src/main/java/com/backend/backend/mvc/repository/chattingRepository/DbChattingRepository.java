@@ -78,7 +78,7 @@ public class DbChattingRepository implements ChattingRepository{
 
         //삭제
         query
-                .delete(chattingRoom)
+                .delete(userChattingRoom)
                 .where(userChattingRoom.member.id.eq(member.getId())
                         .and(userChattingRoom.room.id.eq(room.getId())))
                 .execute();
