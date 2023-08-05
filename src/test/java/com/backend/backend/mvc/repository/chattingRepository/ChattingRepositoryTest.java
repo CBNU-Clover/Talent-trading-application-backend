@@ -44,8 +44,8 @@ class ChattingRepositoryTest extends TestSetting {
 
     @Test
     void findChattingRoomByMember() {
-        ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
-        chattingRepository.saveRoom(chattingRoom);
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
 
         List<ChattingRoom> sellerChat = chattingRepository.findChattingRoomByMember(seller);
         List<ChattingRoom> buyerChat = chattingRepository.findChattingRoomByMember(buyer);
@@ -56,8 +56,8 @@ class ChattingRepositoryTest extends TestSetting {
 
     @Test
     void findMessagesByRoomId() {
-        ChattingRoom chattingRoom = new ChattingRoom(post, seller, buyer);
-        chattingRepository.saveRoom(chattingRoom);
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
         ChatMessage chatMessage1 = new ChatMessage(chattingRoom, seller, "test", ChatMessageType.MESSAGE);
         chattingRepository.saveMessage(chatMessage1);
         ChatMessage chatMessage2 = new ChatMessage(chattingRoom, buyer, "test2", ChatMessageType.MESSAGE);
@@ -67,5 +67,36 @@ class ChattingRepositoryTest extends TestSetting {
 
         Assertions.assertThat(chatMessageList.get(0)).isSameAs(chatMessage2);
         Assertions.assertThat(chatMessageList.get(1)).isSameAs(chatMessage1);
+    }
+
+    @Test
+    void removeChattingRoom(){
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
+
+        chattingRepository.removeUserCattingRoom(seller, chattingRoom);
+
+        List<ChattingRoom> sellerChat = chattingRepository.findChattingRoomByMember(seller);
+        List<ChattingRoom> buyerChat = chattingRepository.findChattingRoomByMember(buyer);
+
+        Assertions.assertThat(sellerChat).doesNotContain(chattingRoom);
+        Assertions.assertThat(buyerChat).contains(chattingRoom);
+    }
+
+    @Test
+    void removeEmptyChattingRoom(){
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
+
+        chattingRepository.removeUserCattingRoom(seller, chattingRoom);
+        chattingRepository.removeUserCattingRoom(buyer, chattingRoom);
+
+        List<ChattingRoom> sellerChat = chattingRepository.findChattingRoomByMember(seller);
+        List<ChattingRoom> buyerChat = chattingRepository.findChattingRoomByMember(buyer);
+        ChattingRoom room = chattingRepository.findChattingRoomById(chattingRoomId);
+
+        Assertions.assertThat(sellerChat).doesNotContain(chattingRoom);
+        Assertions.assertThat(buyerChat).doesNotContain(chattingRoom);
+        Assertions.assertThat(room).isNull();
     }
 }
