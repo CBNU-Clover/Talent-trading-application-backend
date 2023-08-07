@@ -84,12 +84,26 @@ class ChattingRepositoryTest extends TestSetting {
     }
 
     @Test
+    void removeChattingRoom2(){
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
+
+        chattingRepository.removeUserCattingRoom(buyer, chattingRoom);
+
+        List<ChattingRoom> sellerChat = chattingRepository.findChattingRoomByMember(seller);
+        List<ChattingRoom> buyerChat = chattingRepository.findChattingRoomByMember(buyer);
+
+        Assertions.assertThat(sellerChat).contains(chattingRoom);
+        Assertions.assertThat(buyerChat).doesNotContain(chattingRoom);
+    }
+
+    @Test
     void removeEmptyChattingRoom(){
         Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
         ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
 
-        chattingRepository.removeUserCattingRoom(seller, chattingRoom);
         chattingRepository.removeUserCattingRoom(buyer, chattingRoom);
+        chattingRepository.removeUserCattingRoom(seller, chattingRoom);
 
         List<ChattingRoom> sellerChat = chattingRepository.findChattingRoomByMember(seller);
         List<ChattingRoom> buyerChat = chattingRepository.findChattingRoomByMember(buyer);
@@ -99,4 +113,5 @@ class ChattingRepositoryTest extends TestSetting {
         Assertions.assertThat(buyerChat).doesNotContain(chattingRoom);
         Assertions.assertThat(room).isNull();
     }
+
 }
