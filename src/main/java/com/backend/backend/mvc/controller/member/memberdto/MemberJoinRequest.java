@@ -13,7 +13,7 @@ public class MemberJoinRequest {
     private String name;
     private String passWord;
     private String phoneNumber;
-
     public MemberJoinRequest() {
+
     }
 }

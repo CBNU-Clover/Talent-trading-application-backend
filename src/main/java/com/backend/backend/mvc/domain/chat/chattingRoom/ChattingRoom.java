@@ -20,6 +20,7 @@ public class ChattingRoom {
     @GeneratedValue
     private Long id;
 
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)

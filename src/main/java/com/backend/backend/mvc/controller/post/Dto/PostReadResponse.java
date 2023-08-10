@@ -16,10 +16,4 @@ public class PostReadResponse {
         this.postName = post.getPostName().toString();
         this.content = post.getContent().toString();
     }
-
-    public PostReadResponse(Post post, Long viewCount) {
-        this.WriterNickname = post.getWriter().getNickname().toString();
-        this.postName = post.getPostName().toString();
-        this.content = post.getContent().toString();
-    }
 }
