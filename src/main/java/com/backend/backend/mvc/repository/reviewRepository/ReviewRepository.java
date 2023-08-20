@@ -28,6 +28,13 @@ public interface ReviewRepository {
     void deleteReviewById(Long id);
 
     /**
+     * post의 별점 평균 반환
+     * @param postId 게시글 id
+     * @return 리뷰 별점 평균
+     */
+    Double getReviewStarRatingAvg(Long postId);
+
+    /**
      * 해당 member가 작성한 리뷰 반환
      * @param member 작성자
      * @return

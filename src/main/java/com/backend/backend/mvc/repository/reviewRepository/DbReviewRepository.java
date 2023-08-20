@@ -40,6 +40,15 @@ public class DbReviewRepository implements ReviewRepository{
     }
 
     @Override
+    public Double getReviewStarRatingAvg(Long postId) {
+        return query
+                .select(review.starRating.rating.avg())
+                .from(review)
+                .where(review.post.id.eq(postId))
+                .fetchOne();
+    }
+
+    @Override
     public List<Review> findReviewsByMember(Member member) {
         return query
                 .select(review)
