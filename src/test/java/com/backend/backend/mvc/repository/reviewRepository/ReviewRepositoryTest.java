@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 
+import static com.backend.backend.mvc.domain.review.QReview.review;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
@@ -29,14 +30,20 @@ class ReviewRepositoryTest extends TestSetting {
     private PostRepository postRepository;
 
     Long memberId;
+    Long member2Id;
     Long postId;
+    Long post2Id;
     @BeforeEach
     void init(){
         Member member = Fixture.createMember("1");
         memberId = memberRepository.save(member);
+        Member member2 = Fixture.createMember("1");
+        member2Id = memberRepository.save(member2);
 
         Post post = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
         postId = postRepository.save(post);
+        Post post2 = Fixture.createPost(memberRepository.findMemberById(memberId), 0L);
+        post2Id = postRepository.save(post2);
     }
 
     @Test
@@ -91,5 +98,27 @@ class ReviewRepositoryTest extends TestSetting {
         org.junit.jupiter.api.Assertions.assertThrows(InvalidDataAccessApiUsageException.class, ()->{
             reviewRepository.deleteReviewById(reviewId);
         });
+    }
+
+    @Test
+    void getReviewStarRatingAvg(){
+        Long post1Rate1=3L;
+        Long post1Rate2=5L;
+        Long post2Rate1=1L;
+        Member member = memberRepository.findMemberById(memberId);
+        Post post = postRepository.findPostById(postId);
+        Member member2 = memberRepository.findMemberById(member2Id);
+        Post post2 = postRepository.findPostById(post2Id);
+        Review review1 = Fixture.createReview(member,post,post1Rate1);
+        reviewRepository.save(review1);
+        Review review2 = Fixture.createReview(member2,post,post1Rate2);
+        reviewRepository.save(review2);
+        Review review3 = Fixture.createReview(member,post2,post2Rate1);
+        reviewRepository.save(review3);
+
+        Assertions.assertThat(reviewRepository.getReviewStarRatingAvg(postId))
+                .isEqualTo((post1Rate1 + post1Rate2) / 2.0);
+        Assertions.assertThat(reviewRepository.getReviewStarRatingAvg(post2Id))
+                .isEqualTo((double)post2Rate1);
     }
 }

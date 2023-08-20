@@ -2,6 +2,7 @@ package com.backend.backend;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.domain.review.Review;
 
 public class Fixture {
 
@@ -30,6 +31,15 @@ public class Fixture {
                 .postName("testTest")
                 .content(",")
                 .price(price)
+                .build();
+    }
+
+    public static Review createReview(Member member,Post post,Long rate){
+        return Review.builder()
+                .writer(member)
+                .post(post)
+                .content(".")
+                .starRating(rate)
                 .build();
     }
 }
