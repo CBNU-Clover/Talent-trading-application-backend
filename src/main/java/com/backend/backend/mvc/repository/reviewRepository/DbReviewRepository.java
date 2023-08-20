@@ -41,7 +41,11 @@ public class DbReviewRepository implements ReviewRepository{
 
     @Override
     public Double getReviewStarRatingAvg(Long postId) {
-        return null;
+        return query
+                .select(review.starRating.rating.avg())
+                .from(review)
+                .where(review.post.id.eq(postId))
+                .fetchOne();
     }
 
     @Override
