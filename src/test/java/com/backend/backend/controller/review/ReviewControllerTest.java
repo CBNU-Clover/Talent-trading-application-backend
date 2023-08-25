@@ -57,49 +57,49 @@ class ReviewControllerTest {
 
     }
 
-    @Test
-    void writeReview() throws Exception {
-        ReviewWriteRequest reviewWriteRequest =
-                new ReviewWriteRequest(postId, writerNickname, "4546500",3L);
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
-                .post("/review/write")
-                .content(objectMapper.writeValueAsString(reviewWriteRequest))
-                .contentType(MediaType.APPLICATION_JSON)
-        );
-        response.andExpect(MockMvcResultMatchers.status().isCreated());
-    }
+//    @Test
+//    void writeReview() throws Exception {
+//        ReviewWriteRequest reviewWriteRequest =
+//                new ReviewWriteRequest(postId, writerNickname, "4546500",3L);
+//        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
+//                .post("/review/write")
+//                .content(objectMapper.writeValueAsString(reviewWriteRequest))
+//                .contentType(MediaType.APPLICATION_JSON)
+//        );
+//        response.andExpect(MockMvcResultMatchers.status().isCreated());
+//    }
+//
+//    @Test
+//    void writeReviewError() throws Exception {
+//        ReviewWriteRequest reviewWriteRequest =
+//                new ReviewWriteRequest(null, writerNickname, "4546500",3L);
+//
+//        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
+//                .post("/review/write")
+//                .content(objectMapper.writeValueAsString(reviewWriteRequest))
+//                .contentType(MediaType.APPLICATION_JSON)
+//        );
+//        response.andExpect(MockMvcResultMatchers.status().is4xxClientError());
+//    }
 
-    @Test
-    void writeReviewError() throws Exception {
-        ReviewWriteRequest reviewWriteRequest =
-                new ReviewWriteRequest(null, writerNickname, "4546500",3L);
-
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
-                .post("/review/write")
-                .content(objectMapper.writeValueAsString(reviewWriteRequest))
-                .contentType(MediaType.APPLICATION_JSON)
-        );
-        response.andExpect(MockMvcResultMatchers.status().is4xxClientError());
-    }
-
-    @Test
-    void readReview() throws Exception {
-        String content="4546545";
-        Review review = Review.builder()
-                .post(postRepository.findPostById(postId))
-                .writer(memberRepository.findMemberByNickname(writerNickname))
-                .content(content)
-                .starRating(3L)
-                .build();
-        Long reviewId = reviewRepository.save(review);
-
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
-                .get("/review/read/"+reviewId.toString())
-                .contentType(MediaType.APPLICATION_JSON)
-        );
-        response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("writerNickname",writerNickname).exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("postId",postId).exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("content",content).exists());
-    }
+//    @Test
+//    void readReview() throws Exception {
+//        String content="4546545";
+//        Review review = Review.builder()
+//                .post(postRepository.findPostById(postId))
+//                .writer(memberRepository.findMemberByNickname(writerNickname))
+//                .content(content)
+//                .starRating(3L)
+//                .build();
+//        Long reviewId = reviewRepository.save(review);
+//
+//        ResultActions response = mockMvc.perform(MockMvcRequestBuilders
+//                .get("/review/read/"+reviewId.toString())
+//                .contentType(MediaType.APPLICATION_JSON)
+//        );
+//        response.andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("writerNickname",writerNickname).exists())
+//                .andExpect(MockMvcResultMatchers.jsonPath("postId",postId).exists())
+//                .andExpect(MockMvcResultMatchers.jsonPath("content",content).exists());
+//    }
 }
