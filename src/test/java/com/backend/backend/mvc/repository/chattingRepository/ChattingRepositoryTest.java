@@ -114,4 +114,25 @@ class ChattingRepositoryTest extends TestSetting {
         Assertions.assertThat(room).isNull();
     }
 
+    @Test
+    void removeChattingRoomWithMessage(){
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
+        ChatMessage chatMessage1 = new ChatMessage(chattingRoom, seller, "test", ChatMessageType.MESSAGE);
+        chattingRepository.saveMessage(chatMessage1);
+        ChatMessage chatMessage2 = new ChatMessage(chattingRoom, buyer, "test2", ChatMessageType.MESSAGE);
+        chattingRepository.saveMessage(chatMessage2);
+
+        chattingRepository.removeUserCattingRoom(buyer, chattingRoom);
+        chattingRepository.removeUserCattingRoom(seller, chattingRoom);
+
+        List<ChattingRoom> sellerChat = chattingRepository.findChattingRoomByMember(seller);
+        List<ChattingRoom> buyerChat = chattingRepository.findChattingRoomByMember(buyer);
+        ChattingRoom room = chattingRepository.findChattingRoomById(chattingRoomId);
+
+        Assertions.assertThat(sellerChat).doesNotContain(chattingRoom);
+        Assertions.assertThat(buyerChat).doesNotContain(chattingRoom);
+        Assertions.assertThat(room).isNull();
+    }
+
 }
