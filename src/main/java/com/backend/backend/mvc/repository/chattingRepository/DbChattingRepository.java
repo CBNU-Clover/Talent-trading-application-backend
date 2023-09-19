@@ -75,6 +75,8 @@ public class DbChattingRepository implements ChattingRepository{
             throw new IllegalArgumentException("채팅방이 입력되지 않았습니다");
         }
 
+
+
         //삭제
         query
                 .delete(userChattingRoom)
