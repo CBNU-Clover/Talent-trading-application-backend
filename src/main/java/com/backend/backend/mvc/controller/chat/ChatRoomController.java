@@ -48,8 +48,6 @@ public class ChatRoomController {
         TokenParsing tokenParsing=new TokenParsing();
         String result= tokenParsing.ExtractNickname(request);
         return chatService.Rooms(result);
-        // 채팅방 리스트를 클라이언트쪽에 줘서 화면에 표시하게 한다.
-        //클라이언트에 줄때는 채팅방 제목 , 작성자 , buyer 만 건네줄듯?
     }
     
 

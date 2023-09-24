@@ -14,6 +14,7 @@ public class ChatMessageDTO {
     private String sender;
     private Long roomId;
     private String content;
+    private String date;
     public void setSender(String sender)
     {
         this.sender=sender;
