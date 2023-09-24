@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
-import static com.backend.backend.mvc.domain.chat.chattingRoom.QChattingRoom.chattingRoom;
 import static com.backend.backend.mvc.domain.chat.chattingRoom.QUserChattingRoom.userChattingRoom;
 import static com.backend.backend.mvc.domain.chat.message.QChatMessage.chatMessage;
 
@@ -53,7 +51,7 @@ public class DbChattingRepository implements ChattingRepository{
                 .select(chatMessage)
                 .from(chatMessage)
                 .where(chatMessage.room.id.eq(roomId))
-                .orderBy(chatMessage.id.desc()) //나중에 생긴 것일 수록 숫자가 큼
+                .orderBy(chatMessage.id.asc()) //나중에 생긴 것일 수록 숫자가 큼
                 .fetch();
     }
 

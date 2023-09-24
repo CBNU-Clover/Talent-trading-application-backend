@@ -54,4 +54,8 @@ public class ChatMessage {
         this.content = MessageContent.from(content);
         this.messageType = chatMessageType;
     }
+
+
+    public ChatMessage(ChattingRoom chattingRoomById, Member memberByNickname, String data, String type) {
+    }
 }

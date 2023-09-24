@@ -65,8 +65,8 @@ class ChattingRepositoryTest extends TestSetting {
 
         List<ChatMessage> chatMessageList = chattingRepository.findMessagesByRoomId(chattingRoom.getId());
 
-        Assertions.assertThat(chatMessageList.get(0)).isSameAs(chatMessage2);
-        Assertions.assertThat(chatMessageList.get(1)).isSameAs(chatMessage1);
+        Assertions.assertThat(chatMessageList.get(0)).isSameAs(chatMessage1);
+        Assertions.assertThat(chatMessageList.get(1)).isSameAs(chatMessage2);
     }
 
     @Test

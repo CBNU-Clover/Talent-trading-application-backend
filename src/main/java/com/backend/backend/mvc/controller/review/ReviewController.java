@@ -1,11 +1,8 @@
 package com.backend.backend.mvc.controller.review;
 
 import com.backend.backend.common.DataProcessing.TokenParsing;
-import com.backend.backend.mvc.controller.post.Dto.PostGetAllBoard;
 import com.backend.backend.mvc.controller.review.dto.ReviewReadResponse;
 import com.backend.backend.mvc.controller.review.dto.ReviewWriteRequest;
-import com.backend.backend.mvc.domain.member.Member;
-import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.domain.review.Review;
 import com.backend.backend.mvc.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

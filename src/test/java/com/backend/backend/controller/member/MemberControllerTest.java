@@ -6,11 +6,8 @@ import com.backend.backend.mvc.controller.member.memberdto.Check_nickname;
 import com.backend.backend.mvc.controller.member.memberdto.MemberJoinRequest;
 import com.backend.backend.mvc.controller.member.memberdto.MemberLoginRequest;
 import com.backend.backend.mvc.domain.member.Member;
-import com.backend.backend.mvc.repository.memberRepository.DbMemberRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
-import com.backend.backend.mvc.repository.pointDetailRepository.PointDetailRepository;
 import com.backend.backend.mvc.service.MemberService;
-import com.backend.backend.mvc.service.PointService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,10 +20,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)

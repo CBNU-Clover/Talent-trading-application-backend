@@ -1,23 +1,20 @@
 package com.backend.backend.mvc.service.chat;
 
 import com.backend.backend.mvc.controller.chat.chatDTO.ChatHistoryDTO;
-import com.backend.backend.mvc.controller.chat.chatDTO.ChattingRoomDTO;
+import com.backend.backend.mvc.controller.chat.chatDTO.ChatMessageDTO;
 import com.backend.backend.mvc.controller.chat.chatDTO.ChattingRoomListDTO;
 import com.backend.backend.mvc.domain.chat.chattingRoom.ChattingRoom;
 import com.backend.backend.mvc.domain.chat.message.ChatMessage;
+import com.backend.backend.mvc.domain.chat.message.values.ChatMessageType;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.chattingRepository.ChattingRepository;
-import com.backend.backend.mvc.repository.chattingRepository.DbChattingRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service
@@ -55,10 +52,30 @@ public class ChatService {
     public List<ChatHistoryDTO> chat_history(Long roomId)
     {
         List<ChatMessage> messages=chattingRepository.findMessagesByRoomId(roomId);
-        List<ChatHistoryDTO> chatHistoryDTOS = null;
+        List<ChatHistoryDTO> chatHistoryDTOS = new ArrayList<>();
         for(int i=0;i<messages.size();i++)
         {
-            chatHistoryDTOS.add(i,new ChatHistoryDTO(messages.get(i).getId(),messages.get(i).getSender().getNickname().toString(),messages.get(i).getContent().getContent()));
+            String dateTimeString = messages.get(i).getDate().toString().replace("T", " ");
+            String[] dateTimeParts = dateTimeString.split(" ");
+            String[] timeParts = dateTimeParts[1].split(":");
+            int hour = Integer.parseInt(timeParts[0]);
+            int minute = Integer.parseInt(timeParts[1]);
+            String period;
+            if (hour < 12) {
+                period = "오전";
+            } else {
+                period = "오후";
+                if (hour > 12) {
+                    hour -= 12; // 오후 시간을 12시간 형식으로 변경
+                }
+            }
+            String date=period + " " + hour + "시 " + minute + "분";
+            chatHistoryDTOS.add(i,new ChatHistoryDTO(
+                    messages.get(i).getId(),
+                    messages.get(i).getSender().getNickname().toString(),
+                    messages.get(i).getContent().getContent(),
+                    date));
+
         }
         return chatHistoryDTOS;
     }
@@ -69,5 +86,16 @@ public class ChatService {
         Member member=memberRepository.findMemberByNickname(user);
         ChattingRoom chattingRoom=chattingRepository.findChattingRoomById(roomId);
         chattingRepository.removeUserCattingRoom(member,chattingRoom);
+    }
+
+    //채팅 저장
+    public void save_chat(ChatMessageDTO message)
+    {
+        ChatMessage chatMessage=new ChatMessage(
+                chattingRepository.findChattingRoomById(message.getRoomId()),
+                memberRepository.findMemberByNickname(message.getSender()),
+                message.getContent(),
+                ChatMessageType.MESSAGE);
+        chattingRepository.saveMessage(chatMessage);
     }
 }

@@ -54,7 +54,7 @@ class PostControllerTest {
 
     @Test
     void writePost() throws Exception {
-        PostWriteRequest postWriteRequest = new PostWriteRequest(writerNickname,"456","45616");
+        PostWriteRequest = new PostWriteRequest(writerNickname,"456","45616");
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders
                 .post("/post/write")
                 .content(objectMapper.writeValueAsString(postWriteRequest))

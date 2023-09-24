@@ -17,11 +17,11 @@ public class Fixture {
     }
     public static Member createMember2(){
         return Member.builder()
-                .name("홀란드")
-                .nickname("striker")
-                .password("7777")
-                .email("holand7777@naver.com")
-                .phoneNumber("01077777777")
+                .name("신효민")
+                .nickname("shinhyo")
+                .password("5555")
+                .email("shinhyo5555@naver.com")
+                .phoneNumber("01055555555")
                 .build();
     }
 

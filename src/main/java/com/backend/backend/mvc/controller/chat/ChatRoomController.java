@@ -5,15 +5,12 @@ import com.backend.backend.mvc.controller.chat.chatDTO.ChatHistoryDTO;
 import com.backend.backend.mvc.controller.chat.chatDTO.ChattingRoomDTO;
 import com.backend.backend.mvc.controller.chat.chatDTO.ChattingRoomListDTO;
 import com.backend.backend.mvc.controller.chat.chatDTO.ChattingRoomRemoveDTO;
-import com.backend.backend.mvc.domain.chat.chattingRoom.ChattingRoom;
-import com.backend.backend.mvc.domain.chat.message.ChatMessage;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.service.chat.ChatService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,8 +54,8 @@ public class ChatRoomController {
     
 
     //채팅 기록 가져오기
-    @PostMapping("/chat_history")
-    public List<ChatHistoryDTO> chat_history(Long roomId)
+    @GetMapping("/chat_history/{roomId}")
+    public List<ChatHistoryDTO> chat_history(@PathVariable Long roomId)
     {
 
         return chatService.chat_history(roomId);
@@ -73,4 +70,6 @@ public class ChatRoomController {
         String result= tokenParsing.ExtractNickname(request);
         chatService.delete_room(result, chattingRoomRemoveDTO.getRoomId());
     }
+
+    //
 }

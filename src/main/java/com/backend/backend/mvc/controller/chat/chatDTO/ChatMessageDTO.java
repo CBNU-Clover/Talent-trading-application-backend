@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class ChatMessageDTO {
     private String type;
     private String sender;
-    private String roomId;
-    private Object data;
+    private Long roomId;
+    private String content;
     public void setSender(String sender)
     {
         this.sender=sender;
