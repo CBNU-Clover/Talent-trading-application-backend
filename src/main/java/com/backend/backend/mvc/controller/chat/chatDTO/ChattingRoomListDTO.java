@@ -11,6 +11,9 @@ import lombok.Setter;
 public class ChattingRoomListDTO {
     private String seller;
     private Long roomId;
+    private String postname;
+    private String buyer;
+    private String post_price;
     ChattingRoomListDTO()
     {
 

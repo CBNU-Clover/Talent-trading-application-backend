@@ -43,7 +43,7 @@ public class ChatService {
 
         for(int i=0 ; i<chattingRooms.size();i++)
         {
-            chattingRoomListDTOList.add(i,new ChattingRoomListDTO(chattingRooms.get(i).getSeller().getNickname().toString(),chattingRooms.get(i).getId()));
+            chattingRoomListDTOList.add(i,new ChattingRoomListDTO(chattingRooms.get(i).getSeller().getNickname().toString(),chattingRooms.get(i).getId(),chattingRooms.get(i).getPost().getPostName().toString(),chattingRooms.get(i).getBuyer().getNickname().toString(),chattingRooms.get(i).getPost().getPrice().toString()));
         }
         return  chattingRoomListDTOList;
     }
