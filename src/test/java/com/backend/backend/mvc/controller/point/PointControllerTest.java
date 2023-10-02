@@ -1,4 +1,4 @@
-package com.backend.backend.controller.point;
+package com.backend.backend.mvc.controller.point;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.common.DataProcessing.TokenParsing;

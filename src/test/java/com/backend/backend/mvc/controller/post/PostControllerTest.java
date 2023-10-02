@@ -1,4 +1,4 @@
-package com.backend.backend.controller.post;
+package com.backend.backend.mvc.controller.post;
 
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;

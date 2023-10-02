@@ -1,4 +1,4 @@
-package com.backend.backend.controller.member;
+package com.backend.backend.mvc.controller.member;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.mvc.controller.member.memberdto.Check_Email;

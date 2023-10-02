@@ -1,4 +1,4 @@
-package com.backend.backend.controller.review;
+package com.backend.backend.mvc.controller.review;
 
 import com.backend.backend.Fixture;
 import com.backend.backend.mvc.controller.review.dto.ReviewWriteRequest;
