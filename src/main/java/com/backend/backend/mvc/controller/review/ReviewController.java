@@ -96,6 +96,7 @@ public class ReviewController {
     @GetMapping("/getPostAvg/{postId}")
     public Double getPostAvg(@PathVariable("postId") Long postId)
     {
+
         return reviewService.getReviewAvg(postId);
     }
 }

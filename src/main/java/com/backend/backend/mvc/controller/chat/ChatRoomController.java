@@ -69,5 +69,5 @@ public class ChatRoomController {
         chatService.delete_room(result, chattingRoomRemoveDTO.getRoomId());
     }
 
-    //
+    //채팅방 있는지 확인
 }

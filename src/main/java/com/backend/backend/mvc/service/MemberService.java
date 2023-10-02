@@ -43,21 +43,22 @@ public class MemberService {
     {
         //membernickname없음
         Member selectedmember= dbMemberRepository.findMemberByNickname(nickname);
+        if(selectedmember==null)
+        {
+            return "!회원 정보가 없습니다!";
+        }
         // exception 필요
 
         //memberpassWord틀림
         if(!passWord.equals(selectedmember.getPassword().toString()))
         {
-            return "로그인이 실패했습니다!!";
+            return "!비밀번호가 틀립니다!";
         }
-        else {
+        else
+        {
             String token= JwtTokenUtil.createToken(selectedmember.getNickname().toString(),key,expireTimeMs);
-
             return token;
         }
-
-        //앞에서 Exception 안났으면 토큰 발행
-
     }
 
     public int check_Nickname(String nickname)
