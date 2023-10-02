@@ -47,6 +47,14 @@ public interface ChattingRepository {
     List<ChattingRoom> findChattingRoomByMember(Member member);
 
     /**
+     * 해당 post와 member의 채팅방을 반환
+     * @param post 채팅방을 찾을 post
+     * @param member 채팅방에 소속되어 있는 member
+     * @return 해당 post가 가진 채팅방 중 member가 포함되어 있는 채팅방
+     */
+     List<ChattingRoom> findChattingRoomsByPost(Post post, Member member);
+
+    /**
      * 해당 유저의 채팅방 리스트에서 해당 채팅방이 뜨지 않도록 삭제
      * @param member 채팅방을 삭제할 유저
      * @param room 삭제할 채팅방
