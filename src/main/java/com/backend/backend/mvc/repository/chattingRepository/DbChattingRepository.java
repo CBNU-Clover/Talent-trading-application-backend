@@ -65,6 +65,16 @@ public class DbChattingRepository implements ChattingRepository{
     }
 
     @Override
+    public List<ChattingRoom> findChattingRoomsByPost(Post post, Member member) {
+        return query
+                .select(userChattingRoom.room)
+                .from(userChattingRoom)
+                .where(userChattingRoom.member.id.eq(member.getId())
+                        .and(userChattingRoom.room.post.id.eq(post.getId())))
+                .fetch();
+    }
+
+    @Override
     public void removeUserCattingRoom(Member member, ChattingRoom room) {
         if(member==null){
             throw new IllegalArgumentException("회원이 입력되지 않았습니다");
