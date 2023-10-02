@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import static com.backend.backend.mvc.domain.chat.chattingRoom.QUserChattingRoom.userChattingRoom;
 import static com.backend.backend.mvc.domain.chat.message.QChatMessage.chatMessage;
+import static com.backend.backend.mvc.domain.member.QMember.member;
 
 @Repository
 public class DbChattingRepository implements ChattingRepository{
@@ -76,7 +77,13 @@ public class DbChattingRepository implements ChattingRepository{
 
     @Override
     public Boolean hasChatRoomForMember(Post post, Member member) {
-        return null;
+        Integer fetchOne = query
+                .selectOne()
+                .from(userChattingRoom)
+                .where(userChattingRoom.room.post.id.eq(post.getId())
+                        .and(userChattingRoom.member.id.eq(member.getId())))
+                .fetchFirst();
+        return fetchOne!=null;
     }
 
     @Override
