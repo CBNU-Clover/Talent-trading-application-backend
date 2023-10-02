@@ -55,6 +55,14 @@ public interface ChattingRepository {
      List<ChattingRoom> findChattingRoomsByPost(Post post, Member member);
 
     /**
+     * member가 해당 post에 채팅방을 가지고 있는지 여부를 반환
+     * @param post 게시글
+     * @param member 회원
+     * @return 소유 여부
+     */
+     Boolean hasChatRoomForMember(Post post, Member member);
+
+    /**
      * 해당 유저의 채팅방 리스트에서 해당 채팅방이 뜨지 않도록 삭제
      * @param member 채팅방을 삭제할 유저
      * @param room 삭제할 채팅방
