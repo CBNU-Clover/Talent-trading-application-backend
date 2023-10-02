@@ -23,7 +23,7 @@ public interface ReviewRepository {
 
     /**
      * id를 이용해서 Review 객체 삭제
-     * @param id
+     * @param id 리뷰의 id
      */
     void deleteReviewById(Long id);
 
