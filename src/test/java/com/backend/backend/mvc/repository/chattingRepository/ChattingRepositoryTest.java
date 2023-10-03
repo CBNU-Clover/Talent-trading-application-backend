@@ -120,6 +120,41 @@ class ChattingRepositoryTest extends TestSetting {
         Assertions.assertThat(postListSell).doesNotContain(chattingRoom);
     }
 
+    @Test
+    void hasChatRoomForMemberWithRemove() {
+        Member buyer2 = Fixture.createMember("10");
+        memberRepository.save(buyer2);
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
+        Long chattingRoomId2 = chattingRepository.makeRoom(post, seller, buyer2);
+        ChattingRoom chattingRoom2 = chattingRepository.findChattingRoomById(chattingRoomId2);
+
+        chattingRepository.removeUserCattingRoom(buyer2, chattingRoom2);
+
+        Boolean b1 = chattingRepository.hasChatRoomForMember(post, seller);
+        Boolean b2 = chattingRepository.hasChatRoomForMember(post, buyer);
+        Boolean b3 = chattingRepository.hasChatRoomForMember(post, buyer2);
+
+        Assertions.assertThat(b1).isTrue();
+        Assertions.assertThat(b2).isTrue();
+        Assertions.assertThat(b3).isFalse();
+    }
+
+    @Test
+    void hasChatRoomForMember() {
+        Long chattingRoomId = chattingRepository.makeRoom(post, seller, buyer);
+        ChattingRoom chattingRoom = chattingRepository.findChattingRoomById(chattingRoomId);
+        ChatMessage chatMessage1 = new ChatMessage(chattingRoom, seller, "test", ChatMessageType.MESSAGE);
+        chattingRepository.saveMessage(chatMessage1);
+        ChatMessage chatMessage2 = new ChatMessage(chattingRoom, buyer, "test2", ChatMessageType.MESSAGE);
+        chattingRepository.saveMessage(chatMessage2);
+
+        Boolean b1 = chattingRepository.hasChatRoomForMember(post, seller);
+        Boolean b2 = chattingRepository.hasChatRoomForMember(post, buyer);
+
+        Assertions.assertThat(b1).isTrue();
+        Assertions.assertThat(b2).isTrue();
+    }
 
 
     @Test
