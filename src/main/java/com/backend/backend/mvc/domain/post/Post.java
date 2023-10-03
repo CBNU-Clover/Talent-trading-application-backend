@@ -46,7 +46,6 @@ public class Post {
     private PostCategory category;
 
     @CreatedDate
-    @LastModifiedDate
     private LocalDateTime date;
 
     @Embedded
