@@ -70,4 +70,11 @@ public class ChatRoomController {
     }
 
     //채팅방 있는지 확인
+    @GetMapping("/confirm_chattingroom/{postId}")
+    public int confirmChattingRoom(HttpServletRequest request,@PathVariable Long postId)
+    {
+        TokenParsing tokenParsing=new TokenParsing();
+        String result= tokenParsing.ExtractNickname(request);
+        return chatService.confirmChattingRoom(result,postId);
+    }
 }

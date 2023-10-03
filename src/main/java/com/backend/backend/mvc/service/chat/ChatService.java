@@ -10,9 +10,9 @@ import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.chattingRepository.ChattingRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
+import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,7 @@ public class ChatService {
 
 
     private final ChattingRepository chattingRepository;
+    private final PostRepository postRepository;
     private final MemberRepository memberRepository;
    //채팅방 생성
     public Long create_room(Post post , Member seller , Member buyer)
@@ -51,6 +52,7 @@ public class ChatService {
     //채팅 기록 가져오기
     public List<ChatHistoryDTO> chat_history(Long roomId)
     {
+        String date;
         List<ChatMessage> messages=chattingRepository.findMessagesByRoomId(roomId);
         List<ChatHistoryDTO> chatHistoryDTOS = new ArrayList<>();
         for(int i=0;i<messages.size();i++)
@@ -69,7 +71,15 @@ public class ChatService {
                     hour -= 12; // 오후 시간을 12시간 형식으로 변경
                 }
             }
-            String date=period + " " + hour + "시 " + minute + "분";
+            if(minute<10)
+            {
+                date=period + " " + hour+":0"+minute;
+            }
+            else
+            {
+                date=period + " " + hour+":"+minute;
+            }
+
             chatHistoryDTOS.add(i,new ChatHistoryDTO(
                     messages.get(i).getId(),
                     messages.get(i).getSender().getNickname().toString(),
@@ -97,5 +107,20 @@ public class ChatService {
                 message.getContent(),
                 ChatMessageType.MESSAGE);
         chattingRepository.saveMessage(chatMessage);
+    }
+
+    //게시물당 한개의 채팅방을 가질수 있도록 확인하기
+    public int confirmChattingRoom(String nickname,Long postId)
+    {
+        Post post=postRepository.findPostById(postId);
+        Member member=memberRepository.findMemberByNickname(nickname);
+        if(chattingRepository.hasChatRoomForMember(post,member)==true)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
