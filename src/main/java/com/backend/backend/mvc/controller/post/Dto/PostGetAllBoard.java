@@ -15,12 +15,14 @@ public class PostGetAllBoard {
     private Long price;
 
     private String date;
-    public PostGetAllBoard( Long id,String postName, String content,Long price,String date,String writer_nickname) {
+    private Long my_review_size;
+    public PostGetAllBoard( Long id,String postName, String content,Long price,String date,String writer_nickname,Long my_review_size) {
         this.id=id;
         this.postName = postName;
         this.content = content;
         this.price=price;
         this.date=date;
         this.writer_nickname=writer_nickname;
+        this.my_review_size=my_review_size;
     }
 }

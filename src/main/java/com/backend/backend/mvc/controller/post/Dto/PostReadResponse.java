@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.controller.post.Dto;
 
+import com.backend.backend.mvc.controller.post.changedate.ChangeDate;
 import com.backend.backend.mvc.domain.post.Post;
 import lombok.Data;
 
@@ -21,6 +22,6 @@ public class PostReadResponse {
         this.postName = post.getPostName().toString();
         this.content = post.getContent().toString();
         this.price=post.getPrice().getAmount();
-        this.date=post.getDate().toString().replace("T"," ");
+        this.date= ChangeDate.formatTimeString(post.getDate());
     }
 }
