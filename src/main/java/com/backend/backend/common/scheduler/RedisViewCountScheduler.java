@@ -27,9 +27,9 @@ public class RedisViewCountScheduler {
     private final PopularPostRepository popularPostRepository;
 
     /**
-     * 1시간 마다 작동
+     * 1분 마다 작동
      */
-    @Scheduled(initialDelay = 3600000, fixedDelay = 3600000)
+    @Scheduled(initialDelay = 60000, fixedDelay = 60000)
     public void updateVisitorData() {
         Set<String> keys = redisTemplate.keys(RedisKey.PostViewCount + "_*");
         //최소힙
