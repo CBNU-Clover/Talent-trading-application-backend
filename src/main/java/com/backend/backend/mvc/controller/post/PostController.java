@@ -2,6 +2,7 @@ package com.backend.backend.mvc.controller.post;
 
 import com.backend.backend.common.DataProcessing.TokenParsing;
 import com.backend.backend.mvc.controller.post.Dto.*;
+import com.backend.backend.mvc.controller.post.changedate.ChangeDate;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.mvc.repository.postRepository.PostSearch;
 import com.backend.backend.mvc.service.PostService;
@@ -109,7 +110,7 @@ public class PostController {
                     searchboardlist.get(num).getWriter().getNickname().toString(),
                     searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
                     searchboardlist.get(num).getPrice().getAmount(),
-                    searchboardlist.get(num).getDate().toString().replace("T"," ")));
+                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate())));
         }
 
         return ResultBoard;
