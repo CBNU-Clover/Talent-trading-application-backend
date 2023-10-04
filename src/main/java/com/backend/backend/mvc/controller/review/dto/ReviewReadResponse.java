@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.controller.review.dto;
 
+import com.backend.backend.mvc.controller.post.changedate.ChangeDate;
 import com.backend.backend.mvc.domain.member.values.Nickname;
 import com.backend.backend.mvc.domain.review.Review;
 import lombok.Data;
@@ -24,6 +25,6 @@ public class ReviewReadResponse {
         this.writerNickname = review.getWriter().getNickname().toString();
         this.content = review.getContent();
         this.rating = review.getStarRating().getRating();
-        this.date = review.getDate().toString().replace("T", " ");
+        this.date = ChangeDate.formatTimeString(review.getDate());
     }
 }

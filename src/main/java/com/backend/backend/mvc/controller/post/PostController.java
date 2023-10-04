@@ -2,9 +2,13 @@ package com.backend.backend.mvc.controller.post;
 
 import com.backend.backend.common.DataProcessing.TokenParsing;
 import com.backend.backend.mvc.controller.post.Dto.*;
+import com.backend.backend.mvc.controller.post.changedate.ChangeDate;
 import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.repository.postRepository.PostSearch;
+import com.backend.backend.mvc.repository.reviewRepository.ReviewRepository;
 import com.backend.backend.mvc.service.PostService;
+import com.backend.backend.mvc.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +26,8 @@ public class PostController {
 
     private final PostService postService;
 
+    private final PostRepository postRepository;
+    private final ReviewRepository reviewRepository;
 
 
 
@@ -83,7 +89,7 @@ public class PostController {
             {
                 ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),
                         boardlist.get(num).getPostName().toString(),boardlist.get(num).getContent().toString(),
-                        boardlist.get(num).getPrice().getAmount(),boardlist.get(num).getDate().toString().replace("T"," "),result));
+                        boardlist.get(num).getPrice().getAmount(),ChangeDate.formatTimeString(boardlist.get(num).getDate()),result,(long)reviewRepository.findReviewsByPost(postRepository.findPostById(boardlist.get(num).getId())).size()));
             }
 
         return ResultBoard;
@@ -103,13 +109,16 @@ public class PostController {
         List<Post> searchboardlist;
         searchboardlist=postService.searchPost(postSearch);
 
+
+
         for(int num=0 ; num<searchboardlist.size();num++)
         {
+
             ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),
                     searchboardlist.get(num).getWriter().getNickname().toString(),
                     searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
                     searchboardlist.get(num).getPrice().getAmount(),
-                    searchboardlist.get(num).getDate().toString().replace("T"," ")));
+                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size()));
         }
 
         return ResultBoard;
