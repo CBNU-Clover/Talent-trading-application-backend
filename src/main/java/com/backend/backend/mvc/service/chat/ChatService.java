@@ -73,11 +73,23 @@ public class ChatService {
             }
             if(minute<10)
             {
-                date=period + " " + hour+":0"+minute;
+                if(hour==0)
+                {
+                    date=period + " 0" + hour+":0"+minute;
+                }
+                else {
+                    date=period + " " + hour+":0"+minute;
+                }
             }
             else
             {
-                date=period + " " + hour+":"+minute;
+                if(hour==0)
+                {
+                    date=period + " 0" + hour+":0"+minute;
+                }
+                else {
+                    date=period + " " + hour+":"+minute;
+                }
             }
 
             chatHistoryDTOS.add(i,new ChatHistoryDTO(
