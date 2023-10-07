@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.domain.review;
 
+import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.common.exception.NotExistException;
@@ -44,8 +45,11 @@ public class Review {
     @LastModifiedDate
     private LocalDateTime date;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    private Image image;
+
     @Builder
-    public Review(Post post, Member writer, String content, Long starRating) {
+    public Review(Post post, Member writer, String content, Long starRating, Image image) {
         if(post==null){
             throw new NotExistException("해당되는 게시글이 없습니다");
         }
@@ -56,5 +60,6 @@ public class Review {
         this.writer = writer;
         this.content = content;
         this.starRating = StarRating.from(starRating);
+        this.image = image;
     }
 }
