@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.domain.post;
 
+import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
 import com.backend.backend.mvc.domain.post.values.*;
@@ -51,9 +52,12 @@ public class Post {
     @Embedded
     private ViewCount viewCount;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "image_id")
+    private Image image;
 
     @Builder
-    public Post(Member writer, String postName, String content, Long price, PostCategory category) {
+    public Post(Member writer, String postName, String content, Long price, PostCategory category, Image image) {
         if(writer==null){
             throw new NotExistException("작성자가 없습니다");
         }
@@ -68,6 +72,7 @@ public class Post {
         this.price = Price.from(price);
         this.viewCount = ViewCount.from();
         this.category = category;
+        this.image = image;
     }
 
     public void setPostName(String  postName) {
