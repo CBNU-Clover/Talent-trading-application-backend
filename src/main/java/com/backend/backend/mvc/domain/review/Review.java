@@ -45,7 +45,8 @@ public class Review {
     @LastModifiedDate
     private LocalDateTime date;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "image_id")
     private Image image;
 
     @Builder
