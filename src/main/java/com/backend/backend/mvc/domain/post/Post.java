@@ -52,7 +52,8 @@ public class Post {
     @Embedded
     private ViewCount viewCount;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "image_id")
     private Image image;
 
     @Builder
