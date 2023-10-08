@@ -19,11 +19,14 @@ public class PostWriteRequest {
 
     private Long price;
 
-    public PostWriteRequest(String writerNickname, String postName, String content,Long price) {
+    private byte[] image;
+
+    public PostWriteRequest(String writerNickname, String postName, String content,Long price,byte[] image) {
         this.writerNickname = writerNickname;
         this.postName = postName;
         this.content = content;
         this.price=price;
+        this.image=image;
     }
 
     public PostWriteRequest() {

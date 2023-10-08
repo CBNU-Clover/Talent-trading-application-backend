@@ -3,7 +3,9 @@ package com.backend.backend.mvc.controller.post;
 import com.backend.backend.common.DataProcessing.TokenParsing;
 import com.backend.backend.mvc.controller.post.Dto.*;
 import com.backend.backend.mvc.controller.post.changedate.ChangeDate;
+import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.post.Post;
+import com.backend.backend.mvc.repository.imageRepository.ImageRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.repository.postRepository.PostSearch;
 import com.backend.backend.mvc.repository.reviewRepository.ReviewRepository;
@@ -28,6 +30,7 @@ public class PostController {
 
     private final PostRepository postRepository;
     private final ReviewRepository reviewRepository;
+    private final ImageRepository imageRepository;
 
 
 
@@ -41,6 +44,7 @@ public class PostController {
         TokenParsing tokenParsing=new TokenParsing();
         String result= tokenParsing.ExtractNickname(request);
         postWriteRequest.setWriterNickname(result);
+        imageRepository.save(new Image(postWriteRequest.getImage()));
         Long postId = postService.writePost(postWriteRequest);
         return new ResponseEntity<>(postId,HttpStatus.CREATED);
     }
@@ -118,7 +122,7 @@ public class PostController {
                     searchboardlist.get(num).getWriter().getNickname().toString(),
                     searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
                     searchboardlist.get(num).getPrice().getAmount(),
-                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size()));
+                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size(),postRepository.findPostById(searchboardlist.get(num).getId()).getImage().getImage()));
         }
 
         return ResultBoard;
