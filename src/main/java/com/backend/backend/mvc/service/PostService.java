@@ -4,10 +4,12 @@ import com.backend.backend.common.configuration.redis.RedisKey;
 import com.backend.backend.mvc.controller.post.Dto.PostModifyRequest;
 import com.backend.backend.mvc.controller.post.Dto.PostReadResponse;
 import com.backend.backend.mvc.controller.post.Dto.PostWriteRequest;
+import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.domain.post.Post;
 import com.backend.backend.common.exception.NotExistException;
 import com.backend.backend.common.exception.PermissionDeniedException;
+import com.backend.backend.mvc.repository.imageRepository.ImageRepository;
 import com.backend.backend.mvc.repository.memberRepository.MemberRepository;
 import com.backend.backend.mvc.repository.postRepository.PostRepository;
 import com.backend.backend.mvc.repository.postRepository.PostSearch;
@@ -26,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
+    private final ImageRepository imageRepository;
 
     private final RedisTemplate<String ,String> redisTemplate;
 
@@ -37,11 +40,14 @@ public class PostService {
 
     @Transactional
     public Long writePost(PostWriteRequest postWriteRequest){
+       /* Image image = new Image(postWriteRequest.getImage());
+        Long imageId=imageRepository.save(image);*/
         Post post = Post.builder()
                 .writer(getMember(postWriteRequest))
                 .postName(postWriteRequest.getPostName())
                 .content(postWriteRequest.getContent())
                 .price(postWriteRequest.getPrice())
+                /*.image(image)*/
                 .build();
 
         return postRepository.save(post);

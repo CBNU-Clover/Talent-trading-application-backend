@@ -14,6 +14,7 @@ import com.backend.backend.mvc.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +45,6 @@ public class PostController {
         TokenParsing tokenParsing=new TokenParsing();
         String result= tokenParsing.ExtractNickname(request);
         postWriteRequest.setWriterNickname(result);
-        imageRepository.save(new Image(postWriteRequest.getImage()));
         Long postId = postService.writePost(postWriteRequest);
         return new ResponseEntity<>(postId,HttpStatus.CREATED);
     }
@@ -118,11 +118,19 @@ public class PostController {
         for(int num=0 ; num<searchboardlist.size();num++)
         {
 
+            /*ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),
+                    searchboardlist.get(num).getWriter().getNickname().toString(),
+                    searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
+                    searchboardlist.get(num).getPrice().getAmount(),
+                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size()
+                    ,(postRepository.findPostById(searchboardlist.get(num).getId())).getImage().getImage()));*/
             ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),
                     searchboardlist.get(num).getWriter().getNickname().toString(),
                     searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
                     searchboardlist.get(num).getPrice().getAmount(),
-                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size(),postRepository.findPostById(searchboardlist.get(num).getId()).getImage().getImage()));
+                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size()
+                    ));
+
         }
 
         return ResultBoard;
