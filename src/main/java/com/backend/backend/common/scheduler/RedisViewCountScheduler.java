@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -30,6 +31,7 @@ public class RedisViewCountScheduler {
      * 1분 마다 작동
      */
     @Scheduled(initialDelay = 60000, fixedDelay = 60000)
+    @Transactional
     public void updateVisitorData() {
         System.out.println("스케쥴러 시작");
         Set<String> keys = redisTemplate.keys(RedisKey.PostViewCount + "_*");
