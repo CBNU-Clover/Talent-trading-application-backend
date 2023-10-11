@@ -31,6 +31,7 @@ public class RedisViewCountScheduler {
      */
     @Scheduled(initialDelay = 60000, fixedDelay = 60000)
     public void updateVisitorData() {
+        System.out.println("스케쥴러 시작");
         Set<String> keys = redisTemplate.keys(RedisKey.PostViewCount + "_*");
         //최소힙
         PriorityQueue<PopularPost> popularPosts = new PriorityQueue<>();
@@ -56,6 +57,7 @@ public class RedisViewCountScheduler {
         }
 
         changePopularPost(popularPosts);
+        System.out.println("스케쥴러 끝");
     }
 
 

@@ -34,6 +34,7 @@ public class PopularPostController {
     @GetMapping("/all")
     public List<PopularPostResponse> getPopularPost()
     {
+
         return popularPostService.getAllPopularPosts();
     }
 
