@@ -55,9 +55,10 @@ public class PostController {
      * @return
      */
     @GetMapping("/read/{postId}")
-    public ResponseEntity<PostReadResponse> readPost(@PathVariable("postId") Long postId){
-
-        Post post = postService.readPost(postId);
+    public ResponseEntity<PostReadResponse> readPost(@PathVariable("postId") Long postId,HttpServletRequest request){
+        TokenParsing tokenParsing=new TokenParsing();
+        String result= tokenParsing.ExtractNickname(request);
+        Post post = postService.readPost(postId,result);
         PostReadResponse postReadResponse = new PostReadResponse(post);
         return new ResponseEntity<>(postReadResponse,HttpStatus.OK);
     }
