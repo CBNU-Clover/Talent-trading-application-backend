@@ -57,6 +57,12 @@ public class RedisViewCountScheduler {
             }
             redisTemplate.delete(key);
         }
+        popularPostRepository.getAllPopularPosts().forEach((popularPost)->{
+            popularPosts.add(new PopularPost(popularPost.getPost(), popularPost.getViewCount()-5));
+            if(popularPosts.size()>10){
+                popularPosts.poll();
+            }
+        });
 
         changePopularPost(popularPosts);
         System.out.println("스케쥴러 끝");
