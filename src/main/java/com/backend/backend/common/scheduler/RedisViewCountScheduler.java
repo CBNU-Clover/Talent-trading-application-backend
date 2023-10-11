@@ -28,12 +28,11 @@ public class RedisViewCountScheduler {
     private final PopularPostRepository popularPostRepository;
 
     /**
-     * 1분 마다 작동
+     * 5분 마다 작동
      */
-    @Scheduled(initialDelay = 60000, fixedDelay = 60000)
+    @Scheduled(initialDelay = 300000, fixedDelay = 300000)
     @Transactional
     public void updateVisitorData() {
-        System.out.println("스케쥴러 시작");
         Set<String> keys = redisTemplate.keys(RedisKey.PostViewCount + "_*");
         //최소힙
         PriorityQueue<PopularPost> popularPosts = new PriorityQueue<>();
@@ -51,15 +50,20 @@ public class RedisViewCountScheduler {
 
                 //인기게시글 선정
                 popularPosts.add(new PopularPost(post, Long.parseLong(viewCount)));
-                if(popularPosts.size()>10){
+                if(popularPosts.size()>5){
                     popularPosts.poll();
                 }
             }
             redisTemplate.delete(key);
         }
+        popularPostRepository.getAllPopularPosts().forEach((popularPost)->{
+            popularPosts.add(new PopularPost(popularPost.getPost(), popularPost.getViewCount()-5));
+            if(popularPosts.size()>5){
+                popularPosts.poll();
+            }
+        });
 
         changePopularPost(popularPosts);
-        System.out.println("스케쥴러 끝");
     }
 
 
