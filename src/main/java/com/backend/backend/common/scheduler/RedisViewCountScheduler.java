@@ -28,9 +28,9 @@ public class RedisViewCountScheduler {
     private final PopularPostRepository popularPostRepository;
 
     /**
-     * 1분 마다 작동
+     * 5분 마다 작동
      */
-    @Scheduled(initialDelay = 60000, fixedDelay = 60000)
+    @Scheduled(initialDelay = 300000, fixedDelay = 300000)
     @Transactional
     public void updateVisitorData() {
         System.out.println("스케쥴러 시작");
