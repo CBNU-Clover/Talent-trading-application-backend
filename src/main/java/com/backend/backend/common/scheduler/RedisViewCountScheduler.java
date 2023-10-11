@@ -51,7 +51,7 @@ public class RedisViewCountScheduler {
 
                 //인기게시글 선정
                 popularPosts.add(new PopularPost(post, Long.parseLong(viewCount)));
-                if(popularPosts.size()>10){
+                if(popularPosts.size()>5){
                     popularPosts.poll();
                 }
             }
@@ -59,7 +59,7 @@ public class RedisViewCountScheduler {
         }
         popularPostRepository.getAllPopularPosts().forEach((popularPost)->{
             popularPosts.add(new PopularPost(popularPost.getPost(), popularPost.getViewCount()-5));
-            if(popularPosts.size()>10){
+            if(popularPosts.size()>5){
                 popularPosts.poll();
             }
         });
