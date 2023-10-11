@@ -94,8 +94,8 @@ public class PostService {
         Boolean isExist = setOperations.isMember(key, "");
         if(isExist==false){
             setOperations.add(key, "");
-            //30분뒤 해당 키가 제거됨
-            redisTemplate.expire(key, 30, TimeUnit.MINUTES);
+            //1분뒤 해당 키가 제거됨
+            redisTemplate.expire(key, 1, TimeUnit.MINUTES);
             redisTemplate.opsForValue().increment(RedisKey.PostViewCount+"_"+postId.toString());
             //postRepository.findPostById(postId).addViewCount();
         }
