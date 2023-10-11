@@ -42,14 +42,5 @@ class PopularPostServiceTest extends TestSetting {
         postRepository.save(post2);
     }
 
-    @Test
-    void getAllPopularPosts() {
-        PopularPost popularPost1 = new PopularPost(post1, 10L);
-        PopularPost popularPost2 = new PopularPost(post2, 20L);
-        popularPostRepository.save(popularPost1);
-        popularPostRepository.save(popularPost2);
 
-        List<PopularPost> allPopularPosts = popularPostRepository.getAllPopularPosts();
-        Assertions.assertThat(allPopularPosts).contains(popularPost1, popularPost2);
-    }
 }

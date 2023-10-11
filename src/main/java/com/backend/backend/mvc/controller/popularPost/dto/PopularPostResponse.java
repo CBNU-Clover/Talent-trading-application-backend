@@ -1,19 +1,32 @@
 package com.backend.backend.mvc.controller.popularPost.dto;
 
-import com.backend.backend.mvc.domain.popularPost.PopularPost;
 import lombok.Data;
 import lombok.Getter;
 
 @Data
 @Getter
 public class PopularPostResponse {
-    private String title;
+    private Long id;
+    private String writerNickname;
+    private String postName;
+    private String content;
     private Long price;
-    private Long postId;
+    private Long review_size;
 
-    public PopularPostResponse(PopularPost popularPost) {
-        this.title = popularPost.getPost().getPostName().toString();
-        this.price = popularPost.getPost().getPrice().getAmount();
-        this.postId = popularPost.getPost().getId();
+    private String date;
+
+    //private byte[] image;
+    public PopularPostResponse(Long id,String writerNickname, String postName, String content,Long price,String date,Long review_size) {
+        this.writerNickname=writerNickname;
+        this.id=id;
+        this.postName = postName;
+        this.content = content;
+        this.price=price;
+        this.date=date;
+        this.review_size=review_size;
+        //this.image=image;
     }
+
+
+
 }

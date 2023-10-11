@@ -14,6 +14,7 @@ public class ChattingRoomListDTO {
     private String postname;
     private String buyer;
     private String post_price;
+    private Long postId;
     ChattingRoomListDTO()
     {
 
