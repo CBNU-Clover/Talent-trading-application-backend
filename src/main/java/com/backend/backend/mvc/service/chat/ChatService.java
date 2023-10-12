@@ -91,7 +91,7 @@ public class ChatService {
             {
                 if(hour==0)
                 {
-                    date=period + " 0" + hour+":0"+minute;
+                    date=period + " 0" + hour+":"+minute;
                 }
                 else {
                     date=period + " " + hour+":"+minute;
@@ -102,7 +102,7 @@ public class ChatService {
                     messages.get(i).getId(),
                     messages.get(i).getSender().getNickname().toString(),
                     messages.get(i).getContent().getContent(),
-                    date));
+                    date,messages.get(i).getMessageType().toString().toLowerCase()));
 
         }
         return chatHistoryDTOS;
