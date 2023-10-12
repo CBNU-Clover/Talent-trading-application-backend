@@ -119,11 +119,12 @@ public class ChatService {
     //채팅 저장
     public void save_chat(ChatMessageDTO message)
     {
+        ChatMessageType chatMessageType= ChatMessageType.valueOf(message.getType());
         ChatMessage chatMessage=new ChatMessage(
                 chattingRepository.findChattingRoomById(message.getRoomId()),
                 memberRepository.findMemberByNickname(message.getSender()),
                 message.getContent(),
-                ChatMessageType.MESSAGE);
+                chatMessageType);
         chattingRepository.saveMessage(chatMessage);
     }
 

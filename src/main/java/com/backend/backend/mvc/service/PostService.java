@@ -40,14 +40,14 @@ public class PostService {
 
     @Transactional
     public Long writePost(PostWriteRequest postWriteRequest){
-       /* Image image = new Image(postWriteRequest.getImage());
+     /*  Image image = new Image(postWriteRequest.getImage());
         Long imageId=imageRepository.save(image);*/
         Post post = Post.builder()
                 .writer(getMember(postWriteRequest))
                 .postName(postWriteRequest.getPostName())
                 .content(postWriteRequest.getContent())
                 .price(postWriteRequest.getPrice())
-                /*.image(image)*/
+                //.image(image)
                 .build();
 
         return postRepository.save(post);
