@@ -27,7 +27,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(this.LoginapiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.backend.backend.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.backend.backend.mvc.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
