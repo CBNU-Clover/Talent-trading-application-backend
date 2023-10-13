@@ -50,7 +50,6 @@ public class TradingController {
         }
 
         return tradingHistories;
-        // 클라이언트에서 postID값만 보내서 받는다.
     }
 
 }

@@ -13,4 +13,5 @@ public class ChatHistoryDTO {
     private String sender;
     private String content;
     private String date;
+    private String type;
 }
