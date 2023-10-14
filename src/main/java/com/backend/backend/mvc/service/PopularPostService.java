@@ -33,8 +33,8 @@ public class PopularPostService {
                     popularPostList.get(num).getPost().getWriter().getNickname().toString(),
                     popularPostList.get(num).getPost().getPostName().toString(),popularPostList.get(num).getPost().getContent().toString(),
                     popularPostList.get(num).getPost().getPrice().getAmount(),
-                    ChangeDate.formatTimeString(popularPostList.get(num).getPost().getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(popularPostList.get(num).getPost().getId())).size()
-            ));
+                    ChangeDate.formatTimeString(popularPostList.get(num).getPost().getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(popularPostList.get(num).getPost().getId())).size(),
+                    popularPostList.get(num).getPost().getImage().getId().toString()));
 
         }
 

@@ -14,6 +14,7 @@ public class PostReadResponse {
     private Long price;
 
     private String date;
+    private String image_url;
 
 
     public PostReadResponse(Post post) {
@@ -23,5 +24,6 @@ public class PostReadResponse {
         this.content = post.getContent().toString();
         this.price=post.getPrice().getAmount();
         this.date= ChangeDate.formatTimeString(post.getDate());
+        this.image_url=post.getImage().getId().toString();
     }
 }

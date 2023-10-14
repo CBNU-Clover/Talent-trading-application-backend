@@ -17,8 +17,8 @@ public class PostSearchBoard {
 
     private String date;
 
-    //private byte[] image;
-    public PostSearchBoard(Long id,String writerNickname, String postName, String content,Long price,String date,Long review_size) {
+   private String image_url;
+    public PostSearchBoard(Long id,String writerNickname, String postName, String content,Long price,String date,Long review_size,String image_url) {
         this.writerNickname=writerNickname;
         this.id=id;
         this.postName = postName;
@@ -26,7 +26,7 @@ public class PostSearchBoard {
         this.price=price;
         this.date=date;
         this.review_size=review_size;
-        //this.image=image;
+        this.image_url=image_url;
     }
 
 

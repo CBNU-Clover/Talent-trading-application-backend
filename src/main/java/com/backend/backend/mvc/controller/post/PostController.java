@@ -118,19 +118,14 @@ public class PostController {
 
         for(int num=0 ; num<searchboardlist.size();num++)
         {
+            String image_url=searchboardlist.get(num).getImage().getId().toString();
 
-            /*ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),
-                    searchboardlist.get(num).getWriter().getNickname().toString(),
-                    searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
-                    searchboardlist.get(num).getPrice().getAmount(),
-                    ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size()
-                    ,searchboardlist.get(num).getImage().getImage()));*/
             ResultBoard.add(num,new PostSearchBoard(searchboardlist.get(num).getId(),
                     searchboardlist.get(num).getWriter().getNickname().toString(),
                     searchboardlist.get(num).getPostName().toString(),searchboardlist.get(num).getContent().toString(),
                     searchboardlist.get(num).getPrice().getAmount(),
                     ChangeDate.formatTimeString(searchboardlist.get(num).getDate()),(long)reviewRepository.findReviewsByPost(postRepository.findPostById(searchboardlist.get(num).getId())).size()
-                    ));
+                    ,image_url));
 
         }
 
