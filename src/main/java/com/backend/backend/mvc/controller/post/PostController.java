@@ -94,7 +94,8 @@ public class PostController {
             {
                 ResultBoard.add(num,new PostGetAllBoard(boardlist.get(num).getId(),
                         boardlist.get(num).getPostName().toString(),boardlist.get(num).getContent().toString(),
-                        boardlist.get(num).getPrice().getAmount(),ChangeDate.formatTimeString(boardlist.get(num).getDate()),result,(long)reviewRepository.findReviewsByPost(postRepository.findPostById(boardlist.get(num).getId())).size()));
+                        boardlist.get(num).getPrice().getAmount(),ChangeDate.formatTimeString(boardlist.get(num).getDate()),result,(long)reviewRepository.findReviewsByPost(postRepository.findPostById(boardlist.get(num).getId())).size()
+                        ,boardlist.get(num).getImage().getId().toString()));
             }
 
         return ResultBoard;

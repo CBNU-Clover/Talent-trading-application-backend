@@ -26,11 +26,10 @@ public class PointController {
     @PostMapping("/charge_point")
     public void charge_point(HttpServletRequest request, @RequestBody @Valid ChargePoint chargePoint){
         System.out.println(chargePoint.getPoint());
-        System.out.println("+++++++++++++++++++++++++++");
         TokenParsing tokenParsing=new TokenParsing();
         String result= tokenParsing.ExtractNickname(request);
         // 클라이언트에서 postID값만 보내서 받는다.
-        pointService.chargePoint(result,"은행", chargePoint.getPoint());
+        pointService.chargePoint(result,result, chargePoint.getPoint());
     }
 
     @GetMapping("/show_point")
@@ -57,7 +56,7 @@ public class PointController {
         {
             if(point_history_info.get(num).getStatus().equals(PointStatus.DEPOSIT))
             {
-                pointHistories.add(num,new PointHistory(point_history_info.get(num).getRecipient().toString(),
+                pointHistories.add(num,new PointHistory(point_history_info.get(num).getSender().toString(),
                         point_history_info.get(num).getAmount().getAmount()
                         ,point_history_info.get(num).getBalance().getAmount()
                         ,"입금",point_history_info.get(num).getDate().toString().replace("T"," ")));
