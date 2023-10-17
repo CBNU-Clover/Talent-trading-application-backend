@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.domain.member;
 
+import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.member.values.*;
 import lombok.*;
 import org.springframework.util.Assert;
@@ -41,11 +42,13 @@ public class Member {
     @Column(nullable = false)
     private Point point;
 
-
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "image_id")
+    private Image image;
 
 
     @Builder
-    public Member(String name, String nickname, String email, String phoneNumber, String password) {
+    public Member(String name, String nickname, String email, String phoneNumber, String password, Image image) {
         Assert.hasText(name, "회원 이름이 없습니다");
         Assert.hasText(nickname, "회원 닉네임이 없습니다");
         this.name = Name.from(name);
@@ -54,6 +57,7 @@ public class Member {
         this.phoneNumber = PhoneNumber.from(phoneNumber);
         this.password = Password.from(password);
         this.point = new Point();
+        this.image = image;
     }
 
 
