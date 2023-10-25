@@ -88,7 +88,7 @@ public class ReviewService {
         List<Review> reviews=reviewRepository.findReviewsByPost(post);
         for(int num=0;num<reviews.size();num++)
         {
-            all_review.add(num,new ReviewReadResponse(reviews.get(num)));
+            all_review.add(num,new ReviewReadResponse(reviews.get(num),reviews.get(num).getWriter().getImage().getId().toString()));
         }
 
         return all_review;
@@ -105,7 +105,7 @@ public class ReviewService {
 
         for(int num=0 ; num<reviews.size();num++)
         {
-            all_review.add(num,new ReviewReadResponse(reviews.get(num)));
+            all_review.add(num,new ReviewReadResponse(reviews.get(num),member.getImage().getId().toString()));
         }
 
         return all_review;

@@ -19,12 +19,15 @@ public class ReviewReadResponse {
     private Long rating;
     private String date;
 
-    public ReviewReadResponse(Review review) {
+    private String review_writer_image_url;
+
+    public ReviewReadResponse(Review review,String review_writer_image_url) {
         this.postId = review.getPost().getId();
         this.reviewId = review.getId();
         this.writerNickname = review.getWriter().getNickname().toString();
         this.content = review.getContent();
         this.rating = review.getStarRating().getRating();
         this.date = ChangeDate.formatTimeString(review.getDate());
+        this.review_writer_image_url=review_writer_image_url;
     }
 }

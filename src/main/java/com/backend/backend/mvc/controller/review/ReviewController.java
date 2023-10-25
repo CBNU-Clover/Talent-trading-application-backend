@@ -45,7 +45,7 @@ public class ReviewController {
     public ResponseEntity<ReviewReadResponse> readPost(@PathVariable("reviewId") Long reviewId){
 
         Review review = reviewService.readReview(reviewId);
-        ReviewReadResponse reviewReadResponse = new ReviewReadResponse(review);
+        ReviewReadResponse reviewReadResponse = new ReviewReadResponse(review,review.getWriter().getImage().getId().toString());
 
         return new ResponseEntity<>(reviewReadResponse,HttpStatus.OK);
     }
