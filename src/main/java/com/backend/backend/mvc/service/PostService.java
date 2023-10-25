@@ -84,10 +84,11 @@ public class PostService {
     public PostReadResponse readPost(Long postId, String memberNickname){
         addViewCount(postId,memberNickname);
         Post post = postRepository.findPostById(postId);
-        String writer=post.getWriter().toString();
+        String writer=post.getWriter().getNickname().toString();
         Member member=memberRepository.findMemberByNickname(writer);
         String writer_image_url=member.getImage().getId().toString();
         PostReadResponse postReadResponse=new PostReadResponse(post,writer_image_url);
+
         return postReadResponse;
     }
 
