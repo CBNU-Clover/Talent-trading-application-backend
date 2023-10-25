@@ -25,7 +25,10 @@ public class PostReadResponse {
         this.content = post.getContent().toString();
         this.price=post.getPrice().getAmount();
         this.date= ChangeDate.formatTimeString(post.getDate());
-        this.board_image_url=post.getImage().getId().toString();
+        this.board_image_url = "0";
+        if(post.getImage()!=null){
+            this.board_image_url=post.getImage().getId().toString();
+        }
         this.writer_image_url=writer_image_url;
     }
 }

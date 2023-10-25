@@ -37,8 +37,11 @@ public class MemberService {
     private Long expireTimeMs=1000*60*60l; // 한시간
     public String join(MemberJoinRequest memberJoinRequest)
     {
-        Image image = new Image(memberJoinRequest.getImage());
-        Long imageId=imageRepository.save(image);
+        Image image = null;
+        if(memberJoinRequest.getImage()!=null) {
+            image = new Image(memberJoinRequest.getImage());
+            imageRepository.save(image);
+        }
         Member member=Member.builder()
                         .nickname(memberJoinRequest.getNickname())
                         .name(memberJoinRequest.getName())

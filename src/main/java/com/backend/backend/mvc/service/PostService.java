@@ -86,7 +86,10 @@ public class PostService {
         Post post = postRepository.findPostById(postId);
         String writer=post.getWriter().getNickname().toString();
         Member member=memberRepository.findMemberByNickname(writer);
-        String writer_image_url=member.getImage().getId().toString();
+        String writer_image_url="0";
+        if(member.getImage()!=null) {
+            writer_image_url = member.getImage().getId().toString();
+        }
         PostReadResponse postReadResponse=new PostReadResponse(post,writer_image_url);
 
         return postReadResponse;
