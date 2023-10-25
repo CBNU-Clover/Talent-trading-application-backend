@@ -1,17 +1,14 @@
 package com.backend.backend.mvc.controller.member;
 
-import com.backend.backend.mvc.controller.member.memberdto.Check_Email;
-import com.backend.backend.mvc.controller.member.memberdto.Check_nickname;
-import com.backend.backend.mvc.controller.member.memberdto.MemberJoinRequest;
-import com.backend.backend.mvc.controller.member.memberdto.MemberLoginRequest;
+import com.backend.backend.common.DataProcessing.TokenParsing;
+import com.backend.backend.mvc.controller.member.memberdto.*;
 import com.backend.backend.mvc.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -69,5 +66,12 @@ public class MemberController {
         return ResponseEntity.ok().body(token);
     }
 
+    @GetMapping("/getMyProfile")
+    public MyProfile getMyProfile(HttpServletRequest request)
+    {
+        TokenParsing tokenParsing=new TokenParsing();
+        String result= tokenParsing.ExtractNickname(request);
 
+        return memberService.getMyProfile(result);
+    }
 }

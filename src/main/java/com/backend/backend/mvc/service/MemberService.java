@@ -1,11 +1,17 @@
 package com.backend.backend.mvc.service;
 
+import com.backend.backend.mvc.controller.member.memberdto.MyProfile;
+import com.backend.backend.mvc.controller.ranking.CalculateRanking;
 import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.controller.member.memberdto.MemberJoinRequest;
+import com.backend.backend.mvc.domain.post.values.PostCategory;
+import com.backend.backend.mvc.domain.rating.Rating;
 import com.backend.backend.mvc.repository.imageRepository.ImageRepository;
 import com.backend.backend.mvc.repository.memberRepository.DbMemberRepository;
 import com.backend.backend.common.utils.JwtTokenUtil;
+import com.backend.backend.mvc.repository.ratingRepository.RatingRepository;
+import com.backend.backend.mvc.service.ranking.ratingPolicy.RatingPolicy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +29,8 @@ public class MemberService {
     private final DbMemberRepository dbMemberRepository;
     private final BCryptPasswordEncoder encoder;
     private final ImageRepository imageRepository;
+    private final RatingRepository ratingRepository;
+    private final RatingPolicy ratingPolicy;
 
     @Value("${jwt.token.secret}")
     private String key;
@@ -93,5 +101,22 @@ public class MemberService {
         {
             return 0;
         }
+    }
+
+    public MyProfile getMyProfile(String nickname)
+    {
+        String grade;
+        Rating rating=ratingRepository.findRatingByNicknameAndCategory(nickname, PostCategory.OTHER);
+        CalculateRanking calculateRanking=new CalculateRanking();
+        if(rating==null)
+        {
+            grade=calculateRanking.calculateRanking(0L);
+        }
+        else {
+            grade=calculateRanking.calculateRanking(rating.getScore());
+        }
+        Member member=dbMemberRepository.findMemberByNickname(nickname);
+        MyProfile myProfile=new MyProfile(nickname,grade,member.getImage().getId().toString());
+        return myProfile;
     }
 }

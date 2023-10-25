@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.service.ranking;
 
+import com.backend.backend.mvc.controller.ranking.CalculateRanking;
 import com.backend.backend.mvc.controller.ranking.dto.MyRanking;
 import com.backend.backend.mvc.controller.ranking.dto.ResponseRankingList;
 import com.backend.backend.mvc.domain.member.Member;
@@ -27,11 +28,12 @@ public class RankingService {
 
         List<ResponseRankingList> responseRankingLists = new ArrayList<>();
         List<Rating> ratings = ratingRepository.getTopRanking(PostCategory.OTHER);
+        CalculateRanking calculateRanking=new CalculateRanking();
         for (int num = 0; num < ratings.size(); num++) {
 
             responseRankingLists.add(num, new ResponseRankingList(ratings.get(num).getMember().getNickname().toString(),
                     ratings.get(num).getScore(),
-                    calculateRanking(ratings.get(num).getScore())));
+                    calculateRanking.calculateRanking(ratings.get(num).getScore())));
         }
         return responseRankingLists;
     }
@@ -41,7 +43,8 @@ public class RankingService {
     public MyRanking myRanking(String nickname)
     {
         Rating rating=ratingRepository.findRatingByNicknameAndCategory(nickname,PostCategory.OTHER);
-        String grade=calculateRanking(rating.getScore());
+        CalculateRanking calculateRanking=new CalculateRanking();
+        String grade=calculateRanking.calculateRanking(rating.getScore());
         MyRanking myRanking=new MyRanking(rating,grade);
         return myRanking;
     }
@@ -49,23 +52,6 @@ public class RankingService {
     public void addRating(Member member, PostCategory category) {
         Long amount = ratingPolicy.calculate();
         ratingRepository.addRating(member, category, amount);
-    }
-
-
-
-    public String calculateRanking(Long score) {
-        if (score >= 50) {
-            return "S";
-        } else if ((40 <= score) && (score < 50)) {
-            return "A+";
-        } else if ((30 <= score) && (score < 40)) {
-            return "A";
-        } else if ((20 <= score) && (score < 30)) {
-            return "B+";
-        } else if (score < 20) {
-            return "B";
-        }
-        return "등급 오류";
     }
 }
 
