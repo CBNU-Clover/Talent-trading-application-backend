@@ -14,16 +14,18 @@ public class PostReadResponse {
     private Long price;
 
     private String date;
-    private String image_url;
+    private String board_image_url;
+    private String writer_image_url;
 
 
-    public PostReadResponse(Post post) {
+    public PostReadResponse(Post post,String writer_image_url) {
         this.postId=post.getId();
         this.writerNickname = post.getWriter().getNickname().toString();
         this.postName = post.getPostName().toString();
         this.content = post.getContent().toString();
         this.price=post.getPrice().getAmount();
         this.date= ChangeDate.formatTimeString(post.getDate());
-        this.image_url=post.getImage().getId().toString();
+        this.board_image_url=post.getImage().getId().toString();
+        this.writer_image_url=writer_image_url;
     }
 }

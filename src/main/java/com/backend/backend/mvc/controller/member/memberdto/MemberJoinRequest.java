@@ -1,6 +1,6 @@
 package com.backend.backend.mvc.controller.member.memberdto;
 
-import com.querydsl.core.types.dsl.StringPath;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,6 +13,7 @@ public class MemberJoinRequest {
     private String name;
     private String passWord;
     private String phoneNumber;
+    private byte[] image;
     public MemberJoinRequest() {
 
     }

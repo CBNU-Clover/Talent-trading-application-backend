@@ -1,7 +1,9 @@
 package com.backend.backend.mvc.service;
 
+import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.mvc.controller.member.memberdto.MemberJoinRequest;
+import com.backend.backend.mvc.repository.imageRepository.ImageRepository;
 import com.backend.backend.mvc.repository.memberRepository.DbMemberRepository;
 import com.backend.backend.common.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,19 +22,22 @@ public class MemberService {
     @Autowired
     private final DbMemberRepository dbMemberRepository;
     private final BCryptPasswordEncoder encoder;
+    private final ImageRepository imageRepository;
 
     @Value("${jwt.token.secret}")
     private String key;
     private Long expireTimeMs=1000*60*60l; // 한시간
     public String join(MemberJoinRequest memberJoinRequest)
     {
-
+        Image image = new Image(memberJoinRequest.getImage());
+        Long imageId=imageRepository.save(image);
         Member member=Member.builder()
                         .nickname(memberJoinRequest.getNickname())
                         .name(memberJoinRequest.getName())
                         .email(memberJoinRequest.getEmail())
                         .phoneNumber(memberJoinRequest.getPhoneNumber())
                         .password(memberJoinRequest.getPassWord())
+                        .image(image)
                         .build();
         dbMemberRepository.save(member);
         
