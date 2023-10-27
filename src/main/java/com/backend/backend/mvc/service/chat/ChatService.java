@@ -52,7 +52,7 @@ public class ChatService {
                     ,chattingRooms.get(i).getPost().getPrice().toString()
                     ,chattingRooms.get(i).getPost().getId()
                     ,chattingRooms.get(i).getPost().getImage().getId().toString()
-                    ,chattingRooms.get(i).getSeller().getImage().getId().toString()));
+                    ,chattingRooms.get(i).getPost().getWriter().getImage().getId().toString()));
         }
         return  chattingRoomListDTOList;
     }
