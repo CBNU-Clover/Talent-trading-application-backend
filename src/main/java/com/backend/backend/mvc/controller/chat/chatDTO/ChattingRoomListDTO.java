@@ -2,12 +2,15 @@ package com.backend.backend.mvc.controller.chat.chatDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 
-@AllArgsConstructor
+
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChattingRoomListDTO {
     private String seller;
     private Long roomId;
@@ -15,8 +18,7 @@ public class ChattingRoomListDTO {
     private String buyer;
     private String post_price;
     private Long postId;
-    ChattingRoomListDTO()
-    {
+    private String post_image_url;
+    private String seller_image_url;
 
-    }
 }
