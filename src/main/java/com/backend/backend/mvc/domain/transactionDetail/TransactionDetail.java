@@ -1,5 +1,6 @@
 package com.backend.backend.mvc.domain.transactionDetail;
 
+import com.backend.backend.mvc.domain.image.Image;
 import com.backend.backend.mvc.domain.member.Member;
 import com.backend.backend.common.exception.NotExistException;
 import com.backend.backend.mvc.domain.post.values.PostName;
@@ -43,10 +44,13 @@ public class TransactionDetail {
 
     private PostName postName;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Image image;
+
     private Price price;
 
     @Builder
-    public TransactionDetail(Member seller, Member buyer,String postName,Long price) {
+    public TransactionDetail(Member seller, Member buyer,String postName,Long price,Image image) {
         if(seller==null){
             throw new NotExistException("판매자가 없습니다");
         }
@@ -58,5 +62,6 @@ public class TransactionDetail {
         this.status = TransactionStatus.TRADING;
         this.postName = PostName.from(postName);
         this.price = Price.from(price);
+        this.image = image;
     }
 }

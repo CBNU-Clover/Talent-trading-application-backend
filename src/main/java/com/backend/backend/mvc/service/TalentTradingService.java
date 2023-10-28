@@ -44,6 +44,7 @@ public class TalentTradingService {
                 .buyer(buyer)
                 .postName(post.getPostName().toString())
                 .price(post.getPrice().getAmount())
+                .image(post.getImage())
                 .build();
         transactionDetailRepository.save(transactionDetail);
 
