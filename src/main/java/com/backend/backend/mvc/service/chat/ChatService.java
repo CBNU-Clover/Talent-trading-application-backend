@@ -44,6 +44,23 @@ public class ChatService {
 
         for(int i=0 ; i<chattingRooms.size();i++)
         {
+            Member chat_person;
+            String find_person;
+            String chat_person_url;
+            if(user!=chattingRooms.get(i).getPost().getWriter().getNickname().toString())
+            {
+                //로그인한 사용자가 seller가 아닐때 seller의 프로필 사진을 반환해야한다.
+                find_person=chattingRooms.get(i).getSeller().getNickname().toString();
+                chat_person= memberRepository.findMemberByNickname(find_person);
+                chat_person_url=chat_person.getImage().getId().toString();
+            }
+            else
+            {
+                //로그인한 사용자가 seller일때 buyer의 프로필 사진을 반환해야한다.
+                find_person=chattingRooms.get(i).getBuyer().getNickname().toString();
+                chat_person=memberRepository.findMemberByNickname(find_person);
+                chat_person_url=chat_person.getImage().getId().toString();
+            }
             chattingRoomListDTOList.add(i
                     ,new ChattingRoomListDTO(chattingRooms.get(i).getSeller().getNickname().toString()
                     ,chattingRooms.get(i).getId()
@@ -52,7 +69,7 @@ public class ChatService {
                     ,chattingRooms.get(i).getPost().getPrice().toString()
                     ,chattingRooms.get(i).getPost().getId()
                     ,chattingRooms.get(i).getPost().getImage().getId().toString()
-                    ,chattingRooms.get(i).getPost().getWriter().getImage().getId().toString()));
+                    ,chat_person_url));
         }
         return  chattingRoomListDTOList;
     }
