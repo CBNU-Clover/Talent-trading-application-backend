@@ -4,6 +4,8 @@ import com.backend.backend.common.DataProcessing.TokenParsing;
 import com.backend.backend.mvc.controller.trading.tradeDto.TradePost;
 import com.backend.backend.mvc.controller.trading.tradeDto.TradingHistory;
 import com.backend.backend.mvc.domain.transactionDetail.TransactionDetail;
+import com.backend.backend.mvc.repository.postRepository.PostRepository;
+import com.backend.backend.mvc.repository.postRepository.PostSearch;
 import com.backend.backend.mvc.service.TalentTradingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.List;
 public class TradingController {
 
     private final TalentTradingService talentTradingService;
+    private final PostRepository postRepository;
 
 
     /**
@@ -44,9 +47,14 @@ public class TradingController {
         List<TradingHistory> tradingHistories=new ArrayList<>();
         for(int num=0 ; num<trade_info.size();num++)
         {
-            tradingHistories.add(num,new TradingHistory(trade_info.get(num).getPostName().toString(),
-                    trade_info.get(num).getPrice().getAmount(),trade_info.get(num).getBuyer().getNickname().toString(),
-                    trade_info.get(num).getSeller().getNickname().toString(),trade_info.get(num).getStartDate().toString().replace("T"," ")));
+            tradingHistories.add(
+                    num
+                    ,new TradingHistory(trade_info.get(num).getPostName().toString()
+                    ,trade_info.get(num).getPrice().getAmount(),trade_info.get(num).getBuyer().getNickname().toString()
+                    ,trade_info.get(num).getSeller().getNickname().toString()
+                    ,trade_info.get(num).getStartDate().toString().replace("T"," ")
+                    ,trade_info.get(num).getImage().getId().toString()
+            ));
         }
 
         return tradingHistories;
