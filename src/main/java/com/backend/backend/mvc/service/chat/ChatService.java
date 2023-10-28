@@ -47,6 +47,7 @@ public class ChatService {
             Member chat_person;
             String find_person;
             String chat_person_url;
+            // 채팅방 상대편 프로필 사진 나옴
             if(user!=chattingRooms.get(i).getPost().getWriter().getNickname().getNickname())
             {
                 //로그인한 사용자가 seller가 아닐때 seller의 프로필 사진을 반환해야한다.
