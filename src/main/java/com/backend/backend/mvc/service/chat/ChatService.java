@@ -51,14 +51,14 @@ public class ChatService {
             if(user!=chattingRooms.get(i).getPost().getWriter().getNickname().getNickname())
             {
                 //로그인한 사용자가 seller가 아닐때 seller의 프로필 사진을 반환해야한다.
-                find_person=chattingRooms.get(i).getSeller().getNickname().getNickname();
+                find_person=chattingRooms.get(i).getBuyer().getNickname().getNickname();
                 chat_person= memberRepository.findMemberByNickname(find_person);
                 chat_person_url=chat_person.getImage().getId().toString();
             }
             else
             {
                 //로그인한 사용자가 seller일때 buyer의 프로필 사진을 반환해야한다.
-                find_person=chattingRooms.get(i).getBuyer().getNickname().getNickname();
+                find_person=chattingRooms.get(i).getSeller().getNickname().getNickname();
                 chat_person=memberRepository.findMemberByNickname(find_person);
                 chat_person_url=chat_person.getImage().getId().toString();
             }

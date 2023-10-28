@@ -49,7 +49,8 @@ public class TradingController {
         {
             tradingHistories.add(
                     num
-                    ,new TradingHistory(trade_info.get(num).getPostName().toString()
+                    ,new TradingHistory(
+                     trade_info.get(num).getPostName().toString()
                     ,trade_info.get(num).getPrice().getAmount(),trade_info.get(num).getBuyer().getNickname().toString()
                     ,trade_info.get(num).getSeller().getNickname().toString()
                     ,trade_info.get(num).getStartDate().toString().replace("T"," ")
