@@ -3,18 +3,17 @@ package com.backend.backend.mvc.controller.ranking;
 public class CalculateRanking {
 
     public String calculateRanking(Long score) {
-        if (score >= 50) {
+        if (score >= 10000) {
             return "S";
-        } else if ((40 <= score) && (score < 50)) {
+        } else if (score>=5000) {
             return "A+";
-        } else if ((30 <= score) && (score < 40)) {
+        } else if (score>=1000) {
             return "A";
-        } else if ((20 <= score) && (score < 30)) {
+        } else if (score>=500) {
             return "B+";
-        } else if (score < 20) {
+        } else {
             return "B";
         }
-        return "등급 오류";
     }
     public CalculateRanking()
     {
